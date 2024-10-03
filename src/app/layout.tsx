@@ -1,5 +1,9 @@
 import "~/styles/globals.css";
 
+// components
+import Navbar from '../components/navbar/navbar';
+
+
 import { GeistSans } from "geist/font/sans";
 import { type Metadata } from "next";
 

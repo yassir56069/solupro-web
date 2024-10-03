@@ -2,7 +2,7 @@
 
 ## TODO
 
-- [ ] Deploy (ifastnet)
+- [x] Deploy (ifastnet)
 - [ ] Scaffold basic UI with mock data
 - [ ] Setup json/google sheets to UI
 - [ ] Error Management (w/ Sentry)
