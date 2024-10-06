@@ -1,4 +1,6 @@
-import Link from "next/link";
+
+import Splash from '../components/splash'
+
 
 const urls = [
   "https://utfs.io/f/wkZXy01VKbheXBuScdtRbo2xJUel05aLcmVtT8dM3PXfSjCW",
@@ -12,7 +14,8 @@ const images = urls.map((url, index) => ({
 
 export default function HomePage() {
   return (
-    <main >
+    <main>
+      <Splash/>
     </main>
   );
 }

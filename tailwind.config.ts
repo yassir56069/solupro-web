@@ -22,7 +22,8 @@ export default {
 
     extend: {
       fontFamily: {
-        sans: ["var(--font-geist-sans)", ...fontFamily.sans],
+        creatoDisplay: ['var(--font-creato-display)'],
+        edgeCutting: ['var(--font-edgecutting)'],
       },
     },
   },

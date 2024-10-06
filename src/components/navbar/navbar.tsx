@@ -84,8 +84,8 @@ const Navbar: React.FC = () => {
     }, []);
 
     return (
-        <header className="relative">
-            <div className='text-white md:bg-main-acc-blue overflow-hidden transition-all duration-300 ease-in-out'>
+        <header className="sticky top-0 z-1">
+            <div className='text-white font-creatoDisplay font-light md:bg-main-acc-blue overflow-hidden transition-all duration-300 ease-in-out'>
                 <div className={`transition-all duration-200 ease-in-out ${isMobile ? 'opacity-0 h-0' : 'opacity-100 h-auto'}`}>
                     <DesktopNav />
                 </div>

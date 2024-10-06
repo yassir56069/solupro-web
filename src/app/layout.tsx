@@ -1,5 +1,5 @@
 import "~/styles/globals.css";
-
+import { EdgeCutting, CreatoDisplay } from "utils/customFonts";
 // components
 import Navbar from '../components/navbar/navbar';
 
@@ -17,8 +17,8 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${GeistSans.variable}`}>
-      <body>
+    <html lang="en">
+      <body className={`${CreatoDisplay.variable} ${EdgeCutting.variable}`}>
         <Navbar/>
         {children}
       </body>
