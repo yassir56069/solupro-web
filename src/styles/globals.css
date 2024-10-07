@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+    @apply h-screen bg-gradient-to-t from-gr-top-blue to-gr-btm-blue ;
+    background-attachment: fixed; /* Add this line to fix the background */
+    background-size: cover; /* Ensures the background covers the entire viewport */
+}
