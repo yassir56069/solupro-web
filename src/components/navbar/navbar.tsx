@@ -2,12 +2,11 @@
 
 import React, { useState, useEffect } from 'react';
 import Logo from '../logo'
-import { Button } from 'react-aria-components';
 import PageLinks from './pagelinks';
 
 const DesktopNav = () => {
     return (
-        <div className='stick top-0 z-[20] mx-auto flex items-center justify-between w-full pb-1 pt-2 pl-4 pr-16'>
+        <div className='h-24 stick top-0 z-[20] mx-auto flex items-center justify-between w-full pb-1 pt-2 pl-4 pr-16'>
             <Logo />
             <nav className='w-2/3'>
                 <div className='flex justify-between'> 
@@ -26,7 +25,7 @@ const MobileNav = () => {
     };
 
     return (
-        <nav className='relative'>
+        <nav className=' h-24'>
             <div className='flex justify-center items-center p-4'>
                 <button 
                     onClick={toggleNavbar}
@@ -84,12 +83,12 @@ const Navbar: React.FC = () => {
     }, []);
 
     return (
-        <header className="sticky top-0 z-1">
-            <div className='text-white font-creatoDisplay font-light md:bg-main-acc-blue overflow-hidden transition-all duration-300 ease-in-out'>
-                <div className={`transition-all duration-200 ease-in-out ${isMobile ? 'opacity-0 h-0' : 'opacity-100 h-auto'}`}>
+        <header className="sticky top-0 z-1 h-24">
+            <div className='text-white font-creatoDisplay font-light bg-mobile-acc-blue md:bg-main-acc-blue overflow-hidden transition-all duration-300 ease-in-out'>
+                <div className={`'transition-all duration-200 ease-in-out' ${isMobile ? 'opacity-0 h-0' : 'opacity-100 h-auto'}`}>
                     <DesktopNav />
                 </div>
-                <div className={`transition-all duration-200 ease-in-out ${isMobile ? 'opacity-100 h-auto' : 'opacity-0 h-0'}`}>
+                <div className={`'transition-all duration-200 ease-in-out' ${isMobile ? 'opacity-100 h-auto' : 'opacity-0 h-0'}`}>
                     <MobileNav />
                 </div>
             </div>
