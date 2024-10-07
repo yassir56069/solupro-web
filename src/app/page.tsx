@@ -16,7 +16,7 @@ export default function HomePage() {
   return (
     <main>
       <Splash/>
-      <Splash/>
+      {/* <Splash/> */}
     </main>
   );
 }

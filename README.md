@@ -10,7 +10,7 @@
 - [ ] Dynamic Transfer Card
 - [ ] Generic Text Card
 - [ ] About Us Page
-- [ ] Terms & Conditions Page 
+- [ ] Terms & Conditions Page
 - [ ] Contact Us Page
 - [ ] Setup json/google sheets to UI
 - [ ] Error Management (w/ Sentry)

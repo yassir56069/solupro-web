@@ -7,3 +7,9 @@ body {
     background-attachment: fixed; /* Add this line to fix the background */
     background-size: cover; /* Ensures the background covers the entire viewport */
 }
+
+@layer utilities {
+    .min-h-nav-adjust {
+      min-height: calc(100vh - 6rem); /* Adjust '4rem' based on your navbar height */
+    }
+  }
