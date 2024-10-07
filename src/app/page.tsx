@@ -1,5 +1,5 @@
 
-import Splash from '../components/splash'
+import Splash from '../components/splash';
 
 
 const urls = [
