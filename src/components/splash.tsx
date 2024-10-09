@@ -10,7 +10,7 @@ function Backdrop () {
             style={{
                 backgroundImage: 'url(https://utfs.io/f/wkZXy01VKbhezpJAKVdaFydKfXSl8bU3HBNmRTuAM7sIwc9L)',
                 backgroundSize: '1300px ',
-                backgroundRepeat: 'no-repeat', // Makes the image smaller
+                backgroundRepeat: 'no-repeat',
                 zIndex: -2 // Ensure this is behind the overlay
             }}
         />
@@ -29,7 +29,6 @@ function Backdrop () {
 function Splash() {
     return (  
         <section className="flex flex-col text-white justify-center items-center text-center min-h-nav-adjust">
-            
                 {/* hide on mobile */}
                 <div className="hidden md:block"> 
                     <Backdrop/>
@@ -39,9 +38,8 @@ function Splash() {
             
             <map className="flex flex-col justify-center items-center pt-8">
                 <ChevronDownIcon className="h-6 w-6"/>
-                <p>   book now </p>
+                <p>  book now </p>
             </map>
-
         </section>
     );
 }
