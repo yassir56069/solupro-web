@@ -1,8 +1,11 @@
 'use client'
 
 import { useFormState, useFormStatus } from 'react-dom';
-import {TextField, Label, Input} from 'react-aria-components';
+import {TextField, Label, Input, Form} from 'react-aria-components';
 import { useState } from 'react';
+
+const card_image = 'https://utfs.io/f/wkZXy01VKbheFXbc93z41N5WxYy3ZcJLnlmviMaVBw0tHXTU';
+
 
 const initialState = {
   email: '',
@@ -40,90 +43,101 @@ function BTFormCard() {
   };
 
   return (
-    <div className='font-creatoDisplay font-light text-sm flex justify-center items-center'>
+    <div className='font-creatoDisplay font-light text-sm flex justify-center items-center h-screen'>
 
-        <form onSubmit={handleSubmit} className="flex flex-row gap-6 bg-white shadow-lg   w-2/3">
+        <Form onSubmit={handleSubmit} className="flex flex-row  bg-main-acc-blue shadow-lg rounded-md w-5/6 h-2/3">
             
-            <div className='bg-main-acc-blue p-8'>
-                <section className="">
-                    <input
-                    type="email"
-                    name="email"
-                    placeholder="Email Address"
-                    value={email}
-                    onChange={handleChange}
-                    required
-                    />
-                    <input
-                    type="tel"
-                    name="phone"
-                    placeholder="Phone Number"
-                    value={phone}
-                    onChange={handleChange}
-                    required
-                    />
+          {/* client details */}
+            <div className='flex flex-col justify-between pb-3'>
+              
+                <div className='flex-grow flex items-center justify-center pr-1 p-3'>
+                  <img className=' mix-blend-hard-light' src={card_image} />
+                </div>
+                
+                <section className="flex flex-col gap-2 pl-2 mt-auto">
+                        <TextField>
+                          <Input className={'rounded-md h-8 min-w-80 p-2'}
+                          type='email' name='email' placeholder='Email Address' value={email} onChange={handleChange} required/>
+                        </TextField>
 
-                <span className='text-2xl text-white font-normal'> <h2>Client Details</h2> </span>
+                        <TextField>
+                          <Input className={'rounded-md h-8 min-w-80 p-2'}
+                          type='tel' name='phone' placeholder='Phone Number' value={phone} onChange={handleChange} required/>
+                        </TextField>
+                        
+                        <span className='text-3xl text-white font-normal'> <h2>Client Details</h2> </span>
                 </section>
             </div>
 
-
-            <div className='p-8 flex flex-col'>
+          {/* booking transfer */}
+            <div className='flex-grow bg-white rounded-s-xl rounded-md p-4'>
                 <section>
-                    <nav className='flex flex-row  font-normal text-2xl'>
+                    <nav className='flex flex-row  font-normal text-3xl'>
                         <h2>Booking</h2>
                         <span className='p-8'>   </span>
                         <h2 className="disabled">Transfer</h2>
                     </nav>
-                    <div>
-                    <label htmlFor="pickupLocation">Pick up</label>
-                    <input
-                        type="text"
-                        name="pickupLocation"
-                        placeholder="Enter pickup location"
-                        value={pickupLocation}
-                        onChange={handleChange}
-                        required
-                    />
-                    <input
-                        type="datetime-local"
-                        name="pickupDate"
-                        value={pickupDate}
-                        onChange={handleChange}
-                        required
-                    />
 
-                    <label htmlFor="returnLocation">Return</label>
-                    <input
-                        type="text"
-                        name="returnLocation"
-                        placeholder="Enter return location"
-                        value={returnLocation}
-                        onChange={handleChange}
-                        required
-                    />
-                    <input
-                        type="datetime-local"
-                        name="returnDate"
-                        value={returnDate}
-                        onChange={handleChange}
-                        required
-                    />
-                    </div>
+                    {/* pick up and return  */}
+                    <div className=''>
 
-                    <div>
-                    <h3>Car Types</h3>
-                    <div className="car-types">
-                        {/* Add car type inputs here */}
-                    </div>
+                      {/* pickup */}
+                      <div className='flex flex-col gap-2 pb-7'>
+                        <label htmlFor="pickupLocation">Pick up</label>
+                        <input
+                            type="text"
+                            name="pickupLocation"
+                            placeholder="Enter pickup location"
+                            value={pickupLocation}
+                            onChange={handleChange}
+                            required
+                        />
+                        <input
+                            type="datetime-local"
+                            name="pickupDate"
+                            value={pickupDate}
+                            onChange={handleChange}
+                            required
+                        />
+                      </div>
+
+                      {/* return */}
+                      <div className='flex flex-col gap-2 pb-7'>
+                        <label htmlFor="returnLocation">Return</label>
+                        <input
+                            type="text"
+                            name="returnLocation"
+                            placeholder="Enter return location"
+                            value={returnLocation}
+                            onChange={handleChange}
+                            required
+                        />
+                        <input
+                            type="datetime-local"
+                            name="returnDate"
+                            value={returnDate}
+                            onChange={handleChange}
+                            required
+                        />
+                      </div>
+
+
                     </div>
                     
-                    <SubmitButton />
+                    {/* car types */}
+                    <div>
+                      <h3>Car Types</h3>
+                      <div className="car-types">
+                          {/* Add car type inputs here */}
+                      </div>
+                    </div>
+                    
+                    <div>
+                      <SubmitButton/>
+                    </div>
                 </section>
             </div>
-
-
-        </form>
+        </Form>
     </div>
 
   );
