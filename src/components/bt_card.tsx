@@ -3,7 +3,6 @@
 import { useFormState, useFormStatus } from 'react-dom';
 import {TextField, Label, Input, Form} from 'react-aria-components';
 import { useState } from 'react';
-import React, { forwardRef } from 'react';
 
 const card_image = 'https://utfs.io/f/wkZXy01VKbheFXbc93z41N5WxYy3ZcJLnlmviMaVBw0tHXTU';
 
@@ -29,7 +28,7 @@ function SubmitButton() {
   );
 }
 
-const BTFormCard = forwardRef((props, ref) => {
+function BTFormCard() {
   const [formState, setFormState] = useState(initialState);
   const { email, phone, pickupLocation, pickupDate, returnLocation, returnDate, carType } = formState;
 
@@ -142,6 +141,6 @@ const BTFormCard = forwardRef((props, ref) => {
     </div>
 
   );
-});
+}
 
 export default BTFormCard;
