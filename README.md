@@ -5,12 +5,13 @@
 - [x] Deploy (local)
 - [x] Scaffold basic UI with mock data
 - [x] Complete navbar and routing
-- [ ] Dynamic Splash Page
-- [ ] Dynamic Booking Card
-- [ ] Dynamic Transfer Card
+- [x] Dynamic Splash Page
+- [x] BT (Booking/Transfer) Card Scaffold
+- [ ] Implement Aria Components into BT Card
+- [ ] Design Polish for BT Card
 - [ ] Generic Text Card
 - [ ] About Us Page
-- [ ] Terms & Conditions Page 
+- [ ] Terms & Conditions Page
 - [ ] Contact Us Page
 - [ ] Setup json/google sheets to UI
 - [ ] Error Management (w/ Sentry)
