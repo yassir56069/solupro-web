@@ -3,6 +3,7 @@
 import { useFormState, useFormStatus } from 'react-dom';
 import {TextField, Label, Input, Form} from 'react-aria-components';
 import { useState } from 'react';
+import React, { forwardRef } from 'react';
 
 const card_image = 'https://utfs.io/f/wkZXy01VKbheFXbc93z41N5WxYy3ZcJLnlmviMaVBw0tHXTU';
 
@@ -28,7 +29,7 @@ function SubmitButton() {
   );
 }
 
-function BTFormCard() {
+const  BTFormCard = forwardRef<HTMLDivElement, any>((props, ref) => {
   const [formState, setFormState] = useState(initialState);
   const { email, phone, pickupLocation, pickupDate, returnLocation, returnDate, carType } = formState;
 
@@ -43,7 +44,7 @@ function BTFormCard() {
   };
 
   return (
-    <div className='font-creatoDisplay font-light text-sm flex justify-center items-center h-screen'>
+    <div ref={ref} className='font-creatoDisplay font-light text-sm flex justify-center items-center h-screen'>
 
         <Form onSubmit={handleSubmit} className="flex flex-row  bg-main-acc-blue shadow-lg rounded-md w-5/6 h-2/3">
             
@@ -79,31 +80,28 @@ function BTFormCard() {
                     </nav>
 
                     {/* pick up and return  */}
-                    <div className=''>
+                    <div className='flex flex-row'>
 
-                      {/* pickup */}
-                      <div className='flex flex-col gap-2 pb-7'>
-                        <label htmlFor="pickupLocation">Pick up</label>
-                        <input
-                            type="text"
-                            name="pickupLocation"
-                            placeholder="Enter pickup location"
-                            value={pickupLocation}
-                            onChange={handleChange}
-                            required
-                        />
-                        <input
-                            type="datetime-local"
-                            name="pickupDate"
-                            value={pickupDate}
-                            onChange={handleChange}
-                            required
-                        />
+                      {/* pickup & Return */}
+                      <div className='flex flex-col gap-2 space-y-7 pb-7 pr-4'>
+                        <div>
+                          <label htmlFor="pickupLocation" className='font-normal text-xl'>Pick up</label>
+                          <TextField>
+                          <Input type="text"name="pickupLocation" placeholder="Enter pickup location" value={pickupLocation} onChange={handleChange}required/>
+                          </TextField>
+                        </div>
+                        <div>
+                          <label htmlFor="returnLocation" className='font-normal text-xl'>Return</label>
+                          <TextField>
+                          <Input type="text"name="returnLocation" placeholder="Enter return location" value={returnLocation} onChange={handleChange}required/>
+                          </TextField>
+                        </div>
+
+
                       </div>
 
-                      {/* return */}
+                      {/* date */}
                       <div className='flex flex-col gap-2 pb-7'>
-                        <label htmlFor="returnLocation">Return</label>
                         <input
                             type="text"
                             name="returnLocation"
@@ -141,6 +139,6 @@ function BTFormCard() {
     </div>
 
   );
-}
+});
 
 export default BTFormCard;
