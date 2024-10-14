@@ -1,8 +1,8 @@
 'use client'
 import React, { useRef } from 'react';
 
-import Splash from '../components/splash';
-import BTCard from '~/components/bt_card';
+import TextSplashPage from '../components/splash_page';
+import BookingTransferFormCard from '~/components/booking_transfer_interface';
 
 
 export default function HomePage() {
@@ -10,8 +10,8 @@ export default function HomePage() {
 
   return (
     <main>
-      <Splash bookingFormRef={bookingFormRef}/>
-      <BTCard ref={bookingFormRef}/>
+      <TextSplashPage bookingFormRef={bookingFormRef}/>
+      <BookingTransferFormCard ref={bookingFormRef}/>
     </main>
   );
 }

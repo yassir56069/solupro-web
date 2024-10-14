@@ -28,7 +28,7 @@ function Backdrop () {
 }
 
 
-const SplashPage = ({bookingFormRef}:any) => {
+const TextSplashPage = ({bookingFormRef}:any) => {
 
     const scrollToBookingForm = () => {
         bookingFormRef.current.scrollIntoView({
@@ -54,4 +54,4 @@ const SplashPage = ({bookingFormRef}:any) => {
     );
 };
 
-export default SplashPage;
+export default TextSplashPage;

@@ -29,7 +29,7 @@ function SubmitButton() {
   );
 }
 
-const  BTFormCard = forwardRef<HTMLDivElement, any>((props, ref) => {
+const  BookingTransferFormCard = forwardRef<HTMLDivElement, any>((props, ref) => {
   const [formState, setFormState] = useState(initialState);
   const { email, phone, pickupLocation, pickupDate, returnLocation, returnDate, carType } = formState;
 
@@ -141,4 +141,4 @@ const  BTFormCard = forwardRef<HTMLDivElement, any>((props, ref) => {
   );
 });
 
-export default BTFormCard;
+export default BookingTransferFormCard;
