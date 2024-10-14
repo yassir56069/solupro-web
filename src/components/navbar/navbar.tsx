@@ -1,8 +1,8 @@
 'use client'
 
 import React, { useState, useEffect } from 'react';
-import Logo from '../logo'
-import PageLinks from './pagelinks';
+import Logo                           from '../logoInstantiator'
+import PageLinks                      from './pagelinks';
 
 const DesktopNav = () => {
     return (
@@ -39,17 +39,24 @@ const MobileNav = () => {
 
             {/* Overlay */}
             <div 
-                className={`fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm transition-opacity duration-300 ease-in-out ${
+                className={`fixed 
+                    inset-0 
+                    bg-black bg-opacity-50 backdrop-blur-sm 
+                    transition-opacity duration-300 ease-in-out 
+                    ${
                     isOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
-                }`}
+                    }`}
                 onClick={toggleNavbar}
             ></div>
 
             {/* Sliding menu */}
             <div 
-                className={`fixed top-0 left-0 h-full w-2/3 bg-main-acc-blue shadow-lg transform transition-transform duration-300 ease-in-out ${
+                className={`fixed top-0 left-0 h-full w-2/3 
+                    bg-main-acc-blue shadow-lg 
+                    transform transition-transform duration-300 ease-in-out 
+                    ${
                     isOpen ? 'translate-x-0' : '-translate-x-full'
-                }`}
+                    }`}
             >
                 <button 
                     onClick={toggleNavbar}
@@ -84,7 +91,14 @@ const Navbar: React.FC = () => {
 
     return (
         <header className="sticky top-0 z-1 h-24">
-            <div className='text-white font-creatoDisplay font-light bg-mobile-acc-blue md:bg-main-acc-blue overflow-hidden transition-all duration-300 ease-in-out'>
+            <div 
+                className={`
+                text-white font-creatoDisplay font-light 
+                bg-mobile-acc-blue md:bg-main-acc-blue 
+                overflow-hidden 
+                transition-all duration-300 ease-in-out
+                `}
+            >
                 <div className={`'transition-all duration-200 ease-in-out' ${isMobile ? 'opacity-0 h-0' : 'opacity-100 h-auto'}`}>
                     <DesktopNav />
                 </div>
