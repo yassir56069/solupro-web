@@ -1,30 +1,8 @@
 import React                from 'react';
 import { ChevronDownIcon }  from "@heroicons/react/16/solid";
 
-const backgroundImageURL = 'https://utfs.io/f/wkZXy01VKbhezpJAKVdaFydKfXSl8bU3HBNmRTuAM7sIwc9L';
+import Backdrop             from '../elements/backdrop_instantiator';
 
-function Backdrop () {
-    return ( 
-        <>
-        <div 
-            className="absolute inset-0 bg-cover bg-center" 
-            style={{
-                backgroundImage: `url(${backgroundImageURL})`,
-                backgroundSize: '1300px ',
-                backgroundRepeat: 'no-repeat',
-                zIndex: -2 // Ensure this is behind the overlay
-            }}
-        />
-        
-        {/* Overlay for multiply effect */}
-        <div 
-            className="absolute inset-0  bg-black" 
-            style={{ zIndex: -1 }} // Overlay above the background image
-        />
-    </>
-
-    );
-}
 
 
 const TextSplashPage = ({bookingFormRef}:any) => {
@@ -45,7 +23,15 @@ const TextSplashPage = ({bookingFormRef}:any) => {
 
             <h1 className="font-edgeCutting text-6xl  p-8"> The Best Car Hire Deals In Mauritius. </h1>
             
-            <map onClick={scrollToBookingForm} className="flex flex-col justify-center items-center pt-8 transition duration-300 ease-in hover:opacity-30 hover:cursor-pointer">
+            <map 
+                onClick={scrollToBookingForm} 
+                className={`
+                flex flex-col 
+                justify-center items-center pt-8 
+                transition duration-300 ease-in 
+                hover:opacity-30 hover:cursor-pointer
+                `}
+            >
                 <ChevronDownIcon className="h-6 w-6 "/>
                 <p>  book now </p>
             </map>
