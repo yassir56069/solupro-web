@@ -5,8 +5,9 @@ import {TextField, Label, Input, Form}  from 'react-aria-components';
 import { useState }                     from 'react';
 import React, { forwardRef }            from 'react';
 
-const card_image = 'https://utfs.io/f/wkZXy01VKbheFXbc93z41N5WxYy3ZcJLnlmviMaVBw0tHXTU';
+import handleSubmit from '../elements/submit_logic';
 
+const card_image = 'https://utfs.io/f/wkZXy01VKbheFXbc93z41N5WxYy3ZcJLnlmviMaVBw0tHXTU';
 
 const initialState = {
   email: '',
@@ -29,6 +30,9 @@ function SubmitButton() {
   );
 }
 
+
+
+
 const  BookingTransferFormCard = forwardRef<HTMLDivElement, any>((props, ref) => {
   const [formState, setFormState] = useState(initialState);
   const { email, phone, pickupLocation, pickupDate, returnLocation, returnDate, carType } = formState;
@@ -38,10 +42,7 @@ const  BookingTransferFormCard = forwardRef<HTMLDivElement, any>((props, ref) =>
     setFormState((prevState) => ({ ...prevState, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    //submit logic
-  };
+
 
   return (
     <div ref={ref} className='font-creatoDisplay font-light text-sm flex justify-center items-center h-screen'>
@@ -55,7 +56,7 @@ const  BookingTransferFormCard = forwardRef<HTMLDivElement, any>((props, ref) =>
                   <img className=' mix-blend-hard-light' src={card_image} />
                 </div>
                 
-                <section className="flex flex-col gap-2 pl-2 mt-auto">
+                <section className='flex flex-col gap-2 pl-2 mt-auto'>
                         <TextField>
                           <Input className={'rounded-md h-8 min-w-80 p-2'}
                           type='email' name='email' placeholder='Email Address' value={email} onChange={handleChange} required/>
