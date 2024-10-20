@@ -8,6 +8,7 @@ export default {
     colors: {
       // ---------------------: COLORS
       'white'            : '#FFFFFFFF',
+      'grey'             : '#BCBCBCFF',
       'mobile-acc-blue'  : '#074A55',
       'main-acc-blue'    : '#035360',
       'tone-acc-blue'    : '#00A4BE',

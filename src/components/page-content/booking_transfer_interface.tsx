@@ -1,11 +1,19 @@
 'use client'
 
-import { useFormState, useFormStatus }  from 'react-dom';
-import {TextField, Label, Input, Form}  from 'react-aria-components';
-import { useState }                     from 'react';
-import React, { forwardRef }            from 'react';
+import  { useFormState, useFormStatus }    from 'react-dom';
+import  { useState }                      from 'react';
+import  React, { forwardRef }             from 'react';
+import  handleSubmit                      from '../elements/submit_logic';
+import  { RangeCalendar, CalendarCell,
+  CalendarGrid,
+  Heading, 
+  Button,
+  TextField,
+  Label,
+  Input,
+  Form
+}                                       from 'react-aria-components';
 
-import handleSubmit from '../elements/submit_logic';
 
 const card_image = 'https://utfs.io/f/wkZXy01VKbheFXbc93z41N5WxYy3ZcJLnlmviMaVBw0tHXTU';
 
@@ -29,9 +37,6 @@ function SubmitButton() {
     </button>
   );
 }
-
-
-
 
 const  BookingTransferFormCard = forwardRef<HTMLDivElement, any>((props, ref) => {
   const [formState, setFormState] = useState(initialState);
@@ -102,23 +107,44 @@ const  BookingTransferFormCard = forwardRef<HTMLDivElement, any>((props, ref) =>
                       </div>
 
                       {/* date */}
-                      <div className='flex flex-col gap-2 pb-7'>
-                        <input
-                            type="text"
-                            name="returnLocation"
-                            placeholder="Enter return location"
-                            value={returnLocation}
-                            onChange={handleChange}
-                            required
-                        />
-                        <input
-                            type="datetime-local"
-                            name="returnDate"
-                            value={returnDate}
-                            onChange={handleChange}
-                            required
-                        />
-                      </div>
+                      <div className=' flex flex-row w-full  items-center justify-center '>
+                        <div className='w-fit '>
+                          <h1 className='font-normal text-xl'> Dates </h1>
+                          <RangeCalendar aria-label="bookingtransfer dates" className='bg-grey rounded-md'>
+                            
+                              <header className='flex items-center mx-1 my-0.5'>
+                                <Button slot="previous" className='w-8 h-8 p-0'>◀</Button>
+                                <Heading className='flex-1 text-center text-xl m-0' />
+                                <Button slot="next" className='w-8 h-8 p-0'>▶</Button>
+                              </header>
+                              <CalendarGrid className='border-spacing-0 p-0 m-0'> 
+                                {(date) => (
+                                  <CalendarCell 
+                                    date={date} 
+                                    className='
+                                      w-[2.286rem] 
+                                      leading-[2.286rem] 
+                                      text-center 
+                                      rounded-md 
+                                      cursor-default 
+                                      outline-none 
+                                      p-0
+                                      data-[pressed]:bg-tone-acc-orange
+                                      data-[selected]:bg-main-acc-orange
+                                      data-[selected]: m-[-1px]
+                                      data-[selected]:text-white 
+                                      data-[selected]:rounded-none 
+                                      data-[outside-month]:hidden 
+                                      data-[selection-start]:rounded-l-md 
+                                      data-[selection-end]:rounded-r-md
+                                    ' 
+                                  />
+                                )}
+                              </CalendarGrid>
+                            </RangeCalendar>
+                        </div>
+
+                    </div>
 
 
                     </div>
