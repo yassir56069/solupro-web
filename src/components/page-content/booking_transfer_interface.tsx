@@ -52,7 +52,7 @@ const  BookingTransferFormCard = forwardRef<HTMLDivElement, any>((props, ref) =>
   return (
     <div ref={ref} className='font-creatoDisplay font-light text-sm flex justify-center items-center h-screen'>
 
-        <Form onSubmit={handleSubmit} className="flex flex-row  bg-main-acc-blue shadow-lg rounded-md w-5/6 h-2/3">
+        <Form onSubmit={handleSubmit} className="flex flex-row  bg-main-acc-blue shadow-lg rounded-md w-5/6 h-fit">
             
           {/* client details */}
             <div className='flex flex-col justify-between pb-3'>
@@ -122,7 +122,8 @@ const  BookingTransferFormCard = forwardRef<HTMLDivElement, any>((props, ref) =>
                                   <CalendarCell 
                                     date={date} 
                                     className='
-                                      w-[2.286rem] 
+                                      max-w-[8rem]
+                                      min-w-[2.286rem]
                                       leading-[2.286rem] 
                                       text-center 
                                       rounded-md 
