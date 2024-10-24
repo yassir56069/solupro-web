@@ -117,17 +117,16 @@ const  BookingTransferFormCard = forwardRef<HTMLDivElement, any>((props, ref) =>
                                 <Heading className='flex-1 text-center text-xl m-0' />
                                 <Button slot="next" className='w-8 h-8 p-0'>▶</Button>
                               </header>
-                              <CalendarGrid className='border-spacing-0 p-0 m-0'> 
+                              <CalendarGrid className='border-spacing-0 p-10 m-0'> 
                                 {(date) => (
                                   <CalendarCell 
                                     date={date} 
                                     className='
-                                      w-[2.286rem] 
-                                      leading-[2.286rem] 
+                                      w-[4rem]
+                                      leading-[4rem]
                                       text-center 
-                                      rounded-md 
-                                      cursor-default 
-                                      outline-none 
+                                      rounded-md  
+                                      // outline-none 
                                       p-0
                                       data-[pressed]:bg-tone-acc-orange
                                       data-[selected]:bg-main-acc-orange
