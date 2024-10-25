@@ -11,7 +11,11 @@ import  { RangeCalendar, CalendarCell,
   TextField,
   Label,
   Input,
-  Form
+  Form,
+  Tabs,
+  TabList,
+  Tab,
+    TabPanel,
 }                                       from 'react-aria-components';
 
 
@@ -78,88 +82,86 @@ const  BookingTransferFormCard = forwardRef<HTMLDivElement, any>((props, ref) =>
 
           {/* booking transfer */}
             <div className='flex-grow bg-white rounded-s-xl rounded-md p-4'>
-                <section>
-                    <nav className='flex flex-row  font-normal text-3xl'>
-                        <h2>Booking</h2>
-                        <span className='p-8'>   </span>
-                        <h2 className="disabled">Transfer</h2>
-                    </nav>
+                <Tabs>
+                      <TabList className='flex flex-row  font-normal text-4xl pb-5'>
+                          <Tab id='booking' className='pr-10' > Booking   </Tab>
+                          <Tab id='transfer'                  > Transfer  </Tab>
+                      </TabList>
 
-                    {/* pick up and return  */}
-                    <div className='flex flex-row'>
+                    <TabPanel id='booking'>
+                        {/* pick up and return  */}
+                      <div className='flex flex-row'>
 
-                      {/* pickup & Return */}
-                      <div className='flex flex-col gap-2 space-y-7 pb-7 pr-4'>
-                        <div>
-                          <label htmlFor="pickupLocation" className='font-normal text-xl'>Pick up</label>
-                          <TextField>
-                          <Input type="text"name="pickupLocation" placeholder="Enter pickup location" value={pickupLocation} onChange={handleChange}required/>
-                          </TextField>
+                        {/* pickup & Return */}
+                        <div className='flex flex-col gap-2 space-y-7 pb-7 pr-4'>
+                          <div>
+                            <label htmlFor="pickupLocation" className='font-normal text-2xl'>Pick up</label>
+                            <TextField>
+                            <Input type="text"name="pickupLocation" placeholder="Enter pickup location" value={pickupLocation} onChange={handleChange}required/>
+                            </TextField>
+                          </div>
+                          <div>
+                            <label htmlFor="returnLocation" className='font-normal text-2xl'>Return</label>
+                            <TextField>
+                            <Input type="text"name="returnLocation" placeholder="Enter return location" value={returnLocation} onChange={handleChange}required/>
+                            </TextField>
+                          </div>
                         </div>
-                        <div>
-                          <label htmlFor="returnLocation" className='font-normal text-xl'>Return</label>
-                          <TextField>
-                          <Input type="text"name="returnLocation" placeholder="Enter return location" value={returnLocation} onChange={handleChange}required/>
-                          </TextField>
-                        </div>
 
+                        {/* date */}
+                        <div className=' flex flex-row w-full  items-center justify-center '>
+                          <div className='w-fit '>
+                            <h1 className='font-normal text-xl'> Dates </h1>
+                            <RangeCalendar aria-label="bookingtransfer dates" className='bg-grey rounded-md'>
+                                <header className='flex items-center mx-1 my-0.5'>
+                                  <Button slot="previous" className='w-8 h-8 p-0'>◀</Button>
+                                  <Heading className='flex-1 text-center text-xl m-0' />
+                                  <Button slot="next" className='w-8 h-8 p-0'>▶</Button>
+                                </header>
+                                <CalendarGrid className='border-spacing-0 p-10 m-0'> 
+                                  {(date) => (
+                                    <CalendarCell 
+                                      date={date} 
+                                      className='
+                                        w-[4rem]
+                                        leading-[4rem]
+                                        text-center 
+                                        rounded-md  
+                                        // outline-none 
+                                        p-0
+                                        data-[pressed]:bg-tone-acc-orange
+                                        data-[selected]:bg-main-acc-orange
+                                        data-[selected]: m-[-1px]
+                                        data-[selected]:text-white 
+                                        data-[selected]:rounded-none 
+                                        data-[outside-month]:hidden 
+                                        data-[selection-start]:rounded-l-md 
+                                        data-[selection-end]:rounded-r-md
+                                      ' 
+                                    />
+                                  )}
+                                </CalendarGrid>
+                              </RangeCalendar>
+                          </div>
 
                       </div>
 
-                      {/* date */}
-                      <div className=' flex flex-row w-full  items-center justify-center '>
-                        <div className='w-fit '>
-                          <h1 className='font-normal text-xl'> Dates </h1>
-                          <RangeCalendar aria-label="bookingtransfer dates" className='bg-grey rounded-md'>
-                            
-                              <header className='flex items-center mx-1 my-0.5'>
-                                <Button slot="previous" className='w-8 h-8 p-0'>◀</Button>
-                                <Heading className='flex-1 text-center text-xl m-0' />
-                                <Button slot="next" className='w-8 h-8 p-0'>▶</Button>
-                              </header>
-                              <CalendarGrid className='border-spacing-0 p-10 m-0'> 
-                                {(date) => (
-                                  <CalendarCell 
-                                    date={date} 
-                                    className='
-                                      w-[4rem]
-                                      leading-[4rem]
-                                      text-center 
-                                      rounded-md  
-                                      // outline-none 
-                                      p-0
-                                      data-[pressed]:bg-tone-acc-orange
-                                      data-[selected]:bg-main-acc-orange
-                                      data-[selected]: m-[-1px]
-                                      data-[selected]:text-white 
-                                      data-[selected]:rounded-none 
-                                      data-[outside-month]:hidden 
-                                      data-[selection-start]:rounded-l-md 
-                                      data-[selection-end]:rounded-r-md
-                                    ' 
-                                  />
-                                )}
-                              </CalendarGrid>
-                            </RangeCalendar>
-                        </div>
 
-                    </div>
-
-
-                    </div>
-                    
-                    {/* car types */}
-                    <div>
-                      <h3>Car Types</h3>
-                      <div className="car-types">
-                          {/* Add car type inputs here */}
                       </div>
-                    </div>
-                    
-                    <div>
-                      <SubmitButton/>
-                    </div>
-                </section>
+                      
+                      {/* car types */}
+                      <div>
+                        <h3>Car Types</h3>
+                        <div className="car-types">
+                            {/* Add car type inputs here */}
+                        </div>
+                      </div>
+                      
+                      <div>
+                        <SubmitButton/>
+                      </div>
+                    </TabPanel>
+                </Tabs>
             </div>
         </Form>
     </div>
