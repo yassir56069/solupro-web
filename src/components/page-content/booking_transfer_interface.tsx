@@ -83,7 +83,7 @@ const  BookingTransferFormCard = forwardRef<HTMLDivElement, any>((props, ref) =>
           {/* booking transfer */}
             <div className='flex-grow bg-white rounded-s-xl rounded-md p-4'>
                 <Tabs>
-                      <TabList className='flex flex-row  font-normal text-4xl pb-5'>
+                      <TabList className='flex flex-row  font-normal text-4xl pb-7'>
                           <Tab id='booking' className='pr-10' > Booking   </Tab>
                           <Tab id='transfer'                  > Transfer  </Tab>
                       </TabList>
@@ -95,13 +95,13 @@ const  BookingTransferFormCard = forwardRef<HTMLDivElement, any>((props, ref) =>
                         {/* pickup & Return */}
                         <div className='flex flex-col gap-2 space-y-7 pb-7 pr-4'>
                           <div>
-                            <label htmlFor="pickupLocation" className='font-normal text-2xl'>Pick up</label>
+                            <label htmlFor="pickupLocation" className='font-normal text-3xl'>Pick up</label>
                             <TextField>
                             <Input type="text"name="pickupLocation" placeholder="Enter pickup location" value={pickupLocation} onChange={handleChange}required/>
                             </TextField>
                           </div>
                           <div>
-                            <label htmlFor="returnLocation" className='font-normal text-2xl'>Return</label>
+                            <label htmlFor="returnLocation" className='font-normal text-3xl'>Return</label>
                             <TextField>
                             <Input type="text"name="returnLocation" placeholder="Enter return location" value={returnLocation} onChange={handleChange}required/>
                             </TextField>
