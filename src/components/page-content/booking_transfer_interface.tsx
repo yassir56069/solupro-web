@@ -56,7 +56,7 @@ const  BookingTransferFormCard = forwardRef<HTMLDivElement, any>((props, ref) =>
   return (
     <div ref={ref} className='font-creatoDisplay font-light text-sm flex justify-center items-center h-screen'>
 
-        <Form onSubmit={handleSubmit} className="flex flex-row  bg-main-acc-blue shadow-lg rounded-md w-5/6 min-h-fit lg:h-[40rem] lg:max-h-[80%] xl:h-[60rem]  xl:max-h-2/3">
+        <Form onSubmit={handleSubmit} className="flex flex-row flex-wrap md:bg-main-acc-blue md:shadow-lg rounded-md w-5/6 min-h-fit lg:h-[40rem] lg:max-h-[80%] xl:h-[60rem]  xl:max-h-2/3">
             
           {/* client details */}
             <div className='flex flex-col justify-between pb-3'>
@@ -82,13 +82,13 @@ const  BookingTransferFormCard = forwardRef<HTMLDivElement, any>((props, ref) =>
 
           {/* booking transfer */}
             <div className='flex-grow bg-white rounded-s-xl rounded-md p-4'>
-                <Tabs>
+                <Tabs className=''>
                       <TabList className='flex flex-row  font-normal text-4xl pb-7'>
                           <Tab id='booking' className='pr-10' > Booking   </Tab>
                           <Tab id='transfer'                  > Transfer  </Tab>
                       </TabList>
 
-                    <TabPanel id='booking'>
+                    <TabPanel className='flex flex-col flex-wrap' id='booking'>
                         {/* pick up and return  */}
                       <div className='flex flex-row'>
 
