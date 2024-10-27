@@ -20,7 +20,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${CreatoDisplay.variable} ${EdgeCutting.variable}`}>
         <Navbar/>
-        {children}
+          {children}
       </body>
     </html>
   );

@@ -1,9 +1,10 @@
 'use client'
 
-import  { useFormState, useFormStatus }    from 'react-dom';
-import  { useState }                      from 'react';
+import  { useFormState, useFormStatus }   from 'react-dom';
+import  { useState, useEffect }           from 'react';
 import  React, { forwardRef }             from 'react';
 import  handleSubmit                      from '../elements/submit_logic';
+// import  { useCheckWrap }                  from '../util/check_flexwrap';
 import  { RangeCalendar, CalendarCell,
   CalendarGrid,
   Heading, 
@@ -16,7 +17,7 @@ import  { RangeCalendar, CalendarCell,
   TabList,
   Tab,
     TabPanel,
-}                                       from 'react-aria-components';
+}                                         from 'react-aria-components';
 
 
 const card_image = 'https://utfs.io/f/wkZXy01VKbheFXbc93z41N5WxYy3ZcJLnlmviMaVBw0tHXTU';
@@ -42,8 +43,45 @@ function SubmitButton() {
   );
 }
 
+function useResizeObserver(ref: React.RefObject<HTMLElement>) {
+  const [isWrapped, setIsWrapped] = useState(false);
+
+  useEffect(() => {
+    const element = ref.current;
+    if (!element) return;
+
+    let initialWidth = element.offsetWidth;
+    let initialHeight = element.offsetHeight;
+
+    const observer = new ResizeObserver((entries) => {
+      for (let entry of entries) {
+        if (entry.target instanceof HTMLElement) {
+          const currentWidth = entry.target.offsetWidth;
+          const currentHeight = entry.target.offsetHeight;
+
+          // Check for significant changes in width and height to determine wrap
+          const widthDecreased = currentWidth < initialWidth - 10; // Set threshold, e.g., 10px
+          const heightIncreased = currentHeight > initialHeight + 5; // Height threshold, e.g., 5px
+
+          setIsWrapped(widthDecreased && heightIncreased);
+        }
+      }
+    });
+
+    observer.observe(element);
+
+    return () => observer.disconnect();
+  }, [ref]);
+
+  return isWrapped;
+}
+
+
+
 const  BookingTransferFormCard = forwardRef<HTMLDivElement, any>((props, ref) => {
-  const [formState, setFormState] = useState(initialState);
+ const isWrapped = useResizeObserver(ref as React.RefObject<HTMLDivElement>);
+
+  const [formState, setFormState]     = useState(initialState);
   const { email, phone, pickupLocation, pickupDate, returnLocation, returnDate, carType } = formState;
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -54,15 +92,35 @@ const  BookingTransferFormCard = forwardRef<HTMLDivElement, any>((props, ref) =>
 
 
   return (
-    <div ref={ref} className='font-creatoDisplay font-light text-sm flex justify-center items-center h-screen'>
+    <div ref={ref} className='font-creatoDisplay font-light text-sm flex justify-center items-center h-screen z-0'>
 
-        <Form onSubmit={handleSubmit} className="flex flex-row flex-wrap md:bg-main-acc-blue md:shadow-lg rounded-md w-5/6 min-h-fit lg:h-[40rem] lg:max-h-[80%] xl:h-[60rem]  xl:max-h-2/3">
+        {/* this is the element that needs the wrap functionality */}
+        <Form 
+          onSubmit={handleSubmit}
+          className={`
+            flex 
+            flex-row 
+            md:flex-nowrap
+            flex-wrap 
+            rounded-md 
+            w-5/6 
+            min-h-fit 
+            lg:h-[40rem]
+            lg:max-h-[80%] 
+            xl:h-[60rem]
+            xl:max-h-2/3
+            ${isWrapped ? 
+            'bg-opacity-0' 
+            : 
+            'bg-main-acc-blue shadow-lg '}
+            `}
+        >
             
           {/* client details */}
             <div className='flex flex-col justify-between pb-3'>
               
                 <div className='flex-grow flex items-center justify-center pr-1 p-3'>
-                  <img className=' mix-blend-hard-light' src={card_image} />
+                  {isWrapped ? '' : <img className='mix-blend-hard-light z-0' src={card_image} /> }
                 </div>
                 
                 <section className='flex flex-col gap-2 pl-2 mt-auto'>

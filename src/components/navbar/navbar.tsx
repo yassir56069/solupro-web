@@ -22,12 +22,11 @@ const Navbar: React.FC = () => {
     }, []);
 
     return (
-        <header className="sticky top-0 z-1 h-24">
+        <header className="fixed top-0 left-0 w-full h-24">
             <div 
                 className={`
                 text-white font-creatoDisplay font-light 
                 bg-mobile-acc-blue md:bg-main-acc-blue 
-                overflow-hidden 
                 transition-all duration-300 ease-in-out
                 `}
             >
