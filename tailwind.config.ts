@@ -8,7 +8,8 @@ export default {
     colors: {
       // ---------------------: COLORS
       'white'            : '#FFFFFFFF',
-      'grey'             : '#E9E9E906',
+      'grey'             : '#F9F9F9FF',
+      'darker'           : '#00000006',
       'mobile-acc-blue'  : '#074A55',
       'main-acc-blue'    : '#035360',
       'tone-acc-blue'    : '#00A4BE',
@@ -27,6 +28,14 @@ export default {
         creatoDisplay: ['var(--font-creato-display)'],
         edgeCutting: ['var(--font-edgecutting)'],
       },
+
+      screens: {
+        'sm': '640px',
+        'md': '900px', // Change the md breakpoint here
+        'lg': '1024px',
+        'xl': '1280px',
+        '2xl': '1536px',
+    },
     },
   },
   plugins: [],

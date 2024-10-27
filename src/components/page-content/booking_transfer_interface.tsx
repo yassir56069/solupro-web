@@ -141,9 +141,9 @@ const  BookingTransferFormCard = forwardRef<HTMLDivElement, any>((props, ref) =>
           {/* booking transfer */}
             <div className='flex-grow bg-white rounded-s-xl rounded-md p-4'>
                 <Tabs className=''>
-                      <TabList className='flex flex-row  font-normal text-4xl pb-7'>
-                          <Tab id='booking' className='pr-10' > Booking   </Tab>
-                          <Tab id='transfer'                  > Transfer  </Tab>
+                      <TabList className='flex flex-row  font-normal text-4xl'>
+                          <Tab id='booking' > Booking   </Tab>
+                          <Tab id='transfer'> Transfer  </Tab>
                       </TabList>
 
                     <TabPanel className='flex flex-col flex-wrap' id='booking'>
@@ -167,22 +167,22 @@ const  BookingTransferFormCard = forwardRef<HTMLDivElement, any>((props, ref) =>
                         </div>
 
                         {/* date */}
-                        <div className=' flex flex-row w-full  items-center justify-center '>
-                          <div className='w-fit '>
+                        <div className=' flex flex-row w-full items-center justify-center '>
+                          <div className='w-fit'>
                             <h1 className='font-normal text-xl'> Dates </h1>
                             <RangeCalendar aria-label="bookingtransfer dates" className='bg-grey rounded-md'>
-                                <header className='flex items-center mx-1 my-0.5'>
-                                  <Button slot="previous" className='w-8 h-8 p-0'>◀</Button>
+                                <header className='flex items-center p-4 rounded-t-md bg-darker mb-3'>
+                                  <Button slot="previous" className='w-8 h-8' >◀</Button> 
                                   <Heading className='flex-1 text-center text-xl m-0' />
-                                  <Button slot="next" className='w-8 h-8 p-0'>▶</Button>
+                                  <Button slot="next" className='w-8 h-8 '>▶</Button>
                                 </header>
                                 <CalendarGrid className='border-spacing-0 p-10 m-0'> 
                                   {(date) => (
                                     <CalendarCell 
                                       date={date} 
                                       className='
-                                        w-[4rem]
-                                        leading-[4rem]
+                                        w-[2.5rem] leading-[2.5rem]
+                                        md:w-[3rem] md:leading-[3rem]
                                         text-center 
                                         rounded-md  
                                         // outline-none 
@@ -219,6 +219,8 @@ const  BookingTransferFormCard = forwardRef<HTMLDivElement, any>((props, ref) =>
                         <SubmitButton/>
                       </div>
                     </TabPanel>
+
+                    <TabPanel id='transfer'> <div> <h1> test</h1> </div></TabPanel>
                 </Tabs>
             </div>
         </Form>
