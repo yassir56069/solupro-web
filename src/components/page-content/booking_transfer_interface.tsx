@@ -141,9 +141,36 @@ const  BookingTransferFormCard = forwardRef<HTMLDivElement, any>((props, ref) =>
             <div className='flex-grow 
               md:bg-white justify-center bg-transparent rounded-s-xl rounded-md p-4'>
                 <Tabs className=''>
-                      <TabList className='flex flex-row  font-normal text-4xl'>
-                          <Tab id='booking' > Booking   </Tab>
-                          <Tab id='transfer'> Transfer  </Tab>
+                      <TabList className='flex flex-row font-normal text-4xl'>
+                          <Tab 
+                          id='booking'
+                          className={`
+                            outline-0
+                            pr-4
+                            text-transparent bg-clip-text 
+                            data-[selected]:from-white  data-[selected]:to-main-acc-orange
+                            data-[selected]:md:from-main-acc-orange data-[selected]:md:to-tone-acc-orange
+                            transition-all duration-500 bg-gradient-to-r 
+                            from-unselected via-white to-white
+                            md:from-grey md:via-dark md:to-blck  bg-size-200 bg-pos-0 hover:bg-pos-100
+                          `}>
+                          Booking
+                          </Tab>
+                          <Tab 
+                          id='transfer'
+                          className={`
+                            outline-0
+                            pr-4
+                            text-transparent bg-clip-text 
+                            data-[selected]:from-white  data-[selected]:to-main-acc-orange
+                            data-[selected]:md:from-main-acc-orange data-[selected]:md:to-tone-acc-orange
+                            transition-all duration-500 bg-gradient-to-r 
+                            from-unselected via-white to-white
+                            md:from-grey md:via-dark md:to-blck  bg-size-200 bg-pos-0 hover:bg-pos-100
+                            
+                          `}>
+                            Transfer
+                          </Tab>
                       </TabList>
 
                     <TabPanel className='flex flex-col flex-wrap ' id='booking'>
@@ -202,8 +229,7 @@ const  BookingTransferFormCard = forwardRef<HTMLDivElement, any>((props, ref) =>
                               </RangeCalendar>
                           </div>
 
-                      </div>
-
+                        </div>
 
                       </div>
                       
