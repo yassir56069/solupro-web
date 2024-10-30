@@ -141,17 +141,17 @@ const  BookingTransferFormCard = forwardRef<HTMLDivElement, any>((props, ref) =>
             <div className='flex-grow 
               md:bg-white justify-center bg-transparent rounded-s-xl rounded-md p-4'>
                 <Tabs className=''>
-                      <TabList className='flex flex-row font-normal text-4xl'>
+                      <TabList className='flex flex-row justify-around p-8 md:justify-normal md:p-0 font-normal text-4xl '>
                           <Tab 
                           id='booking'
                           className={`
+                            cursor-pointer
                             outline-0
                             pr-4
                             text-transparent bg-clip-text 
-                            data-[selected]:from-white  data-[selected]:to-main-acc-orange
-                            data-[selected]:md:from-main-acc-orange data-[selected]:md:to-tone-acc-orange
+                            data-[selected]:from-main-acc-orange data-[selected]:to-lite-tone-acc-orange
                             transition-all duration-500 bg-gradient-to-r 
-                            from-unselected via-white to-white
+                             from-unselected-trans via-unselected to-white
                             md:from-grey md:via-dark md:to-blck  bg-size-200 bg-pos-0 hover:bg-pos-100
                           `}>
                           Booking
@@ -159,13 +159,13 @@ const  BookingTransferFormCard = forwardRef<HTMLDivElement, any>((props, ref) =>
                           <Tab 
                           id='transfer'
                           className={`
+                            cursor-pointer
                             outline-0
                             pr-4
                             text-transparent bg-clip-text 
-                            data-[selected]:from-white  data-[selected]:to-main-acc-orange
-                            data-[selected]:md:from-main-acc-orange data-[selected]:md:to-tone-acc-orange
+                            data-[selected]:from-main-acc-orange data-[selected]:to-lite-tone-acc-orange
                             transition-all duration-500 bg-gradient-to-r 
-                            from-unselected via-white to-white
+                             from-unselected-trans via-unselected to-white
                             md:from-grey md:via-dark md:to-blck  bg-size-200 bg-pos-0 hover:bg-pos-100
                             
                           `}>

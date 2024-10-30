@@ -7,18 +7,20 @@ export default {
 
     colors: {
       // ---------------------: COLORS
-      'transparent'      : '#FFFFFF00',
-      'white'            : '#FFFFFFFF',
-      'grey'             : '#D4D4D4FF',
-      'blck'             : '#000000FF',
-      'darker'           : '#00000006',
-      'even-darker'      : '#00000013',
-      'unselected'       : '#9A9A9AB6',
-      'mobile-acc-blue'  : '#074A55',
-      'main-acc-blue'    : '#035360',
-      'tone-acc-blue'    : '#00A4BE',
-      'main-acc-orange'  : '#EE9236',
-      'tone-acc-orange'  : '#8F1100',
+      'transparent'           : '#FFFFFF00',
+      'white'                 : '#FFFFFFFF',
+      'grey'                  : '#D4D4D4FF',
+      'blck'                  : '#000000FF',
+      'darker'                : '#00000006',
+      'even-darker'           : '#00000013',
+      'unselected'            : '#9A9A9ABC',
+      'unselected-trans'      : '#DFDCDC5A',
+      'mobile-acc-blue'       : '#074A55',
+      'main-acc-blue'         : '#035360',
+      'tone-acc-blue'         : '#00A4BE',
+      'main-acc-orange'       : '#EE9236',
+      'lite-tone-acc-orange'  : '#F5C35EFF',
+      'tone-acc-orange'       : '#8F1100',
 
       // ---------------------: GRADIENTS
       'gr-top-blue'      : '#00A4BE',
