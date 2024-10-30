@@ -93,8 +93,6 @@ const  BookingTransferFormCard = forwardRef<HTMLDivElement, any>((props, ref) =>
 
   return (
     <div ref={ref} className='font-creatoDisplay font-light text-sm text-white md:text-blck flex justify-center items-center h-screen z-0'>
-
-        {/* this is the element that needs the wrap functionality */}
         <Form 
           onSubmit={handleSubmit}
           className={`
@@ -116,7 +114,7 @@ const  BookingTransferFormCard = forwardRef<HTMLDivElement, any>((props, ref) =>
         >
             
           {/* client details */}
-            <div className='md:flex flex-col  pb-3 w-full md:w-auto'>
+            <div className='md:flex flex-col md:mt-0 pb-3 w-full md:w-auto'>
               
                 <div className='flex flex-grow  items-center justify-center pr-1 p-3'>
                   <img className={`mix-blend-hard-light z-0 hidden md:block`} src={card_image} />
@@ -138,8 +136,8 @@ const  BookingTransferFormCard = forwardRef<HTMLDivElement, any>((props, ref) =>
             </div>
 
           {/* booking transfer */}
-            <div className='flex-grow 
-              md:bg-white justify-center bg-transparent rounded-s-xl rounded-md p-4'>
+            <div className='flex-grow
+              md:bg-white  bg-transparent rounded-s-xl rounded-md p-4 md:relative'>
                 <Tabs className=''>
                       <TabList className='flex flex-row justify-around p-8 md:justify-normal md:p-0 font-normal text-4xl '>
                           <Tab 
@@ -175,7 +173,76 @@ const  BookingTransferFormCard = forwardRef<HTMLDivElement, any>((props, ref) =>
 
                     <TabPanel className='flex flex-col flex-wrap ' id='booking'>
                         {/* pick up and return  */}
-                      <div className='flex flex-row'>
+                      <div className='flex flex-col md:flex-row pt-4'>
+
+                        {/* pickup & Return */}
+                        <div className='flex flex-col gap-2 space-y-7 pb-7 pr-8'>
+                          <div>
+                            <label htmlFor="pickupLocation" className='font-normal text-3xl'>Pick up</label>
+                            <TextField>
+                            <Input className='bg-even-darker p-3 w-full md:w-[500px] md:min-w-[300px] md:max-w-[700px] rounded-md' type="text" name="pickupLocation" placeholder="Enter pickup location" value={pickupLocation} onChange={handleChange}required/>
+                            </TextField>
+                          </div>
+                          <div>
+                            <label htmlFor="returnLocation" className='font-normal text-3xl'>Return</label>
+                            <TextField>
+                            <Input className='bg-even-darker p-3 w-full md:w-[500px] md:min-w-[300px] md:max-w-[700px] rounded-md' type="text" name="returnLocation" placeholder="Enter return location" value={returnLocation} onChange={handleChange}required/>
+                            </TextField>
+                          </div>
+                        </div>
+
+                        {/* date */}
+                        <div className=' flex flex-row w-full md:justify-end md:items-center md:justify-center'>
+                          <div className='w-fit'>
+                            <h1 className='font-normal text-3xl'> Dates </h1>
+                            <RangeCalendar aria-label="bookingtransfer dates" className='bg-even-darker md:bg-darker rounded-md'>
+                                <header className='flex items-center p-4 rounded-t-md bg-darker mb-3'>
+                                  <Button slot="previous" className='w-8 h-8' >◀</Button> 
+                                  <Heading className='flex-1 text-center text-xl m-0' />
+                                  <Button slot="next" className='w-8 h-8 '>▶</Button>
+                                </header>
+                                <CalendarGrid className='border-spacing-0 p-10 m-0'> 
+                                  {(date) => (
+                                    <CalendarCell 
+                                      date={date} 
+                                      className='
+                                        w-[2.5rem] leading-[2.5rem]
+                                        md:w-[3rem] md:leading-[3rem]
+                                        text-center 
+                                        rounded-md  
+                                        // outline-none 
+                                        p-0
+                                        data-[pressed]:bg-tone-acc-orange
+                                        data-[selected]:bg-main-acc-orange
+                                        data-[selected]: m-[-1px]
+                                        data-[selected]:text-white 
+                                        data-[selected]:rounded-none 
+                                        data-[outside-month]:hidden 
+                                        data-[selection-start]:rounded-l-md 
+                                        data-[selection-end]:rounded-r-md
+                                      ' 
+                                    />
+                                  )}
+                                </CalendarGrid>
+                              </RangeCalendar>
+                          </div>
+
+                        </div>
+
+                      </div>
+                      
+                      {/* car types */}
+                      <div>
+                      <label htmlFor="carTypes" className='font-normal text-3xl'>Car Types</label>
+                        <div className="car-types">
+                            {/* Add car type inputs here */}
+                        </div>
+                      </div>
+                    </TabPanel>
+
+                    <TabPanel id='transfer'> 
+                        {/* pick up and return  */}
+                      <div className='flex flex-col md:flex-row'>
 
                         {/* pickup & Return */}
                         <div className='flex flex-col gap-2 space-y-7 pb-7 pr-4'>
@@ -194,9 +261,9 @@ const  BookingTransferFormCard = forwardRef<HTMLDivElement, any>((props, ref) =>
                         </div>
 
                         {/* date */}
-                        <div className=' flex flex-row w-full  justify-end md:items-center md:justify-center'>
+                        <div className=' flex flex-row w-full md:justify-end md:items-center md:justify-center'>
                           <div className='w-fit'>
-                            <h1 className='font-normal text-xl'> Dates </h1>
+                            <h1 className='font-normal text-3xl'> Dates </h1>
                             <RangeCalendar aria-label="bookingtransfer dates" className='bg-even-darker md:bg-darker rounded-md'>
                                 <header className='flex items-center p-4 rounded-t-md bg-darker mb-3'>
                                   <Button slot="previous" className='w-8 h-8' >◀</Button> 
@@ -240,14 +307,21 @@ const  BookingTransferFormCard = forwardRef<HTMLDivElement, any>((props, ref) =>
                             {/* Add car type inputs here */}
                         </div>
                       </div>
-                      
-                      <div>
-                        <SubmitButton/>
-                      </div>
+
+
+
                     </TabPanel>
 
-                    <TabPanel id='transfer'> <div> <h1> test</h1> </div></TabPanel>
                 </Tabs>
+                <div className='md:absolute md:bottom-0 md:right-0 m-4'> 
+                      <div className={` 
+                        flex justify-center 
+                        mt-14
+                        p-2 pr-8 pl-8 text-white text-xl rounded-full transition-all duration-500 bg-gradient-to-tl from-main-acc-orange via-tone-acc-orange to-lite-tone-acc-orange bg-size-200 bg-pos-0 hover:bg-pos-100
+                        `}>
+                          <SubmitButton/>
+                        </div>
+                </div>
             </div>
         </Form>
     </div>

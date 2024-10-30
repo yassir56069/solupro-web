@@ -15,7 +15,7 @@ const TextSplashPage = ({bookingFormRef}:any) => {
       };
 
     return (  
-        <section className="flex flex-col text-white justify-center items-center text-center min-h-nav-adjust">
+        <section className="flex flex-col h-screen text-white justify-center items-center text-center">
                 {/* hide on mobile */}
                 <div className="hidden md:block"> 
                     <Backdrop/>
