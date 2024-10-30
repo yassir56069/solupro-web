@@ -99,11 +99,12 @@ const  BookingTransferFormCard = forwardRef<HTMLDivElement, any>((props, ref) =>
           onSubmit={handleSubmit}
           className={`
             flex 
-            flex-row 
+            flex-row
+            w-full  md:w-5/6
+
             md:flex-nowrap
             flex-wrap 
             rounded-md 
-            w-5/6 
             min-h-fit 
             lg:h-[40rem]
             lg:max-h-[80%] 
@@ -115,13 +116,13 @@ const  BookingTransferFormCard = forwardRef<HTMLDivElement, any>((props, ref) =>
         >
             
           {/* client details */}
-            <div className='md:flex flex-col justify-between pb-3 w-full md:w-auto'>
+            <div className='md:flex flex-col  pb-3 w-full md:w-auto'>
               
                 <div className='flex flex-grow  items-center justify-center pr-1 p-3'>
                   <img className={`mix-blend-hard-light z-0 hidden md:block`} src={card_image} />
                 </div>
                 
-                <section className='flex flex-col gap-2 pl-2 w-full md:w-auto mt-auto mr-1'>
+                <section className='flex flex-col gap-2 pl-2 w-full justify-center md:w-auto mt-auto mr-1'>
                         <TextField>
                           <Input className={'rounded-md h-10 md:h-8  md:min-w-80 min-w-[80%] p-2 bg-even-darker md:bg-white'}
                           type='email' name='email' placeholder='Email Address' value={email} onChange={handleChange} required/>
@@ -137,7 +138,7 @@ const  BookingTransferFormCard = forwardRef<HTMLDivElement, any>((props, ref) =>
             </div>
 
           {/* booking transfer */}
-            <div className='flex-grow md:bg-white bg-transparent rounded-s-xl rounded-md p-4'>
+            <div className='flex-grow md:bg-white justify-center bg-transparent rounded-s-xl rounded-md p-4'>
                 <Tabs className=''>
                       <TabList className='flex flex-row  font-normal text-4xl'>
                           <Tab id='booking' > Booking   </Tab>
