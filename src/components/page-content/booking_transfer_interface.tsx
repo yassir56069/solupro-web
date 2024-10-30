@@ -92,7 +92,7 @@ const  BookingTransferFormCard = forwardRef<HTMLDivElement, any>((props, ref) =>
 
 
   return (
-    <div ref={ref} className='font-creatoDisplay font-light text-sm flex justify-center items-center h-screen z-0'>
+    <div ref={ref} className='font-creatoDisplay font-light text-sm text-white md:text-blck flex justify-center items-center h-screen z-0'>
 
         {/* this is the element that needs the wrap functionality */}
         <Form 
@@ -109,28 +109,26 @@ const  BookingTransferFormCard = forwardRef<HTMLDivElement, any>((props, ref) =>
             lg:max-h-[80%] 
             xl:h-[60rem]
             xl:max-h-2/3
-            ${isWrapped ? 
-            'bg-opacity-0' 
-            : 
-            'bg-main-acc-blue shadow-lg '}
+            md:bg-main-acc-blue
+            bg-transparent  md:shadow-lg 
             `}
         >
             
           {/* client details */}
-            <div className='flex flex-col justify-between pb-3'>
+            <div className='md:flex flex-col justify-between pb-3 w-full md:w-auto'>
               
-                <div className='flex-grow flex items-center justify-center pr-1 p-3'>
-                  {isWrapped ? '' : <img className='mix-blend-hard-light z-0' src={card_image} /> }
+                <div className='flex flex-grow  items-center justify-center pr-1 p-3'>
+                  <img className={`mix-blend-hard-light z-0 hidden md:block`} src={card_image} />
                 </div>
                 
-                <section className='flex flex-col gap-2 pl-2 mt-auto'>
+                <section className='flex flex-col gap-2 pl-2 w-full md:w-auto mt-auto mr-1'>
                         <TextField>
-                          <Input className={'rounded-md h-8 min-w-80 p-2'}
+                          <Input className={'rounded-md h-10 md:h-8  md:min-w-80 min-w-[80%] p-2 bg-even-darker md:bg-white'}
                           type='email' name='email' placeholder='Email Address' value={email} onChange={handleChange} required/>
                         </TextField>
 
                         <TextField>
-                          <Input className={'rounded-md h-8 min-w-80 p-2'}
+                          <Input className={'rounded-md h-10 md:h-8 md:min-w-80 min-w-[80%] p-2 bg-even-darker md:bg-white '}
                           type='tel' name='phone' placeholder='Phone Number' value={phone} onChange={handleChange} required/>
                         </TextField>
                         
@@ -139,7 +137,7 @@ const  BookingTransferFormCard = forwardRef<HTMLDivElement, any>((props, ref) =>
             </div>
 
           {/* booking transfer */}
-            <div className='flex-grow bg-white rounded-s-xl rounded-md p-4'>
+            <div className='flex-grow md:bg-white bg-transparent rounded-s-xl rounded-md p-4'>
                 <Tabs className=''>
                       <TabList className='flex flex-row  font-normal text-4xl'>
                           <Tab id='booking' > Booking   </Tab>
@@ -155,13 +153,13 @@ const  BookingTransferFormCard = forwardRef<HTMLDivElement, any>((props, ref) =>
                           <div>
                             <label htmlFor="pickupLocation" className='font-normal text-3xl'>Pick up</label>
                             <TextField>
-                            <Input type="text"name="pickupLocation" placeholder="Enter pickup location" value={pickupLocation} onChange={handleChange}required/>
+                            <Input className='bg-darker p-3 rounded-md' type="text" name="pickupLocation" placeholder="Enter pickup location" value={pickupLocation} onChange={handleChange}required/>
                             </TextField>
                           </div>
                           <div>
                             <label htmlFor="returnLocation" className='font-normal text-3xl'>Return</label>
                             <TextField>
-                            <Input type="text"name="returnLocation" placeholder="Enter return location" value={returnLocation} onChange={handleChange}required/>
+                            <Input className='bg-darker p-3 rounded-md' type="text" name="returnLocation" placeholder="Enter return location" value={returnLocation} onChange={handleChange}required/>
                             </TextField>
                           </div>
                         </div>
@@ -170,7 +168,7 @@ const  BookingTransferFormCard = forwardRef<HTMLDivElement, any>((props, ref) =>
                         <div className=' flex flex-row w-full items-center justify-center '>
                           <div className='w-fit'>
                             <h1 className='font-normal text-xl'> Dates </h1>
-                            <RangeCalendar aria-label="bookingtransfer dates" className='bg-grey rounded-md'>
+                            <RangeCalendar aria-label="bookingtransfer dates" className='bg-even-darker md:bg-darker rounded-md'>
                                 <header className='flex items-center p-4 rounded-t-md bg-darker mb-3'>
                                   <Button slot="previous" className='w-8 h-8' >◀</Button> 
                                   <Heading className='flex-1 text-center text-xl m-0' />

@@ -7,9 +7,11 @@ export default {
 
     colors: {
       // ---------------------: COLORS
+      'transparent'      : '#FFFFFF00',
       'white'            : '#FFFFFFFF',
-      'grey'             : '#F9F9F9FF',
+      'blck'             : '#000000FF',
       'darker'           : '#00000006',
+      'even-darker'      : '#00000013',
       'mobile-acc-blue'  : '#074A55',
       'main-acc-blue'    : '#035360',
       'tone-acc-blue'    : '#00A4BE',
