@@ -138,14 +138,15 @@ const  BookingTransferFormCard = forwardRef<HTMLDivElement, any>((props, ref) =>
             </div>
 
           {/* booking transfer */}
-            <div className='flex-grow md:bg-white justify-center bg-transparent rounded-s-xl rounded-md p-4'>
+            <div className='flex-grow 
+              md:bg-white justify-center bg-transparent rounded-s-xl rounded-md p-4'>
                 <Tabs className=''>
                       <TabList className='flex flex-row  font-normal text-4xl'>
                           <Tab id='booking' > Booking   </Tab>
                           <Tab id='transfer'> Transfer  </Tab>
                       </TabList>
 
-                    <TabPanel className='flex flex-col flex-wrap' id='booking'>
+                    <TabPanel className='flex flex-col flex-wrap ' id='booking'>
                         {/* pick up and return  */}
                       <div className='flex flex-row'>
 
@@ -166,7 +167,7 @@ const  BookingTransferFormCard = forwardRef<HTMLDivElement, any>((props, ref) =>
                         </div>
 
                         {/* date */}
-                        <div className=' flex flex-row w-full items-center justify-center '>
+                        <div className=' flex flex-row w-full  justify-end md:items-center md:justify-center'>
                           <div className='w-fit'>
                             <h1 className='font-normal text-xl'> Dates </h1>
                             <RangeCalendar aria-label="bookingtransfer dates" className='bg-even-darker md:bg-darker rounded-md'>
