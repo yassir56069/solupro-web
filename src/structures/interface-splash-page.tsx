@@ -1,7 +1,7 @@
 import React                from 'react';
 import { ChevronDownIcon }  from "@heroicons/react/16/solid";
 
-import Backdrop             from './components/instantiate-backdrop';
+import Backdrop             from './components/backdrop';
 
 
 

@@ -2,8 +2,8 @@
 
 import React, { useState, useEffect }   from 'react';
 
-import MobileNav                        from './mobile_navigator';
-import DesktopNav                       from './desktop_navigator';
+import MobileNav                        from './components/navbar/mobile_navigator';
+import DesktopNav                       from './components/navbar/desktop_navigator';
 
 const Navbar: React.FC = () => {
     const [isMobile, setIsMobile] = useState(false);
