@@ -1,8 +1,8 @@
 'use client'
 import React, { useRef }        from 'react';
 
-import TextSplashPage           from '../components/page-content/text_splash_page';
-import BookingTransferFormCard  from '~/components/page-content/booking_transfer_interface';
+import TextSplashPage           from '../structures/interface-splash-page';
+import BookingTransferFormCard  from '~/structures/interface-booking-transfer-card';
 
 
 export default function HomePage() {

@@ -1,5 +1,5 @@
-import Logo                           from '../elements/logo_instantiator'
-import PageLinks                      from '../elements/page_link_instantiator';
+import Logo                           from '../components/instantiate-logo'
+import PageLinks                      from '../components/instantiate-page-link';
 
 
 const DesktopNav = () => {

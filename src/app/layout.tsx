@@ -1,7 +1,7 @@
 import "~/styles/globals.css";
 import { EdgeCutting, CreatoDisplay } from "utils/customFonts";
 // components
-import Navbar from '../components/navbar/navbar';
+import Navbar from '../structures/navbar/navbar';
 
 
 import { GeistSans } from "geist/font/sans";
