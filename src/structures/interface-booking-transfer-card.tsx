@@ -1,5 +1,7 @@
 'use client'
 
+import BookignTransferTablist             from './components/booking-transfer-card/tablist';
+
 import  { useFormState, useFormStatus }   from 'react-dom';
 import  { useState, useEffect }           from 'react';
 import  React, { forwardRef }             from 'react';
@@ -19,8 +21,6 @@ import  { RangeCalendar, CalendarCell,
     TabPanel,
 }                                         from 'react-aria-components';
 
-
-import BookignTransferTablist from './components/booking-transfer-card/tablist';
 
 
 const CARD_IMAGE = 'https://utfs.io/f/wkZXy01VKbheFXbc93z41N5WxYy3ZcJLnlmviMaVBw0tHXTU';
