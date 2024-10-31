@@ -334,7 +334,6 @@ const  BookingTransferFormCard = forwardRef<HTMLDivElement, any>((props, ref) =>
         
         </Form> 
     </section>
-
   );
 });
 

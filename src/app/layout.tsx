@@ -1,11 +1,13 @@
 import "~/styles/globals.css";
 import { EdgeCutting, CreatoDisplay } from "utils/customFonts";
+
+
+import { GeistSans }                  from "geist/font/sans";
+import { type Metadata }              from "next";
+
 // components
-import Navbar from '../structures/interface-navbar';
+import Navbar                         from '../structures/interface-navbar';
 
-
-import { GeistSans } from "geist/font/sans";
-import { type Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Solupro",
