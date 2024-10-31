@@ -77,16 +77,16 @@ const  BookingTransferFormCard = forwardRef<HTMLDivElement, any>((props, ref) =>
       
       <div className='flex flex-col gap-2 pl-2 w-full justify-center md:w-auto mt-auto mr-1'>
               <TextField>
-                <Input className={'rounded-md h-10 md:h-8  md:min-w-80 min-w-[80%] p-2 bg-even-darker md:bg-white'}
+                <Input className={'rounded-md h-10 md:h-8  md:min-w-80 min-w-[95%] p-2 bg-even-darker md:bg-white'}
                 type='email' name='email' placeholder='Email Address' value={email} onChange={handleChange} required/>
               </TextField>
 
               <TextField>
-                <Input className={'rounded-md h-10 md:h-8 md:min-w-80 min-w-[80%] p-2 bg-even-darker md:bg-white '}
+                <Input className={'rounded-md h-10 md:h-8 md:min-w-80 min-w-[95%] p-2 bg-even-darker md:bg-white '}
                 type='tel' name='phone' placeholder='Phone Number' value={phone} onChange={handleChange} required/>
               </TextField>
               
-              <span className='text-3xl text-white font-normal'> <h2>Client Details</h2> </span>
+              <span className='text-3xl text-white font-normal flex justify-center md:justify-normal '> <h2>Client Details</h2> </span>
       </div>
       </div>
     );
@@ -108,12 +108,12 @@ const  BookingTransferFormCard = forwardRef<HTMLDivElement, any>((props, ref) =>
       {/* Booking details */}
       <div className='flex flex-col md:flex-row pt-4'>
         {/* pick up and return date */}
-        <div className='flex flex-col  w-full  gap-2 space-y-7 pb-7 pr-8'>
+        <div className='flex flex-col w-full  gap-2  space-y-7 pb-7 pr-8'>
           {/* pickup */}
-          <div>
+          <div className='flex flex-col justify-center'>
             <label htmlFor="pickupLocation" className='font-normal text-3xl'>Pick up</label>
             <TextField>
-            <Input className='bg-even-darker flex flex-grow p-3 w-full rounded-md' type="text" name="pickupLocation" placeholder="Enter pickup location" value={pickupLocation} onChange={handleChange}required/>
+            <Input className='bg-even-darker flex flex-grow  p-3 w-full rounded-md' type="text" name="pickupLocation" placeholder="Enter pickup location" value={pickupLocation} onChange={handleChange}required/>
             </TextField>
           </div>
           {/* return */}
@@ -300,7 +300,7 @@ const  BookingTransferFormCard = forwardRef<HTMLDivElement, any>((props, ref) =>
  */
   function BookingTransferDetails() {
     return (  
-      <div className='flex-grow
+      <div className='flex-grow max-w-[100vw]
       md:bg-white  bg-transparent rounded-s-xl rounded-md p-4 md:relative'>
         <Tabs className=''>
           <BookignTransferTablist/>
