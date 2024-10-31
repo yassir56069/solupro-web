@@ -321,15 +321,18 @@ const  BookingTransferFormCard = forwardRef<HTMLDivElement, any>((props, ref) =>
             flex flex-row
             flex-wrap       md:flex-nowrap
             w-full          md:w-5/6
+            rounded-none    md:rounded-md
+            shadow-none     md:shadow-lg
             lg:h-[40rem]    lg:max-h-[80%] 
             xl:h-[60rem]    xl:max-h-2/3
             bg-transparent  md:bg-main-acc-blue
+            
         `}>            
           <ClientDetailsPanel/>
           
           <BookingTransferDetails/>
         
-        </Form>
+        </Form> 
     </section>
 
   );
