@@ -20,6 +20,9 @@ import  { RangeCalendar, CalendarCell,
 }                                         from 'react-aria-components';
 
 
+import BookignTransferTablist from './components/booking-transfer-card/tablist';
+
+
 const card_image = 'https://utfs.io/f/wkZXy01VKbheFXbc93z41N5WxYy3ZcJLnlmviMaVBw0tHXTU';
 
 const initialState = {
@@ -76,8 +79,6 @@ function useResizeObserver(ref: React.RefObject<HTMLElement>) {
   return isWrapped;
 }
 
-
-
 const  BookingTransferFormCard = forwardRef<HTMLDivElement, any>((props, ref) => {
  const isWrapped = useResizeObserver(ref as React.RefObject<HTMLDivElement>);
 
@@ -88,8 +89,6 @@ const  BookingTransferFormCard = forwardRef<HTMLDivElement, any>((props, ref) =>
     const { name, value } = e.target;
     setFormState((prevState) => ({ ...prevState, [name]: value }));
   };
-
-
 
   return (
     <div ref={ref} className='font-creatoDisplay font-light text-sm text-white md:text-blck flex justify-center items-center h-screen z-0'>
@@ -139,37 +138,7 @@ const  BookingTransferFormCard = forwardRef<HTMLDivElement, any>((props, ref) =>
             <div className='flex-grow
               md:bg-white  bg-transparent rounded-s-xl rounded-md p-4 md:relative'>
                 <Tabs className=''>
-                      <TabList className='flex flex-row justify-around p-8 md:justify-normal md:p-0 font-normal text-4xl '>
-                          <Tab 
-                          id='booking'
-                          className={`
-                            cursor-pointer
-                            outline-0
-                            pr-4
-                            text-transparent bg-clip-text 
-                            data-[selected]:from-main-acc-orange data-[selected]:to-lite-tone-acc-orange
-                            transition-all duration-500 bg-gradient-to-r 
-                             from-unselected-trans via-unselected to-white
-                            md:from-grey md:via-dark md:to-blck  bg-size-200 bg-pos-0 hover:bg-pos-100
-                          `}>
-                          Booking
-                          </Tab>
-                          <Tab 
-                          id='transfer'
-                          className={`
-                            cursor-pointer
-                            outline-0
-                            pr-4
-                            text-transparent bg-clip-text 
-                            data-[selected]:from-main-acc-orange data-[selected]:to-lite-tone-acc-orange
-                            transition-all duration-500 bg-gradient-to-r 
-                             from-unselected-trans via-unselected to-white
-                            md:from-grey md:via-dark md:to-blck  bg-size-200 bg-pos-0 hover:bg-pos-100
-                            
-                          `}>
-                            Transfer
-                          </Tab>
-                      </TabList>
+                    <BookignTransferTablist/>
 
                     <TabPanel className='flex flex-col flex-wrap ' id='booking'>
                         {/* pick up and return  */}
