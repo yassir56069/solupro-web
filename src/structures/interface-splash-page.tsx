@@ -39,4 +39,4 @@ const TextSplashPage = ({bookingFormRef}:any) => {
     );
 };
 
-export default TextSplashPage;
+export default TextSplashPage;  

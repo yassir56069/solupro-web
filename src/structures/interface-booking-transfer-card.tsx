@@ -126,22 +126,25 @@ const  BookingTransferFormCard = forwardRef<HTMLDivElement, any>((props, ref) =>
         </div>
 
         {/* date */}
-        <div className=' flex flex-row w-full md:justify-end md:items-center '>
-          <div className='w-fit'>
-            <h1 className='font-normal text-3xl'> Dates </h1>
+        <div className=' flex flex-col w-full md:justify-end '>
+        <h1 className='font-normal text-3xl'> Dates </h1>
+          <div className='p-1 pt-6 pb-6 md:p-0'>
+
+            <div className='flex justify-center items-center'>
             <RangeCalendar aria-label="bookingtransfer dates" className='bg-even-darker md:bg-darker rounded-md'>
                 <header className='flex items-center p-4 rounded-t-md bg-darker mb-3'>
                   <Button slot="previous" className='w-8 h-8' >◀</Button> 
                   <Heading className='flex-1 text-center text-xl m-0' />
                   <Button slot="next" className='w-8 h-8 '>▶</Button>
                 </header>
-                <CalendarGrid className='border-spacing-0 p-10 m-0'> 
+                <CalendarGrid className='border-spacing-0 p-10 m-0 '> 
                   {(date) => (
                     <CalendarCell 
                       date={date} 
                       className='
-                        w-[2.5rem] leading-[2.5rem]
-                        md:w-[3rem] md:leading-[3rem]
+                        
+                        w-[12vw] leading-[2.5rem]
+                        md:w-[4vw] md:min-w-[3rem] md:leading-[3rem]
                         text-center 
                         rounded-md  
                         // outline-none 
@@ -158,7 +161,9 @@ const  BookingTransferFormCard = forwardRef<HTMLDivElement, any>((props, ref) =>
                     />
                   )}
                 </CalendarGrid>
-              </RangeCalendar>
+            </RangeCalendar>
+            </div>
+
           </div>
 
         </div>
@@ -302,7 +307,7 @@ const  BookingTransferFormCard = forwardRef<HTMLDivElement, any>((props, ref) =>
     return (  
       <div className='flex-grow max-w-[100vw]
       md:bg-white  bg-transparent rounded-s-xl rounded-md p-4 md:relative'>
-        <Tabs className=''>
+        <Tabs>
           <BookignTransferTablist/>
           <BookingPanel/>
           <TransferPanel/>
