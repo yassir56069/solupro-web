@@ -98,7 +98,7 @@ const  BookingTransferFormCard = forwardRef<HTMLDivElement, any>((props, ref) =>
           className={`
             flex 
             flex-row
-            w-full  md:w-5/6
+            w-full   md:w-5/6
 
             md:flex-nowrap
             flex-wrap 
@@ -176,17 +176,17 @@ const  BookingTransferFormCard = forwardRef<HTMLDivElement, any>((props, ref) =>
                       <div className='flex flex-col md:flex-row pt-4'>
 
                         {/* pickup & Return */}
-                        <div className='flex flex-col gap-2 space-y-7 pb-7 pr-8'>
+                        <div className='flex flex-col  w-full  gap-2 space-y-7 pb-7 pr-8'>
                           <div>
                             <label htmlFor="pickupLocation" className='font-normal text-3xl'>Pick up</label>
                             <TextField>
-                            <Input className='bg-even-darker p-3 w-full md:w-[500px] md:min-w-[300px] md:max-w-[700px] rounded-md' type="text" name="pickupLocation" placeholder="Enter pickup location" value={pickupLocation} onChange={handleChange}required/>
+                            <Input className='bg-even-darker flex flex-grow p-3 w-full rounded-md' type="text" name="pickupLocation" placeholder="Enter pickup location" value={pickupLocation} onChange={handleChange}required/>
                             </TextField>
                           </div>
                           <div>
                             <label htmlFor="returnLocation" className='font-normal text-3xl'>Return</label>
                             <TextField>
-                            <Input className='bg-even-darker p-3 w-full md:w-[500px] md:min-w-[300px] md:max-w-[700px] rounded-md' type="text" name="returnLocation" placeholder="Enter return location" value={returnLocation} onChange={handleChange}required/>
+                            <Input className='bg-even-darker flex flex-grow p-3 w-full min-w-[300px] rounded-md' type="text" name="returnLocation" placeholder="Enter return location" value={returnLocation} onChange={handleChange}required/>
                             </TextField>
                           </div>
                         </div>
