@@ -161,7 +161,7 @@ const  BookingTransferFormCard = forwardRef<HTMLDivElement, any>((props, ref) =>
                         </div>
 
                         {/* date */}
-                        <div className=' flex flex-row w-full md:justify-end md:items-center md:justify-center'>
+                        <div className=' flex flex-row w-full md:justify-end md:items-center '>
                           <div className='w-fit'>
                             <h1 className='font-normal text-3xl'> Dates </h1>
                             <RangeCalendar aria-label="bookingtransfer dates" className='bg-even-darker md:bg-darker rounded-md'>
@@ -230,7 +230,7 @@ const  BookingTransferFormCard = forwardRef<HTMLDivElement, any>((props, ref) =>
                         </div>
 
                         {/* date */}
-                        <div className=' flex flex-row w-full md:justify-end md:items-center md:justify-center'>
+                        <div className=' flex flex-row w-full md:justify-end md:items-center '>
                           <div className='w-fit'>
                             <h1 className='font-normal text-3xl'> Dates </h1>
                             <RangeCalendar aria-label="bookingtransfer dates" className='bg-even-darker md:bg-darker rounded-md'>
