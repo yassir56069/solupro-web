@@ -12,14 +12,14 @@ import  { RangeCalendar, CalendarCell,
   Heading, 
   Button,
   TextField,
-  Label,
   Input,
   Form,
   Tabs,
-  TabList,
-  Tab,
-    TabPanel,
+  TabPanel,
+  
 }                                         from 'react-aria-components';
+
+import type {DateRange} from 'react-aria-components';
 
 
 
@@ -48,6 +48,8 @@ function SubmitButton() {
 
 
 const  BookingTransferFormCard = forwardRef<HTMLDivElement, any>((props, ref) => {
+
+  let [range, setRange] = React.useState<DateRange | null>(null);
 
   const [formState, setFormState]     = useState(initialState);
   const { email, phone, pickupLocation, pickupDate, returnLocation, returnDate, carType } = formState;
@@ -123,6 +125,11 @@ const  BookingTransferFormCard = forwardRef<HTMLDivElement, any>((props, ref) =>
             <Input className='bg-even-darker flex flex-grow p-3 w-full min-w-[300px] rounded-md' type="text" name="returnLocation" placeholder="Enter return location" value={returnLocation} onChange={handleChange}required/>
             </TextField>
           </div>
+          <div className='flex flex-row gap-9 justify-evenly'>
+            <p> Start Date:  {range?.start.toString()} </p>
+            <p> End Date: {range?.end.toString()}</p>
+          </div>
+
         </div>
 
         {/* date */}
@@ -131,13 +138,18 @@ const  BookingTransferFormCard = forwardRef<HTMLDivElement, any>((props, ref) =>
           <div className='p-1 pt-6 pb-6 md:p-0'>
 
             <div className='flex justify-center items-center'>
-            <RangeCalendar aria-label="bookingtransfer dates" className='bg-even-darker md:bg-darker rounded-md'>
+            <RangeCalendar 
+              aria-label="bookingtransfer dates" 
+              className='bg-even-darker md:bg-darker rounded-md' 
+              value={range} 
+              onChange={setRange}
+            >
                 <header className='flex items-center p-4 rounded-t-md bg-darker mb-3'>
                   <Button slot="previous" className='w-8 h-8' >◀</Button> 
                   <Heading className='flex-1 text-center text-xl m-0' />
                   <Button slot="next" className='w-8 h-8 '>▶</Button>
                 </header>
-                <CalendarGrid className='border-spacing-0 p-10 m-0 '> 
+                <CalendarGrid className='[&_td]:px-0 border-collapse p-10 m-0 '> 
                   {(date) => (
                     <CalendarCell 
                       date={date} 
@@ -151,7 +163,6 @@ const  BookingTransferFormCard = forwardRef<HTMLDivElement, any>((props, ref) =>
                         p-0
                         data-[pressed]:bg-tone-acc-orange
                         data-[selected]:bg-main-acc-orange
-                        data-[selected]: m-[-1px]
                         data-[selected]:text-white 
                         data-[selected]:rounded-none 
                         data-[outside-month]:hidden 
@@ -337,6 +348,8 @@ const  BookingTransferFormCard = forwardRef<HTMLDivElement, any>((props, ref) =>
           
           <BookingTransferDetails/>
         
+
+
         </Form> 
     </section>
   );
