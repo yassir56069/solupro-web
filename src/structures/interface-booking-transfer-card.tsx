@@ -59,139 +59,7 @@ const  BookingTransferFormCard = forwardRef<HTMLDivElement, any>((props, ref) =>
     setFormState((prevState) => ({ ...prevState, [name]: value }));
   };
 
-  /**
- * Renders the ClientDetailsPanel component for capturing client information.
- * This panel is displayed on the left side on larger screens and moves to the top on mobile screens.
- * It collects essential client details, such as email and phone number, and includes a visual card image.
- *
- * @component
- * @returns {JSX.Element} The rendered ClientDetailsPanel component with email and phone input fields and a client card image.
- *
- * @example
- * <ClientDetailsPanel />
- */
-  function ClientDetailsPanel() {
-    return ( 
-      <div className='md:flex flex-col md:mt-0 pb-3 w-full md:w-auto'>
-      <div className='flex flex-grow  items-center justify-center pr-1 p-3'>
-        <img className={`mix-blend-hard-light z-0 hidden md:block`} src={CARD_IMAGE} />
-      </div>
-      
-      <div className='flex flex-col gap-2 pl-2 w-full justify-center md:w-auto mt-auto mr-1'>
-              <TextField>
-                <Input className={'rounded-md h-10 md:h-8  md:min-w-80 min-w-[95%] p-2 bg-even-darker md:bg-white'}
-                type='email' name='email' placeholder='Email Address' value={email} onChange={handleChange} required/>
-              </TextField>
 
-              <TextField>
-                <Input className={'rounded-md h-10 md:h-8 md:min-w-80 min-w-[95%] p-2 bg-even-darker md:bg-white '}
-                type='tel' name='phone' placeholder='Phone Number' value={phone} onChange={handleChange} required/>
-              </TextField>
-              
-              <span className='text-3xl text-white font-normal flex justify-center md:justify-normal '> <h2>Client Details</h2> </span>
-      </div>
-      </div>
-    );
-  }
-
-  /**
- * Renders the BookingPanel component for capturing booking details.
- * This panel includes fields for pickup and return locations as well as a date range selector.
- *
- * @component
- * @returns {JSX.Element} The rendered BookingPanel component with fields for pickup location, return location, and booking dates.
- *
- * @example
- * <BookingPanel />
- */
-  function BookingPanel() {
-    return (  
-      <TabPanel className='flex flex-col flex-wrap ' id='booking'>
-      {/* Booking details */}
-      <div className='flex flex-col md:flex-row pt-4'>
-        {/* pick up and return date */}
-        <div className='flex flex-col w-full  gap-2  space-y-7 pb-7 pr-8'>
-          {/* pickup */}
-          <div className='flex flex-col justify-center'>
-            <label htmlFor="pickupLocation" className='font-normal text-3xl'>Pick up</label>
-            <TextField>
-            <Input className='bg-even-darker flex flex-grow  p-3 w-full rounded-md' type="text" name="pickupLocation" placeholder="Enter pickup location" value={pickupLocation} onChange={handleChange}required/>
-            </TextField>
-          </div>
-          {/* return */}
-          <div>
-            <label htmlFor="returnLocation" className='font-normal text-3xl'>Return</label>
-            <TextField>
-            <Input className='bg-even-darker flex flex-grow p-3 w-full min-w-[300px] rounded-md' type="text" name="returnLocation" placeholder="Enter return location" value={returnLocation} onChange={handleChange}required/>
-            </TextField>
-          </div>
-          <div className='flex flex-row gap-9 justify-evenly'>
-            <p> Start Date:  {range?.start.toString()} </p>
-            <p> End Date: {range?.end.toString()}</p>
-          </div>
-
-        </div>
-
-        {/* date */}
-        <div className=' flex flex-col w-full md:justify-end '>
-        <h1 className='font-normal text-3xl'> Dates </h1>
-          <div className='p-1 pt-6 pb-6 md:p-0'>
-
-            <div className='flex justify-center items-center'>
-            <RangeCalendar 
-              aria-label="bookingtransfer dates" 
-              className='bg-even-darker md:bg-darker rounded-md' 
-              value={range} 
-              onChange={setRange}
-            >
-                <header className='flex items-center p-4 rounded-t-md bg-darker mb-3'>
-                  <Button slot="previous" className='w-8 h-8' >◀</Button> 
-                  <Heading className='flex-1 text-center text-xl m-0' />
-                  <Button slot="next" className='w-8 h-8 '>▶</Button>
-                </header>
-                <CalendarGrid className='[&_td]:px-0 border-collapse p-10 m-0 '> 
-                  {(date) => (
-                    <CalendarCell 
-                      date={date} 
-                      className='
-                        
-                        w-[12vw] leading-[2.5rem]
-                        md:w-[4vw] md:min-w-[3rem] md:leading-[3rem]
-                        text-center 
-                        rounded-md  
-                        // outline-none 
-                        p-0
-                        data-[pressed]:bg-tone-acc-orange
-                        data-[selected]:bg-main-acc-orange
-                        data-[selected]:text-white 
-                        data-[selected]:rounded-none 
-                        data-[outside-month]:hidden 
-                        data-[selection-start]:rounded-l-md 
-                        data-[selection-end]:rounded-r-md
-                      ' 
-                    />
-                  )}
-                </CalendarGrid>
-            </RangeCalendar>
-            </div>
-
-          </div>
-
-        </div>
-
-      </div>
-      
-      {/* car types */}
-      <div>
-      <label htmlFor="carTypes" className='font-normal text-3xl'>Car Types</label>
-        <div className="car-types">
-            {/* Add car type carousel here */}
-        </div>
-      </div>
-      </TabPanel>
-
-    );
-  }
 
   /**
  * Renders the TransferPanel component for capturing transfer details.
@@ -303,31 +171,6 @@ const  BookingTransferFormCard = forwardRef<HTMLDivElement, any>((props, ref) =>
     ) 
   }
   
-  /**
- * Renders the BookingTransferDetails component, a container for multiple panels.
- * This component wraps ClientDetailsPanel, BookingPanel, TransferPanel, and SubmitWrapper in the correct sequence,
- * with necessary styling and positioning adjustments.
- *
- * @component
- * @returns {JSX.Element} The rendered BookingTransferDetails component with client, booking, and transfer details and a submit button.
- *
- * @example
- * <BookingTransferDetails />
- */
-  function BookingTransferDetails() {
-    return (  
-      <div className='flex-grow max-w-[100vw]
-      md:bg-white  bg-transparent rounded-s-xl rounded-md p-4 md:relative'>
-        <Tabs>
-          <BookignTransferTablist/>
-          <BookingPanel/>
-          <TransferPanel/>
-        </Tabs>
-        <SubmitWrapper/>
-      </div>
-    );
-  }
-  
 
   return (
     <section ref={ref} className='font-creatoDisplay font-light text-sm text-white md:text-blck flex justify-center items-center h-screen z-0'>
@@ -344,11 +187,134 @@ const  BookingTransferFormCard = forwardRef<HTMLDivElement, any>((props, ref) =>
             bg-transparent  md:bg-main-acc-blue
             
         `}>            
-          <ClientDetailsPanel/>
+          <div className='md:flex flex-col md:mt-0 pb-3 w-full md:w-auto'>
+          <div className='flex flex-grow  items-center justify-center pr-1 p-3'>
+            <img className={`mix-blend-hard-light z-0 hidden md:block`} src={CARD_IMAGE} />
+          </div>
           
-          <BookingTransferDetails/>
-        
+          <div className='flex flex-col gap-2 pl-2 w-full justify-center md:w-auto mt-auto mr-1'>
+                  <TextField>
+                    <Input className={'rounded-md h-10 md:h-8  md:min-w-80 min-w-[95%] p-2 bg-even-darker md:bg-white'}
+                    type='email' name='email' placeholder='Email Address' value={email} onChange={handleChange} required/>
+                  </TextField>
 
+                  <TextField>
+                    <Input className={'rounded-md h-10 md:h-8 md:min-w-80 min-w-[95%] p-2 bg-even-darker md:bg-white '}
+                    type='tel' name='phone' placeholder='Phone Number' value={phone} onChange={handleChange} required/>
+                  </TextField>
+                  
+                  <span className='text-3xl text-white font-normal flex justify-center md:justify-normal '> <h2>Client Details</h2> </span>
+          </div>
+          </div>
+          
+        
+          <div className='flex-grow max-w-[100vw]
+          md:bg-white  bg-transparent rounded-s-xl rounded-md p-4 md:relative'>
+            <Tabs>
+              <BookignTransferTablist/>
+              <TabPanel className='flex flex-col flex-wrap ' id='booking'>
+                {/* Booking details */}
+                <div className='flex flex-col md:flex-row pt-4'>
+                  {/* pick up and return date */}
+                  <div className='flex flex-col w-full  gap-2  space-y-7 pb-7 pr-8'>
+                    {/* pickup */}
+                    <div className='flex flex-col justify-center'>
+                      <label htmlFor="pickupLocation" className='font-normal text-3xl'>Pick up</label>
+                      <TextField>
+                      <Input className='bg-even-darker flex flex-grow  p-3 w-full rounded-md' type="text" name="pickupLocation" placeholder="Enter pickup location" value={pickupLocation} onChange={handleChange}required/>
+                      </TextField>
+                    </div>
+                    {/* return */}
+                    <div>
+                      <label htmlFor="returnLocation" className='font-normal text-3xl'>Return</label>
+                      <TextField>
+                      <Input className='bg-even-darker flex flex-grow p-3 w-full min-w-[300px] rounded-md' type="text" name="returnLocation" placeholder="Enter return location" value={returnLocation} onChange={handleChange}required/>
+                      </TextField>
+                    </div>
+                    <div className='block md:hidden'>
+                      {range?.start && range?.end ? (
+                          range.start.toString() === range.end.toString() ? (
+                            // Only one date is selected (start and end are the same)
+                            <div className='flex flex-row gap-9 justify-evenly'>
+                              <span><p className='opacity-75 text-xs'> Start & End Date: {range.start.toString()} </p></span>
+                            </div>
+                          ) : (
+                            // Both dates are selected and are different
+                            <div className='flex flex-row gap-9 justify-evenly'>
+                              <span>
+                                <p> Start Date: {range.start.toString()} </p>
+                                <p> End Date: {range.end.toString()}</p>
+                              </span>
+                            </div>
+                          )
+                        ) : null}
+                    </div>
+
+
+
+                  </div>
+
+                  {/* date */}
+                  <div className=' flex flex-col w-full md:justify-end '>
+                  <h1 className='font-normal text-3xl'> Dates </h1>
+                    <div className='p-1 pt-6 pb-6 md:p-0'>
+
+                      <div className='flex justify-center items-center'>
+                      <RangeCalendar 
+                        aria-label="bookingtransfer dates" 
+                        className='bg-even-darker md:bg-darker rounded-md' 
+                        value={range} 
+                        onChange={setRange}
+                      >
+                          <header className='flex items-center p-4 rounded-t-md bg-darker mb-3'>
+                            <Button slot="previous" className='w-8 h-8' >◀</Button> 
+                            <Heading className='flex-1 text-center text-xl m-0' />
+                            <Button slot="next" className='w-8 h-8 '>▶</Button>
+                          </header>
+                          <CalendarGrid className='[&_td]:px-0 border-collapse p-10 m-0 '> 
+                            {(date) => (
+                              <CalendarCell 
+                                date={date} 
+                                className='
+                                  
+                                  w-[12vw] leading-[2.5rem]
+                                  md:w-[4vw] md:min-w-[3rem] md:leading-[3rem]
+                                  text-center 
+                                  rounded-md  
+                                  // outline-none 
+                                  p-0
+                                  data-[pressed]:bg-tone-acc-orange
+                                  data-[selected]:bg-main-acc-orange
+                                  data-[selected]:text-white 
+                                  data-[selected]:rounded-none 
+                                  data-[outside-month]:hidden 
+                                  data-[selection-start]:rounded-l-md 
+                                  data-[selection-end]:rounded-r-md
+                                ' 
+                              />
+                            )}
+                          </CalendarGrid>
+                      </RangeCalendar>
+                      </div>
+
+                    </div>
+
+                  </div>
+
+                </div>
+                
+                {/* car types */}
+                  <div>
+                  <label htmlFor="carTypes" className='font-normal text-3xl'>Car Types</label>
+                    <div className="car-types">
+                        {/* Add car type carousel here */}
+                    </div>
+                  </div>
+                </TabPanel>
+              <TransferPanel/>
+            </Tabs>
+            <SubmitWrapper/>
+          </div>
 
         </Form> 
     </section>

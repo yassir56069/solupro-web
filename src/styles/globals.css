@@ -2,6 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+*:focus:not(.focus-visible) {
+  outline: none;
+}
+
+.focus-visible {
+  outline: '#EE9236' solid 2px;
+}
+
 body {
     @apply h-screen bg-gradient-to-t from-gr-top-blue to-gr-btm-blue ;
     background-attachment: fixed; /* Add this line to fix the background */
