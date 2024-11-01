@@ -1,6 +1,7 @@
 'use client'
 
 import BookignTransferTablist             from './components/booking-transfer-card/tablist';
+import BookingTabPanel from './components/booking-transfer-card/bookingpanel';
 
 import  { useFormState, useFormStatus }   from 'react-dom';
 import  { useState, useEffect }           from 'react';
@@ -170,6 +171,7 @@ const  BookingTransferFormCard = forwardRef<HTMLDivElement, any>((props, ref) =>
       </div>
     ) 
   }
+
   
 
   return (
@@ -212,105 +214,7 @@ const  BookingTransferFormCard = forwardRef<HTMLDivElement, any>((props, ref) =>
           md:bg-white  bg-transparent rounded-s-xl rounded-md p-4 md:relative'>
             <Tabs>
               <BookignTransferTablist/>
-              <TabPanel className='flex flex-col flex-wrap ' id='booking'>
-                {/* Booking details */}
-                <div className='flex flex-col md:flex-row pt-4'>
-                  {/* pick up and return date */}
-                  <div className='flex flex-col w-full  gap-2  space-y-7 pb-7 pr-8'>
-                    {/* pickup */}
-                    <div className='flex flex-col justify-center'>
-                      <label htmlFor="pickupLocation" className='font-normal text-3xl'>Pick up</label>
-                      <TextField>
-                      <Input className='bg-even-darker flex flex-grow  p-3 w-full rounded-md' type="text" name="pickupLocation" placeholder="Enter pickup location" value={pickupLocation} onChange={handleChange}required/>
-                      </TextField>
-                    </div>
-                    {/* return */}
-                    <div>
-                      <label htmlFor="returnLocation" className='font-normal text-3xl'>Return</label>
-                      <TextField>
-                      <Input className='bg-even-darker flex flex-grow p-3 w-full min-w-[300px] rounded-md' type="text" name="returnLocation" placeholder="Enter return location" value={returnLocation} onChange={handleChange}required/>
-                      </TextField>
-                    </div>
-                    <div className='block md:hidden'>
-                      {range?.start && range?.end ? (
-                          range.start.toString() === range.end.toString() ? (
-                            // Only one date is selected (start and end are the same)
-                            <div className='flex flex-row gap-9 justify-evenly'>
-                              <span><p className='opacity-75 text-xs'> Start & End Date: {range.start.toString()} </p></span>
-                            </div>
-                          ) : (
-                            // Both dates are selected and are different
-                            <div className='flex flex-row gap-9 justify-evenly'>
-                              <span>
-                                <p> Start Date: {range.start.toString()} </p>
-                                <p> End Date: {range.end.toString()}</p>
-                              </span>
-                            </div>
-                          )
-                        ) : null}
-                    </div>
-
-
-
-                  </div>
-
-                  {/* date */}
-                  <div className=' flex flex-col w-full md:justify-end '>
-                  <h1 className='font-normal text-3xl'> Dates </h1>
-                    <div className='p-1 pt-6 pb-6 md:p-0'>
-
-                      <div className='flex justify-center items-center'>
-                      <RangeCalendar 
-                        aria-label="bookingtransfer dates" 
-                        className='bg-even-darker md:bg-darker rounded-md' 
-                        value={range} 
-                        onChange={setRange}
-                      >
-                          <header className='flex items-center p-4 rounded-t-md bg-darker mb-3'>
-                            <Button slot="previous" className='w-8 h-8' >◀</Button> 
-                            <Heading className='flex-1 text-center text-xl m-0' />
-                            <Button slot="next" className='w-8 h-8 '>▶</Button>
-                          </header>
-                          <CalendarGrid className='[&_td]:px-0 border-collapse p-10 m-0 '> 
-                            {(date) => (
-                              <CalendarCell 
-                                date={date} 
-                                className='
-                                  
-                                  w-[12vw] leading-[2.5rem]
-                                  md:w-[4vw] md:min-w-[3rem] md:leading-[3rem]
-                                  text-center 
-                                  rounded-md  
-                                  // outline-none 
-                                  p-0
-                                  data-[pressed]:bg-tone-acc-orange
-                                  data-[selected]:bg-main-acc-orange
-                                  data-[selected]:text-white 
-                                  data-[selected]:rounded-none 
-                                  data-[outside-month]:hidden 
-                                  data-[selection-start]:rounded-l-md 
-                                  data-[selection-end]:rounded-r-md
-                                ' 
-                              />
-                            )}
-                          </CalendarGrid>
-                      </RangeCalendar>
-                      </div>
-
-                    </div>
-
-                  </div>
-
-                </div>
-                
-                {/* car types */}
-                  <div>
-                  <label htmlFor="carTypes" className='font-normal text-3xl'>Car Types</label>
-                    <div className="car-types">
-                        {/* Add car type carousel here */}
-                    </div>
-                  </div>
-                </TabPanel>
+              <BookingTabPanel/>
               <TransferPanel/>
             </Tabs>
             <SubmitWrapper/>
