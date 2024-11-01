@@ -1,6 +1,5 @@
 
-import  { useState, useEffect }           from 'react';
-import  React, { forwardRef }             from 'react';
+
 
 import  { RangeCalendar, CalendarCell,
     CalendarGrid,
@@ -8,18 +7,22 @@ import  { RangeCalendar, CalendarCell,
     Button,
     TextField,
     Input,
-    Form,
-    Tabs,
     TabPanel,
-    
-  }                                         from 'react-aria-components';
+}                                         from 'react-aria-components';
 
-import type {DateRange} from 'react-aria-components';
+import React, {  useState }               from 'react';
+import { useDateFormatter }               from 'react-aria';
+import { getLocalTimeZone }               from '@internationalized/date';
+import type   { DateRange }               from 'react-aria-components';
+
+
 
 const BookingTabPanel = () => {
     const [pickupLocation, setPickupLocation] = useState('');
     const [returnLocation, setReturnLocation] = useState('');
     let [range, setRange] = React.useState<DateRange | null>(null);
+    let formatter = useDateFormatter({ dateStyle: 'long' });
+
   
     const handleChange = (e:any) => {
       const { name, value } = e.target;
@@ -29,20 +32,24 @@ const BookingTabPanel = () => {
     };
   
     const renderDateDisplay = () => {
-      if (!range?.start || !range?.end) return null;
+      if (!range?.start || !range?.end) return (
+      <div className=' invisible flex flex-row  justify-around'>
+        <p>Start Date: placeholder</p>
+        <p>End Date: placeholder </p>
+      </div>
+      )
+      ;
   
       return range.start.toString() === range.end.toString() ? (
-        <div className='flex flex-row gap-9 justify-evenly'>
-          <span className='opacity-75 text-xs'>
-            Start & End Date: {range.start.toString()}
-          </span>
+        <div className='flex flex-row justify-start '>
+          <em className='opacity-60 md:text-sm'>
+            Reversation starts and ends on <span className='font-bold'> {formatter.format(range.start.toDate(getLocalTimeZone()))} </span>
+          </em>
         </div>
       ) : (
-        <div className='flex flex-row gap-9 justify-evenly'>
-          <span>
-            <p>Start Date: {range.start.toString()}</p>
-            <p>End Date: {range.end.toString()}</p>
-          </span>
+        <div className='opacity-60 text-xs md:text-sm flex justify-start'>
+            <em>Reservation starts on  <span className='font-bold'> {formatter.format(range.start.toDate(getLocalTimeZone()))} </span>, &nbsp;
+            and ends on <span className='font-bold'> {formatter.format(range.end.toDate(getLocalTimeZone()))} </span></em>
         </div>
       );
     };
@@ -66,15 +73,17 @@ const BookingTabPanel = () => {
               onChange={handleChange}
               placeholder="Enter return location"
             />
-            
-            <div className='block md:hidden'>
-              {renderDateDisplay()}
-            </div>
+
           </div>
   
+
+          
           {/* Date Selection */}
           <div className='flex flex-col w-full md:justify-end'>
             <h1 className='font-normal text-3xl'>Dates</h1>
+            <div className='md:p-1 '>
+              {renderDateDisplay()}
+            </div>
             <div className='p-1 pt-6 pb-6 md:p-0'>
               <div className='flex justify-center items-center'>
                 <RangeCalendar 
@@ -134,18 +143,18 @@ const BookingTabPanel = () => {
         <CalendarCell 
           date={date} 
           className={`
-            w-[12vw] leading-[2.5rem]
+            w-[10vw] leading-[2.5rem]
             md:w-[4vw] md:min-w-[3rem] md:leading-[3rem]
             text-center 
-            rounded-md  
+            rounded-lg 
             p-0
             data-[pressed]:bg-tone-acc-orange
             data-[selected]:bg-main-acc-orange
             data-[selected]:text-white 
             data-[selected]:rounded-none 
             data-[outside-month]:hidden 
-            data-[selection-start]:rounded-l-md 
-            data-[selection-end]:rounded-r-md
+            data-[selection-start]:rounded-l-2xl
+            data-[selection-end]:rounded-r-2xl
           `} 
         />
       )}
