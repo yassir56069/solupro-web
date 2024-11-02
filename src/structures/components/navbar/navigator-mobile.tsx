@@ -11,7 +11,7 @@ const MobileNav = () => {
         setIsOpen(!isOpen);
     };
     return (
-        <nav className=' h-24'>
+        <nav className='z-50 h-24'>
             <div className='flex justify-center items-center p-4'>
                 <button 
                     onClick={toggleNavbar}

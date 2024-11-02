@@ -81,7 +81,7 @@ const BookingTabPanel = () => {
           {/* Date Selection */}
           <div className='flex flex-col w-full md:justify-end'>
             <h1 className='font-normal text-3xl'>Dates</h1>
-            <div className='md:p-1 '>
+            <div className='flex z-0 md:p-1 '>
               {renderDateDisplay()}
             </div>
             <div className='p-1 pt-6 pb-6 md:p-0'>
