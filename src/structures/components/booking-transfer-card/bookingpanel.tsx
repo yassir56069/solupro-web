@@ -33,21 +33,21 @@ const BookingTabPanel = () => {
   
     const renderDateDisplay = () => {
       if (!range?.start || !range?.end) return (
-      <div className=' invisible flex flex-row  justify-around'>
-        <p>Start Date: placeholder</p>
-        <p>End Date: placeholder </p>
+      <div className=' invisible flex flex-row text-sm justify-start'>
+          <em>Reservation starts on  <span className='font-bold'> 10 december 2020 </span>, &nbsp;
+          and ends on <span className='font-bold'> 10 december 2020 </span></em>
       </div>
       )
       ;
   
       return range.start.toString() === range.end.toString() ? (
         <div className='flex flex-row justify-start '>
-          <em className='opacity-60 md:text-sm'>
+          <em className='opacity-60 text-sm'>
             Reversation starts and ends on <span className='font-bold'> {formatter.format(range.start.toDate(getLocalTimeZone()))} </span>
           </em>
         </div>
       ) : (
-        <div className='opacity-60 text-xs md:text-sm flex justify-start'>
+        <div className='opacity-60 text-sm flex justify-start text-center md:text-left'>
             <em>Reservation starts on  <span className='font-bold'> {formatter.format(range.start.toDate(getLocalTimeZone()))} </span>, &nbsp;
             and ends on <span className='font-bold'> {formatter.format(range.end.toDate(getLocalTimeZone()))} </span></em>
         </div>

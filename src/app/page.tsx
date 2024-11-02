@@ -10,8 +10,10 @@ export default function HomePage() {
 
   return (
     <main>
-      <TextSplashPage           bookingFormRef={bookingFormRef}/>
-      <BookingTransferFormCard  ref={bookingFormRef}/>
+        <TextSplashPage           bookingFormRef={bookingFormRef}/>
+      
+        <BookingTransferFormCard  ref={bookingFormRef}/>
+
     </main>
   );
 }
