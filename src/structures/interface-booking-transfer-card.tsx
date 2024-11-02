@@ -175,7 +175,7 @@ const  BookingTransferFormCard = forwardRef<HTMLDivElement, any>((props, ref) =>
   
 
   return (
-    <section ref={ref} className='font-creatoDisplay font-light text-sm text-white md:text-blck flex justify-center items-center h-screen z-0'>
+    <section ref={ref} className='font-creatoDisplay font-light text-sm mt-20 md:mt-0 text-white md:text-blck flex justify-center items-center h-screen z-0'>
         <Form 
           onSubmit={handleSubmit}
           className={`
