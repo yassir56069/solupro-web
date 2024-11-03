@@ -1,7 +1,8 @@
 'use client'
 
 import BookignTransferTablist             from './components/booking-transfer-card/tablist';
-import BookingTabPanel from './components/booking-transfer-card/bookingpanel';
+import BookingTabPanel                    from './components/booking-transfer-card/bookingpanel';
+import CarCardsCarousel                   from './components/booking-transfer-card/car-types-carousel';
 
 import  { useFormState, useFormStatus }   from 'react-dom';
 import  { useState, useEffect }           from 'react';
@@ -19,9 +20,7 @@ import  { RangeCalendar, CalendarCell,
   TabPanel,
   
 }                                         from 'react-aria-components';
-
-import type {DateRange} from 'react-aria-components';
-
+import type {DateRange}                   from 'react-aria-components';
 
 
 const CARD_IMAGE = 'https://utfs.io/f/wkZXy01VKbheFXbc93z41N5WxYy3ZcJLnlmviMaVBw0tHXTU';
@@ -138,7 +137,7 @@ const  BookingTransferFormCard = forwardRef<HTMLDivElement, any>((props, ref) =>
       <div>
       <label htmlFor="carTypes" className='font-normal text-3xl'>Car Types</label>
         <div className="car-types">
-            {/* Add car type carousel here */}
+            <CarCardsCarousel slides={[1, 2, 3, 4]}/>
         </div>
       </div>
       </TabPanel>

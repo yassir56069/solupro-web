@@ -1,6 +1,4 @@
 
-
-
 import  { RangeCalendar, CalendarCell,
     CalendarGrid,
     Heading, 
@@ -13,8 +11,15 @@ import  { RangeCalendar, CalendarCell,
 import React, {  useState }               from 'react';
 import { useDateFormatter }               from 'react-aria';
 import { getLocalTimeZone }               from '@internationalized/date';
+import { EmblaOptionsType }               from 'embla-carousel';
 import type   { DateRange }               from 'react-aria-components';
 
+import CarCardsCarousel                   from './car-types-carousel';
+
+
+const OPTIONS: EmblaOptionsType = { loop: true }
+const SLIDE_COUNT = 5
+const SLIDES = Array.from(Array(SLIDE_COUNT).keys())
 
 
 const BookingTabPanel = () => {
@@ -101,11 +106,9 @@ const BookingTabPanel = () => {
         </div>
         
         {/* Car Types */}
-        <div>
+        <div className='h-fit'>
           <label htmlFor="carTypes" className='font-normal text-3xl'>Car Types</label>
-          <div className="car-types">
-            {/* Placeholder for car type carousel */}
-          </div>
+            <CarCardsCarousel slides={SLIDES}/>
         </div>
       </TabPanel>
     );
