@@ -4,7 +4,7 @@ import { PrevButton, NextButton,  usePrevNextButtons} from './carousel-buttons'
 import useEmblaCarousel from 'embla-carousel-react'
 
 type PropType = {
-  slides: number[]
+  slides: string[]
   options?: EmblaOptionsType
 }
 
@@ -24,32 +24,37 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
   const slide_size    = '100%' ;
 
   return (
-<section className="">
-  <div className="embla__viewport overflow-hidden" ref={emblaRef}>
-    <div
-      className="embla__container flex"
-      style={{ marginLeft: `{calc( ${slide_spacing} * 10)}`, touchAction: "pan-y pinch-zoom" }}
-    >
-      {slides.map((index) => (
+    <section className="">
+      <div className="embla__viewport overflow-hidden" ref={emblaRef}>
         <div
-          className="embla__slide transform translate-z-0"
-          style={{
-            flex: `0 0 ${slide_size}`,
-            minWidth: "0",
-            paddingLeft: slide_spacing,
-          }}
-          key={index}
+          className="embla__container flex"
+          style={{ marginLeft: `calc(${slide_spacing} * -1)`, touchAction: "pan-y pinch-zoom" }}
         >
-          <div
-            className="embla__slide__number shadow-inner rounded-full text-4xl font-semibold flex items-center justify-center"
-            style={{ height: slide_height,  userSelect: "none" }}
-          >
-            {index + 1}
-          </div>
-        </div>
-      ))}
+          {slides.map((src, index) => (
+            <div
+              className="embla__slide transform translate-z-0"
+              style={{
+                flex: `0 0 ${slide_size}`,
+                minWidth: "0",
+                paddingLeft: slide_spacing,
+              }}
+              key={index}
+            >
+              <div
+                className="embla__slide__image shadow-inner rounded overflow-hidden flex items-center justify-center"
+                style={{ height: slide_height, userSelect: "none" }}
+              >
+                <img
+                  src={src}
+                  alt={`Slide ${index + 1}`}
+                  className="object-cover w-full h-full"
+                />
+              </div>
+            </div>
+        ))}
+      </div>
     </div>
-  </div>
+
 
   <div className="embla__controls  flex  justify-left gap-3 mt-7">
     <div className="embla__buttons grid grid-cols-2 gap-1.5 items-left">
