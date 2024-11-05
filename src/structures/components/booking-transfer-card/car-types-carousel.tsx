@@ -1,10 +1,11 @@
-import React from 'react'
-import { EmblaOptionsType } from 'embla-carousel'
+import React                                          from 'react'
+import useEmblaCarousel                               from 'embla-carousel-react'
+import { useState }                                   from 'react'
+import { EmblaOptionsType }                           from 'embla-carousel'
 import { PrevButton, NextButton,  usePrevNextButtons} from './carousel-buttons'
-import useEmblaCarousel from 'embla-carousel-react'
 
 type PropType = {
-  slides: string[]
+  slides: Record<string, string>
   options?: EmblaOptionsType
 }
 
@@ -12,6 +13,7 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
   const { slides, options } = props
   const [emblaRef, emblaApi] = useEmblaCarousel(options)
 
+  const [selectedSlide, setSelectedSlide] = useState<number | null>(null) // Track selected slide
   const {
     prevBtnDisabled,
     nextBtnDisabled,
@@ -19,18 +21,23 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
     onNextButtonClick
   } = usePrevNextButtons(emblaApi)
 
-  const slide_height  = '13rem';
+  const slide_height  = '12rem';
   const slide_spacing = '1rem' ;
-  const slide_size    = '100%' ;
+  const slide_size    = '93%' ;
+
+
+  const handleSlideClick = (index: number) => {
+    setSelectedSlide(index === selectedSlide ? null : index) // Toggle selected slide
+  }
 
   return (
     <section className="">
-      <div className="embla__viewport overflow-hidden" ref={emblaRef}>
+      <div className="embla__viewport overflow-hidden " ref={emblaRef}>
         <div
           className="embla__container flex"
-          style={{ marginLeft: `calc(${slide_spacing} * -1)`, touchAction: "pan-y pinch-zoom" }}
+          style={{ marginLeft: `calc(${slide_spacing} * -1)`, marginTop: '10px', touchAction: "pan-y pinch-zoom" }}
         >
-          {slides.map((src, index) => (
+          {Object.entries(slides).map(([title, src], index) => (
             <div
               className="embla__slide transform translate-z-0"
               style={{
@@ -39,29 +46,48 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
                 paddingLeft: slide_spacing,
               }}
               key={index}
+              onClick={() => handleSlideClick(index)}
             >
               <div
-                className="embla__slide__image shadow-inner rounded overflow-hidden flex items-center justify-center"
+                className="embla__slide__image relative shadow-inner rounded-xl overflow-hidden flex items-center justify-center"
                 style={{ height: slide_height, userSelect: "none" }}
               >
                 <img
                   src={src}
-                  alt={`Slide ${index + 1}`}
+                  alt={title}
                   className="object-cover w-full h-full"
                 />
+
+                {/* Default gradient overlay */}
+                <div
+                  className={`absolute bottom-0 left-0 right-0 h-full transition-opacity ${
+                    selectedSlide === index ? 'opacity-0' : 'bg-gradient-to-t from-transparent to-blck opacity-75 hover:opacity-90'
+                  }`}
+                ></div>
+                
+                {/* Selected gradient overlay */}
+                {selectedSlide === index && (
+                  <div
+                    className="absolute bottom-0 left-0 right-0 h-full bg-gradient-to-t from-even-darker to-main-acc-orange opacity-90"
+                  ></div>
+                )}
+              </div>
+              {/* Title */}
+              <div className="absolute top-0 left-10 right-0 p-4 text-white font-semibold text-lg">
+                {title}
               </div>
             </div>
-        ))}
+          ))}
+        </div>
       </div>
-    </div>
 
 
-  <div className="embla__controls  flex  justify-left gap-3 mt-7">
-    <div className="embla__buttons grid grid-cols-2 gap-1.5 items-left">
+  <div className="embla__controls  flex mt-4 justify-center md:justify-start  md:gap-3 md:mt-7 md:pt-7">
+    <div className="embla__buttons flex gap-6 md:gap-1.5 items-center">
       <PrevButton
         onClick={onPrevButtonClick}
         disabled={prevBtnDisabled}
-        className="embla__button flex touch-manipulation text-transparent cursor-pointer border-1 p-0 m-0 shadow-inner rounded-full w-3 h-3 items-center justify-center"
+        className="embla__button flex touch-manipulation text-transparent cursor-pointer border-1 p-0 mr-3 m-0 shadow-inner rounded-full w-4 h-4 md:w-3 md:h-3 items-center justify-center"
         style={{
           WebkitTapHighlightColor: "rgba(var(--text-high-contrast-rgb-value), 0.5)",
           WebkitAppearance: "none",
@@ -74,7 +100,7 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
       <NextButton
         onClick={onNextButtonClick}
         disabled={nextBtnDisabled}
-        className="embla__buttone flex touch-manipulation text-transparent cursor-pointer border-1 p-0 m-0 shadow-inner rounded-full w-3 h-3 items-center justify-center"
+        className="embla__button flex touch-manipulation text-transparent cursor-pointer border-1 p-0 m-0 shadow-inner rounded-full w-4 h-4 md:w-3 md:h-3 items-center justify-center"
         style={{
           WebkitTapHighlightColor: "rgba(var(--text-high-contrast-rgb-value), 0.5)",
           WebkitAppearance: "none",
@@ -84,6 +110,9 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
           color: "var(--text-body)",
         }}
       />
+          <p className="flex items-center">
+            {selectedSlide !== null ? `You've selected ${Object.keys(slides)[selectedSlide]}` : ' Select A Car Type'}
+          </p>
     </div>
   </div>
 </section>

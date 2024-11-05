@@ -18,11 +18,11 @@ import CarCardsCarousel                   from './car-types-carousel';
 
 
 const OPTIONS: EmblaOptionsType = { loop: true }
-const SLIDES = [
-  "https://utfs.io/f/wkZXy01VKbheti7WMFiPMgNW67ivTkO0fdco8beXsIxwERBG",
-  "https://utfs.io/f/wkZXy01VKbhesJcfyXWScdNDFOTIUVCXmPfyoLua0nlQ89rz",
-  "https://utfs.io/f/wkZXy01VKbheFXbc93z41N5WxYy3ZcJLnlmviMaVBw0tHXTU",
-]
+const SLIDES = {
+  'Suv'           : "https://utfs.io/f/wkZXy01VKbhesJcfyXWScdNDFOTIUVCXmPfyoLua0nlQ89rz",
+  'Economy Car'   : "https://utfs.io/f/wkZXy01VKbhesU6V71WScdNDFOTIUVCXmPfyoLua0nlQ89rz",
+  'Pick-up Truck' : "https://utfs.io/f/wkZXy01VKbheti7WMFiPMgNW67ivTkO0fdco8beXsIxwERBG",
+}
 
 
 const BookingTabPanel = () => {
@@ -109,9 +109,9 @@ const BookingTabPanel = () => {
         </div>
         
         {/* Car Types */}
-        <div className='bg-main-acc-blue h-fit'>
-          <label htmlFor="carTypes" className='font-normal text-3xl'>Car Types</label>
-            <CarCardsCarousel slides={SLIDES}/>
+        <div className=''>
+          <label htmlFor="carTypes" className='font-normal text-3xl '>Car Types</label>
+            <CarCardsCarousel slides={SLIDES}  options={OPTIONS}/>
         </div>
       </TabPanel>
     );
