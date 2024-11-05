@@ -106,7 +106,7 @@ const BookingTabPanel = () => {
         </div>
         
         {/* Car Types */}
-        <div className='h-fit'>
+        <div className='bg-main-acc-blue h-fit'>
           <label htmlFor="carTypes" className='font-normal text-3xl'>Car Types</label>
             <CarCardsCarousel slides={SLIDES}/>
         </div>

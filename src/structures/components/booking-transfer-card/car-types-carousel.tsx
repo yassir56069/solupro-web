@@ -19,7 +19,7 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
     onNextButtonClick
   } = usePrevNextButtons(emblaApi)
 
-  const slide_height  = 'full';
+  const slide_height  = '13rem';
   const slide_spacing = '1rem' ;
   const slide_size    = '100%' ;
 
