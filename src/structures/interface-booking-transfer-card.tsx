@@ -60,7 +60,6 @@ const  BookingTransferFormCard = forwardRef<HTMLDivElement, any>((props, ref) =>
   };
 
 
-
   /**
  * Renders the TransferPanel component for capturing transfer details.
  * This component includes additional transfer information and fields.
@@ -73,7 +72,7 @@ const  BookingTransferFormCard = forwardRef<HTMLDivElement, any>((props, ref) =>
  */
   function TransferPanel() {
     return (  
-      <TabPanel className='flex flex-col flex-wrap ' id='transfer'>
+      <TabPanel className='flex flex-col flex-wrap' id='transfer'>
       {/* Booking details */}
       <div className='flex flex-col md:flex-row pt-4'>
         {/* pick up and return date */}
@@ -134,12 +133,6 @@ const  BookingTransferFormCard = forwardRef<HTMLDivElement, any>((props, ref) =>
       </div>
       
       {/* car types */}
-      <div>
-      <label htmlFor="carTypes" className='font-normal text-3xl'>Car Types</label>
-        <div className="car-types">
-            <CarCardsCarousel slides={[1, 2, 3, 4]}/>
-        </div>
-      </div>
       </TabPanel>
 
     );
