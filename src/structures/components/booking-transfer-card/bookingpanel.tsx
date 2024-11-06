@@ -152,7 +152,7 @@ const BookingTabPanel = () => {
             md:w-[4vw] md:min-w-[3rem] md:leading-[3rem]
             text-center 
             rounded-lg 
-            p-0
+            ml-[-1px] mr-[-1px]
             data-[pressed]:bg-tone-acc-orange
             data-[selected]:bg-main-acc-orange
             data-[selected]:text-white 
