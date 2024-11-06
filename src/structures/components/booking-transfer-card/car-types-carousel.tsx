@@ -21,7 +21,7 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
     onNextButtonClick
   } = usePrevNextButtons(emblaApi)
 
-  const slide_height  = '12rem';
+  const slide_height  = '11rem';
   const slide_spacing = '1rem' ;
   const slide_size    = '93%' ;
 
@@ -49,8 +49,8 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
               onClick={() => handleSlideClick(index)}
             >
               <div
-                className="embla__slide__image relative shadow-inner rounded-xl overflow-hidden flex items-center justify-center"
-                style={{ height: slide_height, userSelect: "none" }}
+                className={`embla__slide__image relative shadow-inner rounded-xl h-[10rem] overflow-hidden flex items-center justify-center`}
+                style={{ userSelect: "none" }}
               >
                 <img
                   src={src}
@@ -82,7 +82,7 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
       </div>
 
 
-  <div className="embla__controls  flex mt-4 justify-center md:justify-start  md:gap-3 md:mt-7 md:pt-7">
+  <div className="embla__controls  flex  justify-center md:justify-start  md:gap-3 md:mt-4 mt-5 ">
     <div className="embla__buttons flex gap-6 md:gap-1.5 items-center">
       <PrevButton
         onClick={onPrevButtonClick}

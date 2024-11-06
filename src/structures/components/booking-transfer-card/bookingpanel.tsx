@@ -64,6 +64,7 @@ const BookingTabPanel = () => {
   
     return (
       <TabPanel className='flex flex-col flex-wrap' id='booking'>
+        <p className='opacity-50 text-sm'> With Solupro, you can book your car within a 24 hour notice via our booking card!</p>
         <div className='flex flex-col md:flex-row pt-4'>
           {/* Pick up and Return Locations */}
           <div className='flex flex-col w-full gap-2 space-y-7 pb-7 pr-8'>
@@ -84,8 +85,6 @@ const BookingTabPanel = () => {
 
           </div>
   
-
-          
           {/* Date Selection */}
           <div className='flex flex-col w-full md:justify-end'>
             <h1 className='font-normal text-3xl'>Dates</h1>
