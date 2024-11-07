@@ -2,6 +2,7 @@
 
 import BookignTransferTablist             from './components/booking-transfer-card/tablist';
 import BookingTabPanel                    from './components/booking-transfer-card/bookingpanel';
+import TransferTabPanel                   from './components/booking-transfer-card/transferpanel';    
 import handleSubmit                       from './components/util/logic-handle-submit';   
 
 import  { useFormState, useFormStatus }   from 'react-dom';
@@ -177,6 +178,19 @@ const  BookingTransferFormCard = forwardRef<HTMLDivElement, any>((props, ref) =>
             <Tabs>
               <BookignTransferTablist/>
               <BookingTabPanel
+                values={{
+                  pickupLocation  : formData.pickupLocation,
+                  returnLocation  : formData.returnLocation,
+                }}
+                onChange={handleChange}
+                range={range}
+                setRange={handleDateChange} 
+                showRangeError={showRangeError}
+                selectedSlide={selectedSlide}
+                setSelectedSlide={setSelectedSlide}
+                
+              />
+              <TransferTabPanel
                 values={{
                   pickupLocation  : formData.pickupLocation,
                   returnLocation  : formData.returnLocation,

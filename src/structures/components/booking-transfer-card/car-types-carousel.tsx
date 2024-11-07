@@ -21,7 +21,7 @@ const EmblaCarousel = ({ selectedSlide, setSelectedSlide, ...props}:any) => {
     onNextButtonClick
   } = usePrevNextButtons(emblaApi)
 
-  const slide_height  = '11rem';
+  const slide_height  = '10rem';
   const slide_spacing = '1rem' ;
   const slide_size    = '93%' ;
 
@@ -49,7 +49,7 @@ const EmblaCarousel = ({ selectedSlide, setSelectedSlide, ...props}:any) => {
               onClick={() => handleSlideClick(index)}
             >
               <div
-                className={`embla__slide__image relative shadow-inner rounded-xl h-[10rem] overflow-hidden flex items-center justify-center`}
+                className={`embla__slide__image relative shadow-inner rounded-xl h-[9rem] overflow-hidden flex items-center justify-center`}
                 style={{ userSelect: "none" }}
               >
                 <img

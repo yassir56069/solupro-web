@@ -7,11 +7,15 @@ import  { RangeCalendar, CalendarCell,
     Input,
     TabPanel,
     FieldError,
+    TimeField,
+    DateInput,
+    Label,
+    DateSegment
 }                                         from 'react-aria-components';
 
 import React, {  useState }               from 'react';
 import { useDateFormatter }               from 'react-aria';
-import { getLocalTimeZone, today }               from '@internationalized/date';
+import { getLocalTimeZone, today, parseZonedDateTime }               from '@internationalized/date';
 import { EmblaOptionsType }               from 'embla-carousel';
 import type   { DateRange }               from 'react-aria-components';
 
@@ -26,7 +30,7 @@ const SLIDES = {
 }
 
 
-const BookingTabPanel = ({ values, onChange, range, setRange, showRangeError, selectedSlide, setSelectedSlide }:any) => {
+const TransferTabPanel = ({ values, onChange, range, setRange, showRangeError, selectedSlide, setSelectedSlide }:any) => {
     let formatter = useDateFormatter({ dateStyle: 'long' });
 
     const renderDateDisplay = () => {
@@ -53,18 +57,22 @@ const BookingTabPanel = ({ values, onChange, range, setRange, showRangeError, se
     };
   
     return (
-      <TabPanel className='flex flex-col flex-wrap' id='booking'>
-        <p className='opacity-40 text-sm pt-1 '> With Solupro, you can book your car within a 24 hour notice via our booking card.</p>
+      <TabPanel className='flex flex-col flex-wrap' id='transfer'>
+        <p className='opacity-40 text-sm pt-1 '> Solupro provides a transfer service that picks you up from the mauritius airport</p>
         <div className='flex flex-col md:flex-row pt-4'>
           {/* Pick up and Return Locations */}
           <div className='flex flex-col w-full gap-2 space-y-7 pb-7 pr-8'>
-            <LocationInput 
-              label="Pick up"
-              name="pickupLocation"
-              value={values.pickupLocation}
-              onChange={onChange}
-              placeholder="Enter pickup location*"
-            />
+            <div>
+            <label htmlFor='pickupLocation' className='font-normal text-3xl '> Pick Up </label>
+              <TextField className={'text-unselected'} isReadOnly defaultValue={"Sir Seewoosagur Ramgoolam International Airport, Plaine Magnien, MU" }>
+              <Input 
+                className='bg-darker flex flex-grow p-3 w-full rounded-md'
+                type="text" 
+                name='Pick Up'
+              />
+              </TextField>
+            </div>
+
             <LocationInput 
               label="Return"
               name="returnLocation"
@@ -125,11 +133,28 @@ const BookingTabPanel = ({ values, onChange, range, setRange, showRangeError, se
           </div>
         </div>
         
-        {/* Car Types */}
+
+        <TimeField defaultValue={parseZonedDateTime('2022-11-07T00:00[Indian/Mauritius]')}>
+          <Label className='text-3xl '>Flight Arrival Time</Label>
+          <p className='opacity-40 '> please enter the time of your flight according to the time it will land in Mauritius.</p>
+          <DateInput className={'flex flex-row  md:gap-2 font-bold justify-around items-center p-2 mt-3  md:p-4 md:w-full md:text-lg md:h-[7.5rem] bg-darker md:bg-even-darker rounded-lg'}>
+            {segment => 
+              <DateSegment className={`p-3 md:p-7 rounded-lg md:rounded-2xl 
+                ${
+                  segment.type === 'hour' ? 'bg-darker text-xl' : 
+                  segment.type === 'minute' ? 'bg-darker text-xl' : 
+                  segment.type === 'dayPeriod' ? 'bg-darker text-sm' :
+                  segment.type === 'timeZoneName' ? 'bg-darker text-sm' :
+                  'p-0'
+                }`} 
+              segment={segment} />}
+          </DateInput>
+        </TimeField>
+        {/* Car Types
         <div className=''>
           <label htmlFor="carTypes" className='font-normal text-3xl '>Car Types</label>
             <CarCardsCarousel selectedSlide={selectedSlide} setSelectedSlide={setSelectedSlide} slides={SLIDES}  options={OPTIONS}/>
-        </div>
+        </div> */}
       </TabPanel>
     );
   };
@@ -190,4 +215,4 @@ const BookingTabPanel = ({ values, onChange, range, setRange, showRangeError, se
     </CalendarGrid>
   );
   
-  export default BookingTabPanel;
+  export default TransferTabPanel;
