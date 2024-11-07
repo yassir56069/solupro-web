@@ -25,19 +25,10 @@ const SLIDES = {
 }
 
 
-const BookingTabPanel = () => {
-    const [pickupLocation, setPickupLocation] = useState('');
-    const [returnLocation, setReturnLocation] = useState('');
-    let [range, setRange] = React.useState<DateRange | null>(null);
+const BookingTabPanel = ({ values, onChange, range, setRange }:any) => {
     let formatter = useDateFormatter({ dateStyle: 'long' });
 
   
-    const handleChange = (e:any) => {
-      const { name, value } = e.target;
-      name === 'pickupLocation' 
-        ? setPickupLocation(value) 
-        : setReturnLocation(value);
-    };
   
     const renderDateDisplay = () => {
       if (!range?.start || !range?.end) return (
@@ -71,15 +62,15 @@ const BookingTabPanel = () => {
             <LocationInput 
               label="Pick up"
               name="pickupLocation"
-              value={pickupLocation}
-              onChange={handleChange}
+              value={values.pickupLocation}
+              onChange={onChange}
               placeholder="Enter pickup location"
             />
             <LocationInput 
               label="Return"
               name="returnLocation"
-              value={returnLocation}
-              onChange={handleChange}
+              value={values.returnLocation}
+              onChange={onChange}
               placeholder="Enter return location"
             />
 
