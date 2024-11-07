@@ -19,17 +19,17 @@ import CarCardsCarousel                   from './car-types-carousel';
 
 const OPTIONS: EmblaOptionsType = { loop: true }
 const SLIDES = {
-  'Suv'           : "https://utfs.io/f/wkZXy01VKbhesJcfyXWScdNDFOTIUVCXmPfyoLua0nlQ89rz",
+  'Suv'           : "https://utfs.io/f/wkZXy01VKbheti7WMFiPMgNW67ivTkO0fdco8beXsIxwERBG",
   'Economy Car'   : "https://utfs.io/f/wkZXy01VKbhesU6V71WScdNDFOTIUVCXmPfyoLua0nlQ89rz",
-  'Pick-up Truck' : "https://utfs.io/f/wkZXy01VKbheti7WMFiPMgNW67ivTkO0fdco8beXsIxwERBG",
+  'Pick-up Truck' : "https://utfs.io/f/wkZXy01VKbhesJcfyXWScdNDFOTIUVCXmPfyoLua0nlQ89rz",
 }
 
 
-const BookingTabPanel = ({ values, onChange, range, setRange }:any) => {
+const BookingTabPanel = ({ values, onChange, range, setRange, selectedSlide, setSelectedSlide }:any) => {
     let formatter = useDateFormatter({ dateStyle: 'long' });
 
-  
-  
+
+
     const renderDateDisplay = () => {
       if (!range?.start || !range?.end) return (
       <div className=' invisible flex flex-row text-sm justify-start'>
@@ -101,7 +101,7 @@ const BookingTabPanel = ({ values, onChange, range, setRange }:any) => {
         {/* Car Types */}
         <div className=''>
           <label htmlFor="carTypes" className='font-normal text-3xl '>Car Types</label>
-            <CarCardsCarousel slides={SLIDES}  options={OPTIONS}/>
+            <CarCardsCarousel selectedSlide={selectedSlide} setSelectedSlide={setSelectedSlide} slides={SLIDES}  options={OPTIONS}/>
         </div>
       </TabPanel>
     );

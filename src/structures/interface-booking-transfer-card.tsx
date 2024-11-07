@@ -50,7 +50,8 @@ const  BookingTransferFormCard = forwardRef<HTMLDivElement, any>((props, ref) =>
     message         : null,
   });
 
-  const [selectedSlide, setSelectedSlide] = useState<string | null>(null);
+  const [selectedSlide, setSelectedSlide] = useState<number | null>(null) // Track selected slide
+  
   const [pickupLocation, setPickupLocation] = useState('');
   const [returnLocation, setReturnLocation] = useState('');
   let   [range, setRange] = React.useState<DateRange | null>(null);
@@ -100,6 +101,7 @@ const  BookingTransferFormCard = forwardRef<HTMLDivElement, any>((props, ref) =>
     e.preventDefault();
     console.log('Form submitted:', formData);
     console.log("Submitted Date Range:", range);
+    console.log('selected slide', selectedSlide)
   };
 
   
@@ -167,6 +169,8 @@ const  BookingTransferFormCard = forwardRef<HTMLDivElement, any>((props, ref) =>
                 onChange={handleChange}
                 range={range}
                 setRange={handleDateChange} 
+                selectedSlide={selectedSlide}
+                setSelectedSlide={setSelectedSlide}
               />
             </Tabs>
             <SubmitWrapper/>

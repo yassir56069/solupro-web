@@ -9,11 +9,11 @@ type PropType = {
   options?: EmblaOptionsType
 }
 
-const EmblaCarousel: React.FC<PropType> = (props) => {
+const EmblaCarousel = ({ selectedSlide, setSelectedSlide, ...props}:any) => {
   const { slides, options } = props
   const [emblaRef, emblaApi] = useEmblaCarousel(options)
 
-  const [selectedSlide, setSelectedSlide] = useState<number | null>(null) // Track selected slide
+  
   const {
     prevBtnDisabled,
     nextBtnDisabled,
