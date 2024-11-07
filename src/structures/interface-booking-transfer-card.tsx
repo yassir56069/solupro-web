@@ -101,7 +101,7 @@ const  BookingTransferFormCard = forwardRef<HTMLDivElement, any>((props, ref) =>
     e.preventDefault();
     console.log('Form submitted:', formData);
     console.log("Submitted Date Range:", range);
-    console.log('selected slide', selectedSlide)
+    console.log('selected slide', selectedSlide);
   };
 
   
