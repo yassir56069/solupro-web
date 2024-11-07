@@ -6,11 +6,12 @@ import  { RangeCalendar, CalendarCell,
     TextField,
     Input,
     TabPanel,
+    FieldError,
 }                                         from 'react-aria-components';
 
 import React, {  useState }               from 'react';
 import { useDateFormatter }               from 'react-aria';
-import { getLocalTimeZone }               from '@internationalized/date';
+import { getLocalTimeZone, today }               from '@internationalized/date';
 import { EmblaOptionsType }               from 'embla-carousel';
 import type   { DateRange }               from 'react-aria-components';
 
@@ -25,10 +26,8 @@ const SLIDES = {
 }
 
 
-const BookingTabPanel = ({ values, onChange, range, setRange, selectedSlide, setSelectedSlide }:any) => {
+const BookingTabPanel = ({ values, onChange, range, setRange, showRangeError, selectedSlide, setSelectedSlide }:any) => {
     let formatter = useDateFormatter({ dateStyle: 'long' });
-
-
 
     const renderDateDisplay = () => {
       if (!range?.start || !range?.end) return (
@@ -64,14 +63,14 @@ const BookingTabPanel = ({ values, onChange, range, setRange, selectedSlide, set
               name="pickupLocation"
               value={values.pickupLocation}
               onChange={onChange}
-              placeholder="Enter pickup location"
+              placeholder="Enter pickup location*"
             />
             <LocationInput 
               label="Return"
               name="returnLocation"
               value={values.returnLocation}
               onChange={onChange}
-              placeholder="Enter return location"
+              placeholder="Enter return location*"
             />
 
           </div>
@@ -86,12 +85,40 @@ const BookingTabPanel = ({ values, onChange, range, setRange, selectedSlide, set
               <div className='flex justify-center items-center'>
                 <RangeCalendar 
                   aria-label="booking transfer dates" 
+                  minValue={today(getLocalTimeZone())}
                   className='bg-even-darker md:bg-darker rounded-md' 
                   value={range} 
                   onChange={setRange}
                 >
                   <CalendarHeader />
-                  <CustomCalendarGrid />
+                  <CalendarGrid className='[&_td]:px-0 border-collapse p-10 m-0'>
+                      {(date) => (
+                        <CalendarCell 
+                          date={date} 
+                          className={`
+                            w-[10vw] leading-[2.5rem]
+                            md:w-[4vw] md:min-w-[3rem] md:leading-[3rem]
+                            text-center 
+                            rounded-lg 
+                            ml-[-1px] mr-[-1px]
+                            data-[pressed]:bg-tone-acc-orange
+                            data-[selected]:bg-main-acc-orange
+                            data-[selected]:text-white 
+                            data-[selected]:rounded-none 
+                            data-[outside-month]:hidden 
+                            data-[selection-start]:rounded-l-2xl
+                            data-[selection-end]:rounded-r-2xl
+                            data-[disabled]:text-unselected
+                          `} 
+                        />
+                        
+                      )}
+                    </CalendarGrid>
+                    {showRangeError && (
+                      <p className="absolute text-error mt-2  text-center">
+                        Please select a date range for your booking.
+                      </p>
+                    )}
                 </RangeCalendar>
               </div>
             </div>
@@ -121,6 +148,11 @@ const BookingTabPanel = ({ values, onChange, range, setRange, selectedSlide, set
           onChange={onChange}
           required
         />
+        <div
+          role="tooltip"
+        >
+          <FieldError className="relative top-1 left-0 w-full text-error text-sm bg-even-darker px-2 py-1 rounded-md shadow-lg" />
+        </div>
       </TextField>
     </div>
   );
@@ -153,6 +185,7 @@ const BookingTabPanel = ({ values, onChange, range, setRange, selectedSlide, set
             data-[selection-end]:rounded-r-2xl
           `} 
         />
+        
       )}
     </CalendarGrid>
   );

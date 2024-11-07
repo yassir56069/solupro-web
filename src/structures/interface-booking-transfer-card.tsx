@@ -9,16 +9,12 @@ import  { useState, useEffect }           from 'react';
 import  React, { forwardRef }             from 'react';
 
 // import  { useCheckWrap }                  from '../util/check_flexwrap';
-import  { RangeCalendar, CalendarCell,
-  CalendarGrid,
-  Heading, 
-  Button,
+import  {
   TextField,
   Input,
   Form,
   Tabs,
-  TabPanel,
-  
+  FieldError,
 }                                         from 'react-aria-components';
 import type {DateRange}                   from 'react-aria-components';
 
@@ -46,20 +42,19 @@ const  BookingTransferFormCard = forwardRef<HTMLDivElement, any>((props, ref) =>
     customerTel     : '',
     pickupLocation  : '',
     returnLocation  : '',
-    carType         : '',
     message         : null,
   });
 
   const [selectedSlide, setSelectedSlide] = useState<number | null>(null) // Track selected slide
-  
-  const [pickupLocation, setPickupLocation] = useState('');
-  const [returnLocation, setReturnLocation] = useState('');
+
   let   [range, setRange] = React.useState<DateRange | null>(null);
+  const [showRangeError, setShowRangeError] = useState(false);
 
   const { pending } = useFormStatus();
 
   const handleDateChange = (newRange:any) => {
     setRange(newRange);
+    if (newRange) setShowRangeError(false);
     console.log("Updated Range:", newRange); // Log updated range immediately
   };
 
@@ -99,16 +94,23 @@ const  BookingTransferFormCard = forwardRef<HTMLDivElement, any>((props, ref) =>
   
   const handleSubmit = (e:any) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
-    console.log("Submitted Date Range:", range);
-    console.log('selected slide', selectedSlide);
+    if (!range?.start || !range?.end) {
+      setShowRangeError(true); // Show error if no date range is selected
+      console.log('no range')
+
+    } else {
+      console.log('Form submitted:', formData);
+      console.log("Submitted Date Range:", range);
+      console.log('selected slide', selectedSlide);
+  
+    }
   };
 
   
 
   return (
     <section ref={ref} className='font-creatoDisplay font-normal  text-white md:text-blck flex justify-center items-center min-h-[60rem] md:h-screen z-0'>
-        <form 
+        <Form 
           onSubmit={handleSubmit} 
           className={`
             flex flex-row
@@ -127,31 +129,44 @@ const  BookingTransferFormCard = forwardRef<HTMLDivElement, any>((props, ref) =>
           </div>
           
           <div className='flex flex-col gap-2 pl-2 w-full justify-center md:w-auto mt-auto mr-1'>
-                  <div>
-                  <input
+                  <TextField className={'relative'}>
+                  <Input
                       className={'rounded-md h-10 md:h-8 md:min-w-80 min-w-[95%] p-2 bg-even-darker md:bg-white'}
                       type='email'
                       name='customerEmail'
                       aria-label="Email Address"
-                      
-                      placeholder='Email Address'
+                      placeholder='Email Address*'
                       value={formData.customerEmail}
                       onChange={handleChange}
                       required
                     />
-                  </div>
-                  <div>
-                  <input
+                    <div> 
+                    <FieldError className="-top-14 left-0 w-fit text-error font-thin text-xs bg-error-box px-2 py-1 rounded-md shadow-lg"/>
+                    </div>
+
+                  </TextField>
+                  <TextField>
+                  <Input
                       className={'rounded-md h-10 md:h-8 md:min-w-80 min-w-[95%] p-2 bg-even-darker md:bg-white'}
                       type='tel'
                       name='customerTel'
                       aria-label="Telephone Number"
-                      placeholder='Phone Number'
+                      placeholder='Phone Number*'
                       value={formData.customerTel}
                       onChange={handleChange}
                       required
                     />
-                  </div>                
+                    <div
+                      role="tooltip"
+                      
+                    >
+                      <FieldError className="-top-14 left-0 w-full text-error font-thin text-xs bg-error-box px-2 py-1 rounded-md shadow-lg"> 
+                      {({validationDetails}) => (
+                          validationDetails.valueMissing ? 'Please enter a phone number.' : ''
+                      )}
+                      </FieldError>
+                    </div>
+                  </TextField>                
                 <span className='text-3xl text-white font-normal flex justify-center md:justify-normal '> <h2>Client Details</h2> </span>
           </div>
           </div>
@@ -169,14 +184,16 @@ const  BookingTransferFormCard = forwardRef<HTMLDivElement, any>((props, ref) =>
                 onChange={handleChange}
                 range={range}
                 setRange={handleDateChange} 
+                showRangeError={showRangeError}
                 selectedSlide={selectedSlide}
                 setSelectedSlide={setSelectedSlide}
+                
               />
             </Tabs>
             <SubmitWrapper/>
           </div>
 
-        </form> 
+        </Form> 
     </section>
   );
 });

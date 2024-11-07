@@ -15,6 +15,8 @@ export default {
       'even-darker'           : '#00000013',
       'unselected'            : '#9A9A9ABC',
       'unselected-trans'      : '#DFDCDC5A',
+      'error'                 : '#EFAAAAFF',
+      'error-box'             : '#4646466D',
       'mobile-acc-blue'       : '#074A55',
       'main-acc-blue'         : '#035360',
       'tone-acc-blue'         : '#00A4BE',
