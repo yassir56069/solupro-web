@@ -1,5 +1,5 @@
 import Logo                           from '../instantiate-logo'
-import PageLinks                      from '../instantiate-page-link';
+import PageLinks                      from '../util/logic-page-link';
 
 
 const DesktopNav = () => {

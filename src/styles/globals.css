@@ -11,14 +11,14 @@
 }
 
 body {
-    @apply h-screen bg-gradient-to-t from-gr-top-blue to-gr-btm-blue ;
+    @apply -z-50 h-screen bg-gradient-to-t from-gr-top-blue to-gr-btm-blue ;
     background-attachment: fixed; /* Add this line to fix the background */
     height: 110vh;
     background-size: cover; /* Ensures the background covers the entire viewport */
 }
 
 @layer utilities {
-    .min-h-nav-adjust {
-      min-height: 100vh /* Adjust '4rem' based on your navbar height */
-    }
+  .min-h-nav-adjust {
+    min-height: calc(100vh - 6rem); /* Adjust '4rem' based on your navbar height */
   }
+}

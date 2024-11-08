@@ -22,8 +22,8 @@ const Navbar: React.FC = () => {
     }, []);
 
     return (
-        <header className="fixed top-0 left-0 w-full h-24">
-            <div 
+        <header className="fixed z-50 top-0 left-0 w-full h-24">
+            <section 
                 className={`
                 text-white font-creatoDisplay font-light 
                 bg-mobile-acc-blue md:bg-main-acc-blue 
@@ -36,7 +36,7 @@ const Navbar: React.FC = () => {
                 <div className={`'transition-all duration-200 ease-in-out' ${isMobile ? 'opacity-100 h-auto' : 'opacity-0 h-0'}`}>
                     <MobileNav />
                 </div>
-            </div>
+            </section>
         </header>
     );
 }
