@@ -22,3 +22,66 @@ body {
     min-height: calc(100vh - 6rem); /* Adjust '4rem' based on your navbar height */
   }
 }
+
+
+/*
+  Based on TailwindCSS recommendations,
+  consider using classes instead of the `@apply` directive
+  @see https://tailwindcss.com/docs/reusing-styles#avoiding-premature-abstraction
+*/
+.embla {
+  @apply relative flex w-full h-[12.2rem] max-w-[30rem] mx-auto before:top-[-0.5px] before:border-b-[rgba(var(--text-high-contrast-rgb-value),0.3)] before:border-b-[0.5px] before:border-solid after:bottom-[-0.5px] after:border-t-[rgba(var(--text-high-contrast-rgb-value),0.3)] after:border-t-[0.5px] after:border-solid;
+}
+.embla:before,
+.embla:after {
+  @apply absolute content-[''] block h-[calc(50%_-_32px_/_2)] z-[1] pointer-events-none inset-x-0;
+}
+.embla:before {
+  background: linear-gradient(
+    to top,
+    rgba(var(--background-site-rgb-value), 0.65) 0%,
+    rgba(var(--background-site-rgb-value), 1) 100%
+  );
+}
+.embla:after {
+  background: linear-gradient(
+    to bottom,
+    rgba(var(--background-site-rgb-value), 0.65) 0%,
+    rgba(var(--background-site-rgb-value), 1) 100%
+  );
+}
+.embla__ios-picker {
+  @apply h-full flex items-center min-w-[100px] justify-center leading-none text-[1.8rem];
+}
+.embla__ios-picker__scene {
+  @apply min-w-full h-full overflow-hidden flex items-center touch-pan-x;
+}
+.embla__ios-picker__viewport {
+  @apply h-8 w-full select-none;
+  perspective: 1000px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -webkit-touch-callout: none;
+  -khtml-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.embla__ios-picker__viewport--perspective-left {
+  @apply translate-x-[27px];
+  perspective-origin: calc(50% + 130px) 50%;
+}
+.embla__ios-picker__viewport--perspective-right {
+  @apply translate-x-[-27px];
+  perspective-origin: calc(50% - 130px) 50%;
+}
+.embla__ios-picker__container {
+  @apply h-full w-full will-change-transform;
+  transform-style: preserve-3d;
+}
+.embla__ios-picker__slide {
+  @apply w-full h-full text-[19px] text-center flex items-center justify-center opacity-0;
+  backface-visibility: hidden;
+}
+.embla__ios-picker__label {
+  @apply font-bold translate-x-[-55px] pointer-events-none;
+}

@@ -16,6 +16,7 @@ import { EmblaOptionsType }               from 'embla-carousel';
 import type   { DateRange }               from 'react-aria-components';
 
 import CarCardsCarousel                   from './car-types-carousel';
+import BaggagePassengerPickerCarousel     from './number-picker-carousel';
 
 
 const OPTIONS: EmblaOptionsType = { loop: true }
@@ -73,8 +74,14 @@ const BookingTabPanel = ({ values, onChange, range, setRange, showRangeError, se
               placeholder="Enter return location*"
             />
 
+          <div className='absolute top-[17rem]'>
+            <BaggagePassengerPickerCarousel loop={false}/>
           </div>
-  
+
+          </div>
+
+
+
           {/* Date Selection */}
           <div className='flex flex-col w-full md:justify-end'>
             <h1 className='font-normal text-3xl'>Dates</h1>
