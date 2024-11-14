@@ -20,6 +20,7 @@ import  {
 import type {DateRange}                   from 'react-aria-components';
 
 import { useDateFormatter }               from 'react-aria';
+import { parseAbsoluteToLocal }           from '@internationalized/date';
 
 const CARD_IMAGE = 'https://utfs.io/f/wkZXy01VKbheFXbc93z41N5WxYy3ZcJLnlmviMaVBw0tHXTU';
 
@@ -43,11 +44,13 @@ const  BookingTransferFormCard = forwardRef<HTMLDivElement, any>((props, ref) =>
     customerTel     : '',
     pickupLocation  : '',
     returnLocation  : '',
+    numberPassengers: '',
+    numberBaggage   : '',
     message         : null,
   });
 
   const [selectedSlide, setSelectedSlide] = useState<number | null>(null) // Track selected slide
-
+  let [date, setDate] = React.useState(parseAbsoluteToLocal('2021-04-07T18:45:22Z'));
   let   [range, setRange] = React.useState<DateRange | null>(null);
   const [showRangeError, setShowRangeError] = useState(false);
 
@@ -84,7 +87,7 @@ const  BookingTransferFormCard = forwardRef<HTMLDivElement, any>((props, ref) =>
         <div className={` 
           flex justify-center 
           mt-14
-          p-2 pr-8 pl-8 text-white text-xl rounded-full transition-all duration-500 bg-gradient-to-tl from-main-acc-orange via-tone-acc-orange to-lite-tone-acc-orange bg-size-200 bg-pos-0 hover:bg-pos-100
+          p-2 pr-8 pl-8 text-white text-xl rounded-full transition-all duration-500 bg-gradient-to-tl from-main-acc-orange via-tone-acc-orange to-lite-tone-acc-orange bg-size-200 bg-pos-0 hover:bg-pos-100 md:active:bg-pos-0
           `}>
             <SubmitButton/>
           </div>
@@ -107,8 +110,6 @@ const  BookingTransferFormCard = forwardRef<HTMLDivElement, any>((props, ref) =>
     }
   };
 
-  
-
   return (
     <section ref={ref} className='font-creatoDisplay font-normal mb-6 text-white md:text-blck flex justify-center items-center '>
         <Form 
@@ -120,7 +121,7 @@ const  BookingTransferFormCard = forwardRef<HTMLDivElement, any>((props, ref) =>
             rounded-none    md:rounded-md
             shadow-none     md:shadow-lg
             lg:h-[51rem]
-            xl:h-[50rem]  
+            xl:h-[52rem]  
             bg-transparent  md:bg-main-acc-blue
             m-0
         `}>            
@@ -130,42 +131,54 @@ const  BookingTransferFormCard = forwardRef<HTMLDivElement, any>((props, ref) =>
           </div>
           
           <div className='flex flex-col gap-2 pl-2 w-full justify-center md:w-auto mt-auto mr-1'>
-                  <TextField className={'relative'}>
-                  <Input
-                      className={'rounded-md h-10 md:h-8 md:min-w-80 min-w-[95%] p-2 bg-even-darker md:bg-white'}
-                      type='email'
-                      name='customerEmail'
-                      aria-label="Email Address"
-                      placeholder='Email Address*'
-                      value={formData.customerEmail}
-                      onChange={handleChange}
-                      required
-                    />
-                    <div> 
-                    <FieldError className="-top-14 left-0 w-fit text-error font-thin text-xs bg-error-box px-2 py-1 rounded-md shadow-lg"/>
+                  <TextField className="relative">
+                    <div className="relative">
+                      <svg
+                        className="absolute left-3 top-1/2 transform -translate-y-1/2 text-unselected h-5 w-5"
+                        fill="currentColor"
+                      >
+                        <use href={`/icons/sprite.svg#email-filled`} />
+                      </svg>
+                      <Input
+                        className="rounded-md h-10 md:h-8 md:min-w-80 min-w-[95%] p-2 pl-10 bg-white"
+                        type="email"
+                        name="customerEmail"
+                        aria-label="Email Address"
+                        placeholder="Email Address*"
+                        value={formData.customerEmail}
+                        onChange={handleChange}
+                        required
+                      />
                     </div>
-
+                    <div>
+                      <FieldError className="-top-14 left-0 w-fit text-error font-thin text-xs bg-error-box px-2 py-1 rounded-md shadow-lg" />
+                  </div>
                   </TextField>
-                  <TextField>
-                  <Input
-                      className={'rounded-md h-10 md:h-8 md:min-w-80 min-w-[95%] p-2 bg-even-darker md:bg-white'}
-                      type='tel'
-                      name='customerTel'
-                      aria-label="Telephone Number"
-                      placeholder='Phone Number*'
-                      value={formData.customerTel}
-                      onChange={handleChange}
-                      required
-                    />
-                    <div
-                      role="tooltip"
-                      
-                    >
-                      <FieldError className="-top-14 left-0 w-full text-error font-thin text-xs bg-error-box px-2 py-1 rounded-md shadow-lg"> 
-                      {({validationDetails}) => (
-                          validationDetails.valueMissing ? 'Please enter a phone number.' : ''
-                      )}
-                      </FieldError>
+                  <TextField className='relative'>
+                    <div className='relative'>
+                        <svg
+                          className="relative top-9 left-3 transform -translate-y-1/2 text-unselected h-5 w-5"
+                          fill="currentColor"
+                        >
+                          <use href={`/icons/sprite.svg#local_phone-filled`} />
+                        </svg>
+                      <Input
+                        className="rounded-md h-10 md:h-8 md:min-w-80 min-w-[95%] p-2 pl-10 bg-white"
+                        type='tel'
+                        name='customerTel'
+                        aria-label="Telephone Number"
+                        placeholder='Phone Number*'
+                        value={formData.customerTel}
+                        onChange={handleChange}
+                        required
+                      />
+                      <div role="tooltip">
+                        <FieldError className="-top-14 left-0 w-full text-error font-thin text-xs bg-error-box px-2 py-1 rounded-md shadow-lg"> 
+                        {({validationDetails}) => (
+                            validationDetails.valueMissing ? 'Please enter a phone number.' : ''
+                        )}
+                        </FieldError>
+                      </div>
                     </div>
                   </TextField>                
                 <span className='text-3xl text-white font-normal flex justify-center md:justify-normal '> <h2>Client Details</h2> </span>

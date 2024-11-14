@@ -32,7 +32,7 @@ const EmblaCarousel = ({ selectedSlide, setSelectedSlide, ...props}:any) => {
 
   return (
     <section className="">
-      <div className="embla__viewport overflow-hidden " ref={emblaRef}>
+      <div className="embla__viewport overflow-hidden cursor-grab" ref={emblaRef}>
         <div
           className="embla__container flex"
           style={{ marginLeft: `calc(${slide_spacing} * -1)`, marginTop: '10px', touchAction: "pan-y pinch-zoom" }}

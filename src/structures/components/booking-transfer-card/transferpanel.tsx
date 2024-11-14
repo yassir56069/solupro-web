@@ -10,16 +10,15 @@ import  { RangeCalendar, CalendarCell,
     TimeField,
     DateInput,
     Label,
-    DateSegment
-}                                         from 'react-aria-components';
+    DateSegment,
+    NumberField,
+    Group
+}                                                                    from 'react-aria-components';
 
-import React, {  useState }               from 'react';
-import { useDateFormatter }               from 'react-aria';
+import React                                                         from 'react';
+import { useDateFormatter }                                          from 'react-aria';
 import { getLocalTimeZone, today, parseZonedDateTime }               from '@internationalized/date';
-import { EmblaOptionsType }               from 'embla-carousel';
-import type   { DateRange }               from 'react-aria-components';
-
-import CarCardsCarousel                   from './car-types-carousel';
+import { EmblaOptionsType }                                          from 'embla-carousel';
 
 
 const OPTIONS: EmblaOptionsType = { loop: true }
@@ -61,12 +60,12 @@ const TransferTabPanel = ({ values, onChange, range, setRange, showRangeError, s
         <p className='opacity-40 text-sm pt-1 '> Solupro provides a transfer service that picks you up from the mauritius airport</p>
         <div className='flex flex-col md:flex-row pt-4'>
           {/* Pick up and Return Locations */}
-          <div className='flex flex-col w-full gap-2 space-y-7 pb-7 pr-8'>
-            <div>
+          <div className='flex flex-col w-full gap-1 space-y-7 pb-7 pr-8'>
+            <div className='cursor-not-allowed'>
             <label htmlFor='pickupLocation' className='font-normal text-3xl '> Pick Up </label>
-              <TextField className={'text-unselected'} isReadOnly defaultValue={"Sir Seewoosagur Ramgoolam International Airport, Plaine Magnien, MU" }>
+              <TextField className={'text-unselected cursor-not-allowed'} isReadOnly defaultValue={"Sir Seewoosagur Ramgoolam International Airport, Plaine Magnien, MU" }>
               <Input 
-                className='bg-darker flex flex-grow p-3 w-full rounded-md'
+                className='bg-darker flex flex-grow p-3 w-full rounded-md cursor-not-allowed'
                 type="text" 
                 name='Pick Up'
               />
@@ -80,6 +79,33 @@ const TransferTabPanel = ({ values, onChange, range, setRange, showRangeError, s
               onChange={onChange}
               placeholder="Enter return location*"
             />
+
+            <NumberField defaultValue={1} maxValue={10} minValue={0} className="bg-darker p-2 rounded-lg text-sm flex flex-col items-center justify-center">
+              <Label className="text-sm mb-1">Number of Baggage</Label>
+              <Group className="flex items-center space-x-2">
+                <Button slot="decrement" className="bg-darker rounded-lg p-2 text-center">
+                  -
+                </Button>
+                <Input className="text-center bg-darker p-2 rounded-lg" />
+                <Button slot="increment" className="bg-darker rounded-lg p-2 text-center">
+                  +
+                </Button>
+              </Group>
+            </NumberField>
+
+            <NumberField defaultValue={1} maxValue={30} minValue={1} className="bg-darker p-2 rounded-lg text-sm flex flex-col items-center justify-center">
+              <Label className="text-sm mb-1">Number of Passengers</Label>
+              <Group className="flex items-center space-x-2">
+                <Button slot="decrement" className="bg-darker rounded-lg p-2 text-center">
+                  -
+                </Button>
+                <Input className="text-center bg-darker p-2 rounded-lg" />
+                <Button slot="increment" className="bg-darker rounded-lg p-2 text-center">
+                  +
+                </Button>
+              </Group>
+            </NumberField>
+
 
           </div>
   
@@ -164,8 +190,14 @@ const TransferTabPanel = ({ values, onChange, range, setRange, showRangeError, s
     <div className='flex flex-col justify-center'>
       <label htmlFor={name} className='font-normal text-3xl'>{label}</label>
       <TextField>
+        <svg
+          className="relative top-11 left-3 transform -translate-y-1/2 text-unselected h-5 w-5"
+          fill="currentColor"
+        >
+          <use href={`/icons/sprite.svg#location_on-outlined`} />
+        </svg>
         <Input 
-          className='bg-even-darker flex flex-grow p-3 w-full rounded-md' 
+          className='bg-even-darker flex flex-grow p-3 pl-10 w-full rounded-md' 
           type="text" 
           name={name} 
           placeholder={placeholder}

@@ -8,11 +8,16 @@ import Backdrop             from './components/instantiate-backdrop';
 const TextSplashPage = ({bookingFormRef}:any) => {
 
     const scrollToBookingForm = () => {
-        bookingFormRef.current.scrollIntoView({
-          behavior: 'smooth',
-          block: 'start', // Align to the top of the viewport
+        const element = bookingFormRef.current;
+        const offset = 155; 
+        const elementPosition = element.getBoundingClientRect().top + window.scrollY;
+        const targetPosition = elementPosition - offset;
+    
+        window.scrollTo({
+            top: targetPosition,
+            behavior: 'smooth',
         });
-      };
+    };
 
     return (  
         <section className="flex flex-col min-h-screen text-white justify-center items-center text-center">

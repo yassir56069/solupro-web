@@ -8,7 +8,7 @@ import  {TabList,Tab,}      from 'react-aria-components';
  * edit them on the element directly for prototyping
  */
 const tabStyling = `
-    cursor-pointer
+    cursor-alias
     outline-0
     pr-4
     text-transparent bg-clip-text 

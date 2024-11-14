@@ -9,11 +9,10 @@ import  { RangeCalendar, CalendarCell,
     FieldError,
 }                                         from 'react-aria-components';
 
-import React, {  useState }               from 'react';
+import React                              from 'react';
 import { useDateFormatter }               from 'react-aria';
-import { getLocalTimeZone, today }               from '@internationalized/date';
+import { getLocalTimeZone, today }        from '@internationalized/date';
 import { EmblaOptionsType }               from 'embla-carousel';
-import type   { DateRange }               from 'react-aria-components';
 
 import CarCardsCarousel                   from './car-types-carousel';
 
@@ -141,8 +140,14 @@ const BookingTabPanel = ({ values, onChange, range, setRange, showRangeError, se
     <div className='flex flex-col justify-center'>
       <label htmlFor={name} className='font-normal text-3xl'>{label}</label>
       <TextField>
+        <svg
+          className="relative top-11 left-3 transform -translate-y-1/2 text-unselected h-5 w-5"
+          fill="currentColor"
+        >
+          <use href={`/icons/sprite.svg#location_on-outlined`} />
+        </svg>
         <Input 
-          className='bg-even-darker flex flex-grow p-3 w-full rounded-md' 
+          className='bg-even-darker flex flex-grow p-3 pl-10 w-full rounded-md' 
           type="text" 
           name={name} 
           placeholder={placeholder}
