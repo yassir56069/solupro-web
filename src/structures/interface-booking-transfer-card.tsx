@@ -110,7 +110,7 @@ const  BookingTransferFormCard = forwardRef<HTMLDivElement, any>((props, ref) =>
   
 
   return (
-    <section ref={ref} className='font-creatoDisplay font-normal  text-white md:text-blck flex justify-center items-center min-h-[60rem] md:h-screen z-0'>
+    <section ref={ref} className='font-creatoDisplay font-normal mb-6 text-white md:text-blck flex justify-center items-center '>
         <Form 
           onSubmit={handleSubmit} 
           className={`
@@ -119,10 +119,10 @@ const  BookingTransferFormCard = forwardRef<HTMLDivElement, any>((props, ref) =>
             w-full          md:w-5/6
             rounded-none    md:rounded-md
             shadow-none     md:shadow-lg
-            lg:h-[40rem]    lg:max-h-[80%] 
-            xl:h-[60rem]    xl:max-h-2/3
+            lg:h-[51rem]
+            xl:h-[50rem]  
             bg-transparent  md:bg-main-acc-blue
-            
+            m-0
         `}>            
           <div className='md:flex flex-col md:mt-0 pb-3 w-full md:w-auto'>
           <div className='flex flex-grow  items-center justify-center pr-1 p-3'>
