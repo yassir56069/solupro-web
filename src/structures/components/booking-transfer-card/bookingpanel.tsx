@@ -54,7 +54,7 @@ const BookingTabPanel = ({ values, onChange, range, setRange, showRangeError, se
     return (
       <TabPanel className='flex flex-col flex-wrap' id='booking'>
         <p className='opacity-40 text-sm pt-1 '> With Solupro, you can book your car within a 24 hour notice via our booking card.</p>
-        <div className='flex flex-col md:flex-row pt-4'>
+        <div className='flex flex-col md:flex-row pt-4  items-start'>
           {/* Pick up and Return Locations */}
           <div className='flex flex-col w-full gap-2 space-y-7 pb-7 pr-8'>
             <LocationInput 

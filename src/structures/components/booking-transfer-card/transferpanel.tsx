@@ -58,7 +58,7 @@ const TransferTabPanel = ({ values, onChange, range, setRange, showRangeError, s
     return (
       <TabPanel className='flex flex-col flex-wrap' id='transfer'>
         <p className='opacity-40 text-sm pt-1 '> Solupro provides a transfer service that picks you up from the mauritius airport</p>
-        <div className='flex flex-col md:flex-row pt-4'>
+        <div className='flex flex-col md:flex-row pt-4 items-start'>
           {/* Pick up and Return Locations */}
           <div className='flex flex-col w-full gap-1 space-y-7 pb-7 pr-8'>
             <div className='cursor-not-allowed'>
