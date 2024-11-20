@@ -98,7 +98,7 @@ export const useBookingTransferCardLogic = () => {
     
     const isBooking = !!formData.pickupLocation;
 
-    const emailTitle = `Customer ${formData.customerEmail} Tel: ${formData.customerTel}`
+    const emailTitle = `Customer ${formData.customerEmail} Tel: ${formData.customerTel} ${isBooking ? `Booking Starting ${range?.start}` : `Transfer Starting ${range?.start}`}`
 
     const emailBody = `
     <div style="font-family: Arial, sans-serif; background-color: #ffffff; padding: 20px; border: 1px solid #ddd;">
