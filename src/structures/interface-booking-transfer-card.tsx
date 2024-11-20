@@ -1,141 +1,57 @@
 'use client'
 
-import BookignTransferTablist             from './components/booking-transfer-card/tablist';
-import BookingTabPanel                    from './components/booking-transfer-card/bookingpanel';
-import TransferTabPanel                   from './components/booking-transfer-card/transferpanel';    
-// import handleSubmit                       from './components/util/logic-handle-submit';   
+import { 
+  useBookingTransferCardLogic,
+  SubmitButton,
+  CARD_IMAGE 
+}                               from './logic-booking-transfer-card';
+import BookignTransferTablist   from './components/booking-transfer-card/tablist';
+import BookingTabPanel          from './components/booking-transfer-card/bookingpanel';
+import TransferTabPanel         from './components/booking-transfer-card/transferpanel';    
 
-import  { useFormState, useFormStatus }   from 'react-dom';
-import  { useState, useEffect }           from 'react';
-import  React, { forwardRef }             from 'react';
 
-// import  { useCheckWrap }                  from '../util/check_flexwrap';
 import  {
   TextField,
   Input,
   Form,
   Tabs,
   FieldError,
-}                                         from 'react-aria-components';
-import type {DateRange}                   from 'react-aria-components';
-
-import { useDateFormatter }               from 'react-aria';
-import { parseAbsoluteToLocal, parseZonedDateTime}           from '@internationalized/date';
-
-const CARD_IMAGE = 'https://utfs.io/f/wkZXy01VKbheFXbc93z41N5WxYy3ZcJLnlmviMaVBw0tHXTU';
-
-function SubmitButton() {
-  const { pending } = useFormStatus();
-
-  return (
-    <button type="submit" aria-disabled={pending}>
-      Submit
-    </button>
-  );
-}
+}                               from 'react-aria-components';
+import React, { forwardRef }      from 'react';
 
 
-const  BookingTransferFormCard = forwardRef<HTMLDivElement, any>((props, ref) => {
-  
-  let formatter = useDateFormatter({ dateStyle: 'long' });
+const BookingTransferFormCard = forwardRef<HTMLDivElement, any>((props, ref) => {
+  const {
+    formatter,
+    formData,
+    selectedSlide,
+    setSelectedSlide,
+    flightArrivalTime,
+    setFlightArrivalTime,
+    date,
+    range,
+    showRangeError,
+    handleDateChange,
+    handleTimeChange,
+    handleNumberBaggageChange,
+    handleNumberPassengerChange,
+    handleChange,
+    handleSubmit,
+  } = useBookingTransferCardLogic();
 
-  const [formData, setFormData] = useState({
-    customerEmail   : '',
-    customerTel     : '',
-    pickupLocation  : '',
-    returnLocation  : '',
-    numberPassengers: 1,
-    numberBaggage   : 0,
-    message         : null,
-  });
-
-  const [selectedSlide, setSelectedSlide] = useState<number | null>(null) // Track selected slide
-  const [flightArrivalTime, setFlightArrivalTime] = useState(parseZonedDateTime('2022-11-07T00:00[Indian/Mauritius]'));
-  let   [date, setDate] = React.useState(parseAbsoluteToLocal('2021-04-07T18:45:22Z'));  
-  let   [range, setRange] = React.useState<DateRange | null>(null);
-  const [showRangeError, setShowRangeError] = useState(false);
-
-
-
-  const { pending } = useFormStatus();
-
-  const handleDateChange = (newRange:any) => {
-    setRange(newRange);
-    if (newRange) setShowRangeError(false);
-    console.log("Updated Range:", newRange); // Log updated range immediately
-  };
-
-  const handleTimeChange = (newTime: any) => {
-    setFormData((prevFormData) => ({
-      ...prevFormData,
-      flightArrivalTime: newTime, // Update the flightArrivalTime field in formData
-    }));
-  };
-
-
-  const handleNumberBaggageChange = (newValue: number) => {
-    setFormData((prevFormData) => ({
-      ...prevFormData,
-      numberBaggage: newValue, // Update the numberBaggage field
-    }));
-  };
-
-  
-  const handleNumberPassengerChange = (newValue: number) => {
-    setFormData((prevFormData) => ({
-      ...prevFormData,
-      numberPassengers: newValue, // Update the numberBaggage field
-    }));
-  };
-
-
-  const handleChange = (e:any) => {
-    const { name, value } = e.target;
-    setFormData(prevState => ({
-      ...prevState,
-      [name]: value
-    }));
-  };
-
-  /**
- * Renders the SubmitWrapper component containing a styled submit button.
- * Positioned at the bottom right of the container on larger screens.
- *
- * @component
- * @returns {JSX.Element} The rendered SubmitWrapper component with a stylized submit button.
- *
- * @example
- * <SubmitWrapper />
- */
-  function SubmitWrapper()
-  {
-    return (
-      <div className='md:absolute md:bottom-0 md:right-0 m-4'> 
-        <div className={` 
+  const SubmitWrapper = () => (
+    <div className="md:absolute md:bottom-0 md:right-0 m-4">
+      <div
+        className={`
           flex justify-center 
           mt-14
           p-2 pr-8 pl-8 text-white text-xl rounded-full transition-all duration-500 bg-gradient-to-tl from-main-acc-orange via-tone-acc-orange to-lite-tone-acc-orange bg-size-200 bg-pos-0 hover:bg-pos-100 md:active:bg-pos-0
-          `}>
-            <SubmitButton/>
-          </div>
+        `}
+      >
+        <SubmitButton />
       </div>
-    ) 
-  }
-
-  
-  const handleSubmit = (e:any) => {
-    e.preventDefault();
-    if (!range?.start || !range?.end) {
-      setShowRangeError(true); // Show error if no date range is selected
-      console.log('no range')
-
-    } else {
-      console.log('Form submitted:', formData);
-      console.log("Submitted Date Range:", range);
-      console.log('selected slide', selectedSlide);
-      console.log('Flight Arrival Time:', flightArrivalTime.toString());
-    }
-  };
+    </div>
+  );
 
   return (
     <section ref={ref} className='font-creatoDisplay font-normal mb-6 text-white md:text-blck flex justify-center items-center '>
@@ -250,7 +166,6 @@ const  BookingTransferFormCard = forwardRef<HTMLDivElement, any>((props, ref) =>
             </Tabs>
             <SubmitWrapper/>
           </div>
-
         </Form> 
     </section>
   );
