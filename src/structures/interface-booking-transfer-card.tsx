@@ -171,4 +171,5 @@ const BookingTransferFormCard = forwardRef<HTMLDivElement, any>((props, ref) => 
   );
 });
 
+BookingTransferFormCard.displayName = 'BookingTransferFormCard';
 export default BookingTransferFormCard;
