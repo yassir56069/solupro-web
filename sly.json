@@ -1,0 +1,11 @@
+{
+  "$schema": "https://sly-cli.fly.dev/registry/config.json",
+  "libraries": [
+    {
+      "name": "material-design-icons",
+      "directory": "./assets/images",
+      "postinstall": [],
+      "transformers": []
+    }
+  ]
+}

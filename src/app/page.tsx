@@ -1,13 +1,21 @@
+'use client'
+import React, { useRef }        from 'react';
 
-import Splash from '../components/splash';
-import BTCard from '~/components/bt_card';
-
+import TextSplashPage           from '../structures/interface-splash-page';
+import BookingTransferFormCard  from '~/structures/interface-booking-transfer-card';
+import InfoCards                from '~/structures/components/info-cards';
 
 export default function HomePage() {
+  const bookingFormRef = useRef(null);
+
   return (
     <main>
-      <Splash/>
-      <BTCard/>
+        <TextSplashPage           bookingFormRef={bookingFormRef}/>
+      
+        <BookingTransferFormCard  ref={bookingFormRef}/>
+        
+        <InfoCards/>
+
     </main>
   );
 }
