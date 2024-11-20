@@ -53,7 +53,7 @@ const EmblaCarousel = ({ selectedSlide, setSelectedSlide, ...props}:any) => {
                 style={{ userSelect: "none" }}
               >
                 <img
-                  src={src}
+                  src={src as string}
                   alt={title}
                   className="object-cover w-full h-full"
                 />
