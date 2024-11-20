@@ -83,7 +83,7 @@ const BookingTransferFormCard = forwardRef<HTMLDivElement, any>((props, ref) => 
                         <use href={`/icons/sprite.svg#email-filled`} />
                       </svg>
                       <Input
-                        className="rounded-md h-10 md:h-8 md:min-w-80 min-w-[95%] p-2 pl-10 bg-white"
+                        className="rounded-md h-10 md:h-8 md:min-w-80 min-w-[95%] p-2 pl-10 bg-even-darker md:bg-white "
                         type="email"
                         name="customerEmail"
                         aria-label="Email Address"
@@ -106,7 +106,7 @@ const BookingTransferFormCard = forwardRef<HTMLDivElement, any>((props, ref) => 
                           <use href={`/icons/sprite.svg#local_phone-filled`} />
                         </svg>
                       <Input
-                        className="rounded-md h-10 md:h-8 md:min-w-80 min-w-[95%] p-2 pl-10 bg-white"
+                        className="rounded-md h-10 md:h-8 md:min-w-80 min-w-[95%] p-2 pl-10 bg-even-darker md:bg-white"
                         type='tel'
                         name='customerTel'
                         aria-label="Telephone Number"
