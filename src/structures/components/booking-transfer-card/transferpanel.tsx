@@ -30,7 +30,7 @@ const SLIDES = {
 
 
 const TransferTabPanel = ({ values, onChange, range, setRange, showRangeError, flightArrivalTime, setFlightArrivalTime, handleNumberBaggageChange, handleNumberPassengerChange}:any) => {
-    let formatter = useDateFormatter({ dateStyle: 'long' });
+    const formatter = useDateFormatter({ dateStyle: 'long' });
 
     const renderDateDisplay = () => {
       if (!range?.start || !range?.end) return (
@@ -247,4 +247,5 @@ const TransferTabPanel = ({ values, onChange, range, setRange, showRangeError, f
     </CalendarGrid>
   );
   
+  TransferTabPanel.displayName = 'TransferTabPanel';
   export default TransferTabPanel;

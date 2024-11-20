@@ -26,7 +26,7 @@ const SLIDES = {
 
 
 const BookingTabPanel = ({ values, onChange, range, setRange, showRangeError, selectedSlide, setSelectedSlide }:any) => {
-    let formatter = useDateFormatter({ dateStyle: 'long' });
+    const formatter = useDateFormatter({ dateStyle: 'long' });
 
     const renderDateDisplay = () => {
       if (!range?.start || !range?.end) return (

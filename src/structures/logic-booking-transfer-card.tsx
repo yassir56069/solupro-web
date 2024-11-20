@@ -79,19 +79,6 @@ export const useBookingTransferCardLogic = () => {
     }));
   };
 
-  const handleSubmit_OLD = (e: any) => {
-    e.preventDefault();
-    if (!range?.start || !range?.end) {
-      setShowRangeError(true);
-      console.log('No range');
-    } else {
-      console.log('Form submitted:', formData);
-      console.log('Submitted Date Range:', range);
-      console.log('Selected slide:', selectedSlide);
-      console.log('Flight Arrival Time:', flightArrivalTime.toString());
-    }
-  };
-
   const handleSubmit = (e:any) => {
     
     const isBooking = !!formData.pickupLocation;
