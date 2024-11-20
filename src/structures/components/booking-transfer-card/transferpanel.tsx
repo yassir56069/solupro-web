@@ -29,7 +29,7 @@ const SLIDES = {
 }
 
 
-const TransferTabPanel = ({ values, onChange, range, setRange, showRangeError, selectedSlide, setSelectedSlide }:any) => {
+const TransferTabPanel = ({ values, onChange, range, setRange, showRangeError, flightArrivalTime, setFlightArrivalTime, handleNumberBaggageChange, handleNumberPassengerChange}:any) => {
     let formatter = useDateFormatter({ dateStyle: 'long' });
 
     const renderDateDisplay = () => {
@@ -54,7 +54,9 @@ const TransferTabPanel = ({ values, onChange, range, setRange, showRangeError, s
         </div>
       );
     };
-  
+
+
+
     return (
       <TabPanel className='flex flex-col flex-wrap' id='transfer'>
         <p className='opacity-40 text-sm pt-1 '> Solupro provides a transfer service that picks you up from the mauritius airport</p>
@@ -80,7 +82,7 @@ const TransferTabPanel = ({ values, onChange, range, setRange, showRangeError, s
               placeholder="Enter return location*"
             />
 
-            <NumberField defaultValue={1} maxValue={10} minValue={0} className="bg-darker p-2 rounded-lg text-sm flex flex-col items-center justify-center">
+            <NumberField defaultValue={0} maxValue={10} minValue={0} value={values.numberBaggage} onChange={handleNumberBaggageChange} className="bg-darker p-2 rounded-lg text-sm flex flex-col items-center justify-center">
               <Label className="text-sm mb-1">Number of Baggage</Label>
               <Group className="flex items-center space-x-2">
                 <Button slot="decrement" className="bg-darker rounded-lg p-2 text-center">
@@ -93,13 +95,13 @@ const TransferTabPanel = ({ values, onChange, range, setRange, showRangeError, s
               </Group>
             </NumberField>
 
-            <NumberField defaultValue={1} maxValue={30} minValue={1} className="bg-darker p-2 rounded-lg text-sm flex flex-col items-center justify-center">
+            <NumberField defaultValue={1} maxValue={30} minValue={1} value={values.numberPassengers} onChange={handleNumberPassengerChange} className="bg-darker p-2 rounded-lg text-sm flex flex-col items-center justify-center">
               <Label className="text-sm mb-1">Number of Passengers</Label>
               <Group className="flex items-center space-x-2">
                 <Button slot="decrement" className="bg-darker rounded-lg p-2 text-center">
                   -
                 </Button>
-                <Input className="text-center bg-darker p-2 rounded-lg" />
+                <Input  className="text-center bg-darker p-2 rounded-lg" />
                 <Button slot="increment" className="bg-darker rounded-lg p-2 text-center">
                   +
                 </Button>
@@ -159,8 +161,11 @@ const TransferTabPanel = ({ values, onChange, range, setRange, showRangeError, s
           </div>
         </div>
         
-
-        <TimeField defaultValue={parseZonedDateTime('2022-11-07T00:00[Indian/Mauritius]')}>
+        <TimeField
+          value={flightArrivalTime}
+          onChange={setFlightArrivalTime}
+          defaultValue={parseZonedDateTime('2022-11-07T00:00[Indian/Mauritius]')} // default value
+        >
           <Label className='text-3xl '>Flight Arrival Time</Label>
           <p className='opacity-40 '> please enter the time of your flight according to the time it will land in Mauritius.</p>
           <DateInput className={'flex flex-row  md:gap-2 font-bold justify-around items-center p-2 mt-3  md:p-4 md:w-full md:text-lg md:h-[7.5rem] bg-darker md:bg-even-darker rounded-lg'}>
@@ -176,11 +181,6 @@ const TransferTabPanel = ({ values, onChange, range, setRange, showRangeError, s
               segment={segment} />}
           </DateInput>
         </TimeField>
-        {/* Car Types
-        <div className=''>
-          <label htmlFor="carTypes" className='font-normal text-3xl '>Car Types</label>
-            <CarCardsCarousel selectedSlide={selectedSlide} setSelectedSlide={setSelectedSlide} slides={SLIDES}  options={OPTIONS}/>
-        </div> */}
       </TabPanel>
     );
   };

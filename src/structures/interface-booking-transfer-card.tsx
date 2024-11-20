@@ -20,7 +20,7 @@ import  {
 import type {DateRange}                   from 'react-aria-components';
 
 import { useDateFormatter }               from 'react-aria';
-import { parseAbsoluteToLocal }           from '@internationalized/date';
+import { parseAbsoluteToLocal, parseZonedDateTime}           from '@internationalized/date';
 
 const CARD_IMAGE = 'https://utfs.io/f/wkZXy01VKbheFXbc93z41N5WxYy3ZcJLnlmviMaVBw0tHXTU';
 
@@ -44,15 +44,18 @@ const  BookingTransferFormCard = forwardRef<HTMLDivElement, any>((props, ref) =>
     customerTel     : '',
     pickupLocation  : '',
     returnLocation  : '',
-    numberPassengers: '',
-    numberBaggage   : '',
+    numberPassengers: 1,
+    numberBaggage   : 0,
     message         : null,
   });
 
   const [selectedSlide, setSelectedSlide] = useState<number | null>(null) // Track selected slide
-  let [date, setDate] = React.useState(parseAbsoluteToLocal('2021-04-07T18:45:22Z'));
+  const [flightArrivalTime, setFlightArrivalTime] = useState(parseZonedDateTime('2022-11-07T00:00[Indian/Mauritius]'));
+  let   [date, setDate] = React.useState(parseAbsoluteToLocal('2021-04-07T18:45:22Z'));  
   let   [range, setRange] = React.useState<DateRange | null>(null);
   const [showRangeError, setShowRangeError] = useState(false);
+
+
 
   const { pending } = useFormStatus();
 
@@ -61,6 +64,30 @@ const  BookingTransferFormCard = forwardRef<HTMLDivElement, any>((props, ref) =>
     if (newRange) setShowRangeError(false);
     console.log("Updated Range:", newRange); // Log updated range immediately
   };
+
+  const handleTimeChange = (newTime: any) => {
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      flightArrivalTime: newTime, // Update the flightArrivalTime field in formData
+    }));
+  };
+
+
+  const handleNumberBaggageChange = (newValue: number) => {
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      numberBaggage: newValue, // Update the numberBaggage field
+    }));
+  };
+
+  
+  const handleNumberPassengerChange = (newValue: number) => {
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      numberPassengers: newValue, // Update the numberBaggage field
+    }));
+  };
+
 
   const handleChange = (e:any) => {
     const { name, value } = e.target;
@@ -106,7 +133,7 @@ const  BookingTransferFormCard = forwardRef<HTMLDivElement, any>((props, ref) =>
       console.log('Form submitted:', formData);
       console.log("Submitted Date Range:", range);
       console.log('selected slide', selectedSlide);
-  
+      console.log('Flight Arrival Time:', flightArrivalTime.toString());
     }
   };
 
@@ -195,26 +222,30 @@ const  BookingTransferFormCard = forwardRef<HTMLDivElement, any>((props, ref) =>
                   pickupLocation  : formData.pickupLocation,
                   returnLocation  : formData.returnLocation,
                 }}
-                onChange={handleChange}
-                range={range}
-                setRange={handleDateChange} 
-                showRangeError={showRangeError}
-                selectedSlide={selectedSlide}
-                setSelectedSlide={setSelectedSlide}
+                onChange          = {handleChange}
+                range             = {range}
+                setRange          = {handleDateChange} 
+                showRangeError    = {showRangeError}
+                selectedSlide     = {selectedSlide}     //booking only
+                setSelectedSlide  = {setSelectedSlide}  //booking only
                 
               />
               <TransferTabPanel
                 values={{
-                  pickupLocation  : formData.pickupLocation,
-                  returnLocation  : formData.returnLocation,
+                  pickupLocation    : formData.pickupLocation,
+                  returnLocation    : formData.returnLocation,
+                  numberBaggage     : formData.numberBaggage,
+                  numberPassengers  : formData.numberPassengers,
                 }}
-                onChange={handleChange}
-                range={range}
-                setRange={handleDateChange} 
-                showRangeError={showRangeError}
-                selectedSlide={selectedSlide}
-                setSelectedSlide={setSelectedSlide}
-                
+                onChange                    =  {handleChange}
+                range                       = {range}
+                setRange                    = {handleDateChange} 
+                showRangeError              = {showRangeError}
+                handleNumberBaggageChange   = {handleNumberBaggageChange}     //transfer only
+                handleNumberPassengerChange = {handleNumberPassengerChange}   //transfer only
+                flightArrivalTime           = {flightArrivalTime}             //transfer only
+                setFlightArrivalTime        = {setFlightArrivalTime}          //transfer only
+                handhandleTimeChange        = {handleTimeChange}              //transfer only
               />
             </Tabs>
             <SubmitWrapper/>
