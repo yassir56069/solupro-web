@@ -11,7 +11,10 @@ import type {DateRange}     from 'react-aria-components';
 import { useDateFormatter } from 'react-aria';
 
 
+
 export const CARD_IMAGE = 'https://utfs.io/f/wkZXy01VKbheFXbc93z41N5WxYy3ZcJLnlmviMaVBw0tHXTU';
+
+const nodemailer = require("nodemailer");
 
 // SubmitButton Component
 export function SubmitButton() {
@@ -78,7 +81,7 @@ export const useBookingTransferCardLogic = () => {
     }));
   };
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit_OLD = (e: any) => {
     e.preventDefault();
     if (!range?.start || !range?.end) {
       setShowRangeError(true);
@@ -88,6 +91,69 @@ export const useBookingTransferCardLogic = () => {
       console.log('Submitted Date Range:', range);
       console.log('Selected slide:', selectedSlide);
       console.log('Flight Arrival Time:', flightArrivalTime.toString());
+    }
+  };
+
+
+  const handleSubmit = async (e: any) => {
+    e.preventDefault();
+  
+    if (!range?.start || !range?.end) {
+      setShowRangeError(true);
+      console.log('No range');
+      return;
+    }
+  
+    // Determine the type of reservation
+    const isBooking = !!formData.pickupLocation;
+  
+    // Format email content
+    const emailBody = `
+      <div style="font-family: Arial, sans-serif; background-color: #ffffff; padding: 20px; border: 1px solid #ddd;">
+        <h2 style="color: #007BFF;">Reservation Details</h2>
+        <p><strong>Customer Email:</strong> ${formData.customerEmail}</p>
+        <p><strong>Customer Phone:</strong> ${formData.customerTel}</p>
+        <p><strong>Reservation Type:</strong> ${isBooking ? "Booking" : "Transfer"}</p>
+        <p><strong>Reservation Dates:</strong> ${range.start} to ${range.end}</p>
+  
+        ${isBooking ? `
+          <h3 style="color: #FF5733;">Booking Details</h3>
+          <p><strong>Pickup Location:</strong> ${formData.pickupLocation}</p>
+          <p><strong>Return Location:</strong> ${formData.returnLocation}</p>
+          <p><strong>Car Type:</strong> Slide #${selectedSlide}</p>
+        ` : `
+          <h3 style="color: #FF5733;">Transfer Details</h3>
+          <p><strong>Return Location:</strong> ${formData.returnLocation}</p>
+          <p><strong>Number of Passengers:</strong> ${formData.numberPassengers}</p>
+          <p><strong>Number of Baggage:</strong> ${formData.numberBaggage}</p>
+          <p><strong>Flight Arrival Time:</strong> ${flightArrivalTime.toString()}</p>
+        `}
+      </div>
+    `;
+  
+    // Dummy transporter for testing
+    const transporter = nodemailer.createTransport({
+      host: "smtp.ethereal.email", // Use a dummy service for testing
+      port: 587,
+      auth: {
+        user: 'catharine38@ethereal.email', // Replace with your Ethereal or SMTP user
+        pass: 'd1jzCQmhuga4qSS6TW', // Replace with your Ethereal or SMTP password
+      },
+    });
+  
+    try {
+      const info = await transporter.sendMail({
+        from: '"Car Booking Service" <no-reply@yourdomain.com>', // Sender address
+        to: formData.customerEmail, // Recipient email
+        subject: `Reservation Confirmation (${isBooking ? "Booking" : "Transfer"})`,
+        html: emailBody, // Email content
+      });
+  
+      console.log("Email sent:", info.messageId);
+      alert("Email sent successfully!");
+    } catch (error) {
+      console.error("Error sending email:", error);
+      alert("Failed to send email.");
     }
   };
 
