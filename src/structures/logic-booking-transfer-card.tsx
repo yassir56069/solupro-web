@@ -121,7 +121,7 @@ export const useBookingTransferCardLogic = () => {
       setShowRangeError(true);
       console.log('No range');
     } else {
-      void sendEmail(emailTitle, emailBody);
+      sendEmail(emailTitle, emailBody);
       console.log('Form submitted:', formData);       
       console.log('Submitted Date Range:', range);       
       console.log('Selected slide:', selectedSlide);       
