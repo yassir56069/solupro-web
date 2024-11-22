@@ -1,6 +1,7 @@
 // app/terms/page.tsx
 'use client'
 import React        from 'react';
+import Image        from 'next/image';
 
 export default function ContactPage() {
 
@@ -11,7 +12,7 @@ export default function ContactPage() {
             <h1 className="flex font-edgeCutting text-white text-6xl  p-11  justify-center mt-[9rem] "> Contact Us </h1>
             <div className='flex flex-col md:flex-row  justify-center items-center '> 
                 <section className="flex justify-center items-center   rounded-xl w-full md:w-[30%] text-white font-creatoDisplay font-thin md:text-blck">
-                    <img aria-label='image' className='rounded-xl' src={LOCATION_IMAGE} />
+                    <Image aria-label='image' className='rounded-xl' src={LOCATION_IMAGE} alt='location image' width={380} height={380} unoptimized priority={true}/>
                 </section>
 
                 <section className="flex flex-col gap-5 bg-even-darker md:bg-white text-white md:text-blck rounded-xl p-10 md:shadow-md w-[90%] md:w-[60%] m-4 font-creatoDisplay  text-lg font-thin h-full">                    

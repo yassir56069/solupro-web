@@ -2,7 +2,7 @@ import React                                          from 'react'
 import useEmblaCarousel                               from 'embla-carousel-react'
 import { useState }                                   from 'react'
 import { EmblaOptionsType }                           from 'embla-carousel'
-import Image                                        from 'next/image'
+import Image                                          from 'next/image'
 import { PrevButton, NextButton,  usePrevNextButtons} from './carousel-buttons'
 
 type PropType = {
@@ -53,9 +53,12 @@ const EmblaCarousel = ({ selectedSlide, setSelectedSlide, ...props}:any) => {
                 className={`embla__slide__image relative shadow-inner rounded-xl h-[9rem] overflow-hidden flex items-center justify-center`}
                 style={{ userSelect: "none" }}
               >
-                <img
+                <Image
                   src={src as string}
                   alt={title}
+                  width={0}
+                  height={0}
+                  sizes="100vw"
                   className="object-cover w-full h-full"
                 />
 
