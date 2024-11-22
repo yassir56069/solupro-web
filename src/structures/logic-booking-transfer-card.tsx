@@ -104,7 +104,13 @@ export const useBookingTransferCardLogic = () => {
         <h3 style="color: #035360;">Booking Details</h3>
         <p><strong>Pickup Location:</strong> ${formData.pickupLocation}</p>
         <p><strong>Return Location:</strong> ${formData.returnLocation}</p>
-        <p><strong>Car Type:</strong> Slide #${selectedSlide}</p>
+        <p><strong>Car Type:</strong> 
+          ${selectedSlide === null || selectedSlide === 0 
+            ? 'SUV' 
+            : selectedSlide === 1 
+              ? 'Economy Car' 
+              : 'Pick-Up Truck'}
+        </p>
       ` : `
         <h3 style="color: #EE9236;">Transfer Details</h3>
         <p><strong>Return Location:</strong> ${formData.returnLocation}</p>
