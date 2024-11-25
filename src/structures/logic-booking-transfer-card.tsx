@@ -89,10 +89,13 @@ export const useBookingTransferCardLogic = () => {
   };
 
   const redis = new Redis({
-    url: process.env.UPSTASH_REDIS_REST_URL!,
-    token: process.env.UPSTASH_REDIS_REST_TOKEN!,
-  });
+
+    url: 'https://casual-skunk-46398.upstash.io',
   
+    token: 'AbU-AAIjcDEwNThkMmY2ZWFiN2U0M2U5ODlkNGVmODQ1ZmNiNzZkZXAxMA',
+  
+  })
+
   const ratelimit = new Ratelimit({
     redis: redis,
     limiter: Ratelimit.slidingWindow(5, "180 s"), // 5 requests per 3 minutes
@@ -115,7 +118,6 @@ export const useBookingTransferCardLogic = () => {
     }
   
     const isBooking = !!formData.pickupLocation;
-    console.log("KV_REST_API_URL:", process.env.KV_REST_API_URL);
     const emailTitle = `Customer ${formData.customerEmail} Tel: ${formData.customerTel} ${isBooking ? `Booking Starting ${range?.start}` : `Transfer Starting ${range?.start}`}`
 
     const emailBody = `
