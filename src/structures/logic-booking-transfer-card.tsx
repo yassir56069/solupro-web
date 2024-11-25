@@ -6,17 +6,16 @@ import {
     parseAbsoluteToLocal, 
     parseZonedDateTime
 }                           from '@internationalized/date';
-import type {DateRange}     from 'react-aria-components';
+import type { DateRange }   from 'react-aria-components';
 
 import { useDateFormatter } from 'react-aria';
 
-import { sendEmail } from '~/lib/resend';
+import { sendEmail }        from '~/lib/resend';
+import { Toaster, toast }   from 'sonner'
 
 export const CARD_IMAGE = 'https://utfs.io/f/wkZXy01VKbheFXbc93z41N5WxYy3ZcJLnlmviMaVBw0tHXTU';
 
 
-
-import { Toaster, toast }       from 'sonner'
 
 // SubmitButton Component
 export function SubmitButton() {
@@ -24,7 +23,7 @@ export function SubmitButton() {
   return (
     <>
     <Toaster richColors/>
-    <button onClick={() => toast.success('Form Submitted!')} type="submit" aria-disabled={pending}>
+    <button type="submit" aria-disabled={pending}>
       Submit
     </button>
     </>
@@ -85,7 +84,7 @@ export const useBookingTransferCardLogic = () => {
     }));
   };
 
-  const handleSubmit = (e:any) => {
+  const handleSubmit = async  (e:any) => {
     
     const isBooking = !!formData.pickupLocation;
 
@@ -125,21 +124,24 @@ export const useBookingTransferCardLogic = () => {
         <p><strong>Flight Arrival Time:</strong> ${flightArrivalTime}</p>
       `}
     </div>
-  `;
-
+    `;
     
     e.preventDefault();
     if (!range?.start || !range?.end) {
       setShowRangeError(true);
       console.log('No range');
-    } else {
-      sendEmail(emailTitle, emailBody);
-      console.log('Form submitted:', formData);       
-      console.log('Submitted Date Range:', range);       
-      console.log('Selected slide:', selectedSlide);       
-      console.log('Flight Arrival Time:', flightArrivalTime.toString());       
+    } 
+    try {
+      await sendEmail(emailTitle, emailBody);
+      toast.success('Email sent successfully!');
+      console.log('Form submitted:', formData);
+      console.log('Submitted Date Range:', range);
+      console.log('Selected slide:', selectedSlide);
+      console.log('Flight Arrival Time:', flightArrivalTime.toString());
+    } catch (error) {
+      toast.error('Failed to send email. Please try again.');
+      console.error('Email sending error:', error);
     }
-    console.log('email should have sent');
   }
 
 
