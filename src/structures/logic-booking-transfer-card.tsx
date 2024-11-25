@@ -14,14 +14,20 @@ import { sendEmail } from '~/lib/resend';
 
 export const CARD_IMAGE = 'https://utfs.io/f/wkZXy01VKbheFXbc93z41N5WxYy3ZcJLnlmviMaVBw0tHXTU';
 
+
+
+import { Toaster, toast }       from 'sonner'
+
 // SubmitButton Component
 export function SubmitButton() {
   const { pending } = useFormStatus();
-
   return (
-    <button type="submit" aria-disabled={pending}>
+    <>
+    <Toaster richColors/>
+    <button onClick={() => toast.success('Form Submitted!')} type="submit" aria-disabled={pending}>
       Submit
     </button>
+    </>
   );
 }
 

@@ -152,7 +152,6 @@ const TransferTabPanel = ({ values, onChange, range, setRange, showRangeError, f
             </div>
           </div>
         </div>
-        
         <TimeField
           value={flightArrivalTime}
           onChange={setFlightArrivalTime}
