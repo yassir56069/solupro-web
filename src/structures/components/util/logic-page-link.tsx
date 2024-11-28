@@ -14,7 +14,7 @@ const PageLinks = ({ onLinkClick }:any) => {
     return (
         <>
             {links.map((link) => (
-                <Link href={link.href} onClick={() => onLinkClick(link.href)}> {link.label} </Link>
+                <Link key={link.href} href={link.href} onClick={() => onLinkClick(link.href)}> {link.label} </Link>
                 
             ))}
         </>
