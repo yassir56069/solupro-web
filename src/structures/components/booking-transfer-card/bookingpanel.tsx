@@ -12,7 +12,7 @@ import  { RangeCalendar, CalendarCell,
 import React                              from 'react';
 import { useDateFormatter }               from 'react-aria';
 import { getLocalTimeZone, today }        from '@internationalized/date';
-import { EmblaOptionsType }               from 'embla-carousel';
+import type { EmblaOptionsType }               from 'embla-carousel';
 
 import CarCardsCarousel                   from './car-types-carousel';
 
@@ -172,29 +172,29 @@ const BookingTabPanel = ({ values, onChange, range, setRange, showRangeError, se
     </header>
   );
   
-  const CustomCalendarGrid = () => (
-    <CalendarGrid className='[&_td]:px-0 border-collapse p-10 m-0'>
-      {(date) => (
-        <CalendarCell 
-          date={date} 
-          className={`
-            w-[10vw] leading-[2.5rem]
-            md:w-[4vw] md:min-w-[3rem] md:leading-[3rem]
-            text-center 
-            rounded-lg 
-            ml-[-1px] mr-[-1px]
-            data-[pressed]:bg-tone-acc-orange
-            data-[selected]:bg-main-acc-orange
-            data-[selected]:text-white 
-            data-[selected]:rounded-none 
-            data-[outside-month]:hidden 
-            data-[selection-start]:rounded-l-2xl
-            data-[selection-end]:rounded-r-2xl
-          `} 
-        />
+  // const CustomCalendarGrid = () => (
+  //   <CalendarGrid className='[&_td]:px-0 border-collapse p-10 m-0'>
+  //     {(date) => (
+  //       <CalendarCell 
+  //         date={date} 
+  //         className={`
+  //           w-[10vw] leading-[2.5rem]
+  //           md:w-[4vw] md:min-w-[3rem] md:leading-[3rem]
+  //           text-center 
+  //           rounded-lg 
+  //           ml-[-1px] mr-[-1px]
+  //           data-[pressed]:bg-tone-acc-orange
+  //           data-[selected]:bg-main-acc-orange
+  //           data-[selected]:text-white 
+  //           data-[selected]:rounded-none 
+  //           data-[outside-month]:hidden 
+  //           data-[selection-start]:rounded-l-2xl
+  //           data-[selection-end]:rounded-r-2xl
+  //         `} 
+  //       />
         
-      )}
-    </CalendarGrid>
-  );
+  //     )}
+  //   </CalendarGrid>
+  // );
   
   export default BookingTabPanel;
