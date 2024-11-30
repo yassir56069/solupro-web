@@ -21,14 +21,6 @@ import { getLocalTimeZone, today, parseZonedDateTime }               from '@inte
 import { EmblaOptionsType }                                          from 'embla-carousel';
 
 
-const OPTIONS: EmblaOptionsType = { loop: true }
-const SLIDES = {
-  'Suv'           : "https://utfs.io/f/wkZXy01VKbheti7WMFiPMgNW67ivTkO0fdco8beXsIxwERBG",
-  'Economy Car'   : "https://utfs.io/f/wkZXy01VKbhesU6V71WScdNDFOTIUVCXmPfyoLua0nlQ89rz",
-  'Pick-up Truck' : "https://utfs.io/f/wkZXy01VKbhesJcfyXWScdNDFOTIUVCXmPfyoLua0nlQ89rz",
-}
-
-
 const TransferTabPanel = ({ values, onChange, range, setRange, showRangeError, flightArrivalTime, setFlightArrivalTime, handleNumberBaggageChange, handleNumberPassengerChange}:any) => {
     const formatter = useDateFormatter({ dateStyle: 'long' });
 
@@ -82,7 +74,7 @@ const TransferTabPanel = ({ values, onChange, range, setRange, showRangeError, f
               placeholder="Enter return location*"
             />
 
-            <NumberField defaultValue={0} maxValue={10} minValue={0} value={values.numberBaggage} onChange={handleNumberBaggageChange} className="bg-darker p-2 rounded-lg text-sm flex flex-col items-center justify-center">
+            <NumberField defaultValue={0} maxValue={10} minValue={0} value={values.numberBaggage} onChange={handleNumberBaggageChange} className="bg-even-darker p-2 rounded-lg text-sm flex flex-col items-center justify-center">
               <Label className="text-sm mb-1">Number of Baggage</Label>
               <Group className="flex items-center space-x-2">
                 <Button slot="decrement" className="bg-darker rounded-lg p-2 text-center">
@@ -95,7 +87,7 @@ const TransferTabPanel = ({ values, onChange, range, setRange, showRangeError, f
               </Group>
             </NumberField>
 
-            <NumberField defaultValue={1} maxValue={30} minValue={1} value={values.numberPassengers} onChange={handleNumberPassengerChange} className="bg-darker p-2 rounded-lg text-sm flex flex-col items-center justify-center">
+            <NumberField defaultValue={1} maxValue={30} minValue={1} value={values.numberPassengers} onChange={handleNumberPassengerChange} className="bg-even-darker p-2 rounded-lg text-sm flex flex-col items-center justify-center">
               <Label className="text-sm mb-1">Number of Passengers</Label>
               <Group className="flex items-center space-x-2">
                 <Button slot="decrement" className="bg-darker rounded-lg p-2 text-center">
@@ -160,7 +152,6 @@ const TransferTabPanel = ({ values, onChange, range, setRange, showRangeError, f
             </div>
           </div>
         </div>
-        
         <TimeField
           value={flightArrivalTime}
           onChange={setFlightArrivalTime}

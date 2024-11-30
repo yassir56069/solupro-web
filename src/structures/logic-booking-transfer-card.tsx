@@ -6,22 +6,31 @@ import {
     parseAbsoluteToLocal, 
     parseZonedDateTime
 }                           from '@internationalized/date';
-import type {DateRange}     from 'react-aria-components';
+import type { DateRange }   from 'react-aria-components';
 
 import { useDateFormatter } from 'react-aria';
 
-import { sendEmail } from '~/lib/resend';
+import { sendEmail }        from '~/lib/resend';
+
+import { Redis }            from "@upstash/redis";
+import { Ratelimit }        from "@upstash/ratelimit";
+
+import { Toaster, toast }   from 'sonner'
 
 export const CARD_IMAGE = 'https://utfs.io/f/wkZXy01VKbheFXbc93z41N5WxYy3ZcJLnlmviMaVBw0tHXTU';
+
+
 
 // SubmitButton Component
 export function SubmitButton() {
   const { pending } = useFormStatus();
-
   return (
+    <>
+    <Toaster richColors/>
     <button type="submit" aria-disabled={pending}>
       Submit
     </button>
+    </>
   );
 }
 
@@ -79,10 +88,36 @@ export const useBookingTransferCardLogic = () => {
     }));
   };
 
-  const handleSubmit = (e:any) => {
-    
-    const isBooking = !!formData.pickupLocation;
+  const redis = new Redis({
 
+    url: 'https://casual-skunk-46398.upstash.io',
+  
+    token: 'AbU-AAIjcDEwNThkMmY2ZWFiN2U0M2U5ODlkNGVmODQ1ZmNiNzZkZXAxMA',
+  
+  })
+
+  const ratelimit = new Ratelimit({
+    redis: redis,
+    limiter: Ratelimit.slidingWindow(5, "180 s"), // 5 requests per 3 minutes
+    timeout: 300, // Block for 5 minutes after limit exceeded
+  });
+  
+
+
+  const handleSubmit = async (e: any) => {
+    e.preventDefault();
+  
+    const userIp = e.target.ip || "unknown-ip"; // Use user's IP or a unique identifier for rate-limiting
+    const { success, reset, remaining } = await ratelimit.limit(userIp);
+  
+    if (!success) {
+      toast.error(
+        `Rate limit exceeded. Please wait a few minutes and try again.`
+      );
+      return;
+    }
+  
+    const isBooking = !!formData.pickupLocation;
     const emailTitle = `Customer ${formData.customerEmail} Tel: ${formData.customerTel} ${isBooking ? `Booking Starting ${range?.start}` : `Transfer Starting ${range?.start}`}`
 
     const emailBody = `
@@ -119,22 +154,26 @@ export const useBookingTransferCardLogic = () => {
         <p><strong>Flight Arrival Time:</strong> ${flightArrivalTime}</p>
       `}
     </div>
-  `;
-
-    
-    e.preventDefault();
+    `;
+  
     if (!range?.start || !range?.end) {
       setShowRangeError(true);
-      console.log('No range');
-    } else {
-      sendEmail(emailTitle, emailBody);
-      console.log('Form submitted:', formData);       
-      console.log('Submitted Date Range:', range);       
-      console.log('Selected slide:', selectedSlide);       
-      console.log('Flight Arrival Time:', flightArrivalTime.toString());       
+      console.log("No range");
+      return;
     }
-    console.log('email should have sent');
-  }
+  
+    try {
+      await sendEmail(emailTitle, emailBody);
+      toast.success("Email sent successfully!");
+      console.log("Form submitted:", formData);
+      console.log("Submitted Date Range:", range);
+      console.log("Selected slide:", selectedSlide);
+      console.log("Flight Arrival Time:", flightArrivalTime.toString());
+    } catch (error) {
+      toast.error("Failed to send email. Please try again.");
+      console.error("Email sending error:", error);
+    }
+  };
 
 
   return {

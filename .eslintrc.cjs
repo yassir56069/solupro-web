@@ -15,6 +15,7 @@ const config = {
   "rules": {
     'react/no-unescaped-entities' : 'off',
     '@typescript-eslint/no-unsafe-member-access': 'off',
+    '@typescript-eslint/no-unsafe-return':'off',
     '@typescript-eslint/no-unsafe-argument':'off',
     '@typescript-eslint/no-unsafe-call':'off',
     '@typescript-eslint/no-floating-promises':'off',

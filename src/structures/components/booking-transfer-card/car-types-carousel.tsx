@@ -5,6 +5,11 @@ import { EmblaOptionsType }                           from 'embla-carousel'
 import Image                                          from 'next/image'
 import { PrevButton, NextButton,  usePrevNextButtons} from './carousel-buttons'
 
+
+import useMediaQuery from '../../hooks/useMediaQuery';
+import resolveConfig from 'tailwindcss/resolveConfig';
+import tailwindConfig from '../../../../tailwind.config';
+
 type PropType = {
   slides: Record<string, string>
   options?: EmblaOptionsType
@@ -22,9 +27,15 @@ const EmblaCarousel = ({ selectedSlide, setSelectedSlide, ...props}:any) => {
     onNextButtonClick
   } = usePrevNextButtons(emblaApi)
 
+  const fullConfig = resolveConfig(tailwindConfig);
+  const mdBreakpoint = fullConfig.theme?.screens?.md;
+
+  const isSmallerThanMd = useMediaQuery(`(max-width: ${mdBreakpoint})`);
+
+
   const slide_height  = '10rem';
-  const slide_spacing = '1rem' ;
-  const slide_size    = '93%' ;
+  const slide_spacing = '.5rem' ;
+  const slide_size = isSmallerThanMd ? '80%' : '40%';
 
 
   const handleSlideClick = (index: number) => {
@@ -33,10 +44,10 @@ const EmblaCarousel = ({ selectedSlide, setSelectedSlide, ...props}:any) => {
 
   return (
     <section className="">
-      <div className="embla__viewport overflow-hidden cursor-grab" ref={emblaRef}>
+      <div className="embla__viewport overflow-hidden cursor-grab rounded-xl h-[9rem]" ref={emblaRef}>
         <div
           className="embla__container flex"
-          style={{ marginLeft: `calc(${slide_spacing} * -1)`, marginTop: '10px', touchAction: "pan-y pinch-zoom" }}
+          style={{ marginLeft: `calc(${slide_spacing} * -1)`, touchAction: "pan-y pinch-zoom" }}
         >
           {Object.entries(slides).map(([title, src], index) => (
             <div
