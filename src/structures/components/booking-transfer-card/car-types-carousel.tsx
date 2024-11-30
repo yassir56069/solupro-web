@@ -5,6 +5,11 @@ import { EmblaOptionsType }                           from 'embla-carousel'
 import Image                                          from 'next/image'
 import { PrevButton, NextButton,  usePrevNextButtons} from './carousel-buttons'
 
+
+import useMediaQuery from '../../hooks/useMediaQuery';
+import resolveConfig from 'tailwindcss/resolveConfig';
+import tailwindConfig from '../../../../tailwind.config';
+
 type PropType = {
   slides: Record<string, string>
   options?: EmblaOptionsType
@@ -22,9 +27,15 @@ const EmblaCarousel = ({ selectedSlide, setSelectedSlide, ...props}:any) => {
     onNextButtonClick
   } = usePrevNextButtons(emblaApi)
 
+  const fullConfig = resolveConfig(tailwindConfig);
+  const mdBreakpoint = fullConfig.theme?.screens?.md;
+
+  const isSmallerThanMd = useMediaQuery(`(max-width: ${mdBreakpoint})`);
+
+
   const slide_height  = '10rem';
   const slide_spacing = '.5rem' ;
-  const slide_size    = '80%' ;
+  const slide_size = isSmallerThanMd ? '80%' : '40%';
 
 
   const handleSlideClick = (index: number) => {
