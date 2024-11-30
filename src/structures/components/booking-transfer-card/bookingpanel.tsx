@@ -12,7 +12,7 @@ import  { RangeCalendar, CalendarCell,
 import React                              from 'react';
 import { useDateFormatter }               from 'react-aria';
 import { getLocalTimeZone, today }        from '@internationalized/date';
-import { EmblaOptionsType }               from 'embla-carousel';
+import type { EmblaOptionsType }               from 'embla-carousel';
 
 import CarCardsCarousel                   from './car-types-carousel';
 
