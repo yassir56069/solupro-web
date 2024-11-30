@@ -23,8 +23,8 @@ const EmblaCarousel = ({ selectedSlide, setSelectedSlide, ...props}:any) => {
   } = usePrevNextButtons(emblaApi)
 
   const slide_height  = '10rem';
-  const slide_spacing = '1rem' ;
-  const slide_size    = '93%' ;
+  const slide_spacing = '.5rem' ;
+  const slide_size    = '80%' ;
 
 
   const handleSlideClick = (index: number) => {
@@ -33,10 +33,10 @@ const EmblaCarousel = ({ selectedSlide, setSelectedSlide, ...props}:any) => {
 
   return (
     <section className="">
-      <div className="embla__viewport overflow-hidden cursor-grab" ref={emblaRef}>
+      <div className="embla__viewport overflow-hidden cursor-grab rounded-xl h-[9rem]" ref={emblaRef}>
         <div
           className="embla__container flex"
-          style={{ marginLeft: `calc(${slide_spacing} * -1)`, marginTop: '10px', touchAction: "pan-y pinch-zoom" }}
+          style={{ marginLeft: `calc(${slide_spacing} * -1)`, touchAction: "pan-y pinch-zoom" }}
         >
           {Object.entries(slides).map(([title, src], index) => (
             <div

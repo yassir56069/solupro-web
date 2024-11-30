@@ -19,9 +19,10 @@ import CarCardsCarousel                   from './car-types-carousel';
 
 const OPTIONS: EmblaOptionsType = { loop: true }
 const SLIDES = {
-  'Suv'           : "https://utfs.io/f/wkZXy01VKbheti7WMFiPMgNW67ivTkO0fdco8beXsIxwERBG",
-  'Economy Car'   : "https://utfs.io/f/wkZXy01VKbhesU6V71WScdNDFOTIUVCXmPfyoLua0nlQ89rz",
-  'Pick-up Truck' : "https://utfs.io/f/wkZXy01VKbhesJcfyXWScdNDFOTIUVCXmPfyoLua0nlQ89rz",
+  'Suv'           : "https://utfs.io/f/wkZXy01VKbhe2HDGIObnY5r3qTu2UFgCB98w6HfEeVistydp",
+  'Small Car'     : "https://utfs.io/f/wkZXy01VKbhe446K2RHBs5vSNfT3MlwxuyZcOX8aYWrUpdDR",
+  'Sedan'         : "https://utfs.io/f/wkZXy01VKbheFc1Bqc41N5WxYy3ZcJLnlmviMaVBw0tHXTUI",
+  'Pick-up Truck' : "https://utfs.io/f/wkZXy01VKbhePeT9GcCmvVhIkXQEfqR2SLOgn7xDNtPAKUGw",
 }
 
 
@@ -172,29 +173,29 @@ const BookingTabPanel = ({ values, onChange, range, setRange, showRangeError, se
     </header>
   );
   
-  const CustomCalendarGrid = () => (
-    <CalendarGrid className='[&_td]:px-0 border-collapse p-10 m-0'>
-      {(date) => (
-        <CalendarCell 
-          date={date} 
-          className={`
-            w-[10vw] leading-[2.5rem]
-            md:w-[4vw] md:min-w-[3rem] md:leading-[3rem]
-            text-center 
-            rounded-lg 
-            ml-[-1px] mr-[-1px]
-            data-[pressed]:bg-tone-acc-orange
-            data-[selected]:bg-main-acc-orange
-            data-[selected]:text-white 
-            data-[selected]:rounded-none 
-            data-[outside-month]:hidden 
-            data-[selection-start]:rounded-l-2xl
-            data-[selection-end]:rounded-r-2xl
-          `} 
-        />
+  // const CustomCalendarGrid = () => (
+  //   <CalendarGrid className='[&_td]:px-0 border-collapse p-10 m-0'>
+  //     {(date) => (
+  //       <CalendarCell 
+  //         date={date} 
+  //         className={`
+  //           w-[10vw] leading-[2.5rem]
+  //           md:w-[4vw] md:min-w-[3rem] md:leading-[3rem]
+  //           text-center 
+  //           rounded-lg 
+  //           ml-[-1px] mr-[-1px]
+  //           data-[pressed]:bg-tone-acc-orange
+  //           data-[selected]:bg-main-acc-orange
+  //           data-[selected]:text-white 
+  //           data-[selected]:rounded-none 
+  //           data-[outside-month]:hidden 
+  //           data-[selection-start]:rounded-l-2xl
+  //           data-[selection-end]:rounded-r-2xl
+  //         `} 
+  //       />
         
-      )}
-    </CalendarGrid>
-  );
+  //     )}
+  //   </CalendarGrid>
+  // );
   
   export default BookingTabPanel;
