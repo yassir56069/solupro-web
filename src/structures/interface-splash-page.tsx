@@ -27,7 +27,9 @@ const TextSplashPage = ({bookingFormRef}:any) => {
                 </div>
 
             <h1 className="font-edgeCutting text-6xl  p-8"> The Best Car Hire Deals In Mauritius. </h1>
-            
+            <p className="flex flex-col max-w-lg justify-center items-center text-center">
+                Discover Mauritius hassle-free with our affordable and reliable car rental service. Whether you're a tourist or a local, enjoy safe, well-maintained vehicles for the best island adventure at your own pace.
+            </p>
             <map 
                 onClick={scrollToBookingForm} 
                 className={`

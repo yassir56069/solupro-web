@@ -1,7 +1,5 @@
 import React                                          from 'react'
 import useEmblaCarousel                               from 'embla-carousel-react'
-import { useState }                                   from 'react'
-import { EmblaOptionsType }                           from 'embla-carousel'
 import Image                                          from 'next/image'
 import { PrevButton, NextButton,  usePrevNextButtons} from './carousel-buttons'
 
@@ -9,11 +7,6 @@ import { PrevButton, NextButton,  usePrevNextButtons} from './carousel-buttons'
 import useMediaQuery from '../../hooks/useMediaQuery';
 import resolveConfig from 'tailwindcss/resolveConfig';
 import tailwindConfig from '../../../../tailwind.config';
-
-type PropType = {
-  slides: Record<string, string>
-  options?: EmblaOptionsType
-}
 
 const EmblaCarousel = ({ selectedSlide, setSelectedSlide, ...props}:any) => {
   const { slides, options } = props
@@ -33,7 +26,7 @@ const EmblaCarousel = ({ selectedSlide, setSelectedSlide, ...props}:any) => {
   const isSmallerThanMd = useMediaQuery(`(max-width: ${mdBreakpoint})`);
 
 
-  const slide_height  = '10rem';
+  // const slide_height  = '10rem';
   const slide_spacing = '.5rem' ;
   const slide_size = isSmallerThanMd ? '80%' : '40%';
 

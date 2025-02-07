@@ -1,5 +1,6 @@
 'use client'
 
+import Image from "next/image";
 import { 
   useBookingTransferCardLogic,
   SubmitButton,
@@ -22,13 +23,11 @@ import React, { forwardRef }      from 'react';
 
 const BookingTransferFormCard = forwardRef<HTMLDivElement, any>((props, ref) => {
   const {
-    formatter,
     formData,
     selectedSlide,
     setSelectedSlide,
     flightArrivalTime,
     setFlightArrivalTime,
-    date,
     range,
     showRangeError,
     handleDateChange,
@@ -70,7 +69,8 @@ const BookingTransferFormCard = forwardRef<HTMLDivElement, any>((props, ref) => 
         `}>            
           <div className='md:flex flex-col md:mt-0 pb-3 w-full md:w-auto'>
           <div className='flex flex-grow  items-center justify-center pr-1 p-3'>
-            <img aria-label='image' className={`mix-blend-hard-light z-0 hidden md:block`} src={CARD_IMAGE} />
+            <Image alt='Image of a car for a card' aria-label='image' className={`mix-blend-hard-light z-0 hidden md:block`} height={400} width={400} src={CARD_IMAGE} />
+          
           </div>
           
           <div className='flex flex-col gap-2 pl-2 w-full justify-center md:w-auto mt-auto mr-1'>
