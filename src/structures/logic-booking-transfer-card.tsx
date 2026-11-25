@@ -181,36 +181,24 @@ export const useBookingTransferCardLogic = () => {
 
       const result = await sendEmail(emailTitle, emailBody);
 
+
       if (!result) {
-        toast.error('Server returned no response (504 timeout)', {
-          description: 'Check Vercel Function Logs for details.',
-          duration: 10000,
-        });
+        toast.error('Failed to send email. Please try again.');
+        console.error('Email sending error: empty response from server.');
         return;
       }
 
       setSendStatus(result);
 
       if (result.success) {
-        toast.success('Booking request sent!', {
-          description: `To: ${result.to} (${result.source})${result.redisNote ? ` | Redis: ${result.redisNote}` : ''} | ID: ${result.id ?? 'N/A'}`,
-          duration: 10000,
-        });
-        console.log('Email sent debug:', result);
+        toast.success('Email sent successfully!');
       } else {
-        toast.error('Failed to send booking email', {
-          description: `Target: ${result.to} (${result.source}) | Error: ${result.error}`,
-          duration: 10000,
-        });
-        console.error('Email failed debug:', result);
+        toast.error('Failed to send email. Please try again.');
+        console.error('Email sending error:', result.error);
       }
     } catch (error) {
-      const msg = error instanceof Error ? error.message : 'Unexpected client error';
-      toast.error('Something went wrong submitting the form', {
-        description: msg,
-        duration: 10000,
-      });
-      console.error('Submit error:', error);
+      toast.error('Failed to send email. Please try again.');
+      console.error('Email sending error:', error);
     } finally {
       setIsSubmitting(false);
     }
