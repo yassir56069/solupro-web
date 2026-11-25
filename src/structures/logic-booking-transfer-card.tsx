@@ -12,11 +12,6 @@ import { useDateFormatter } from 'react-aria';
 
 import { sendEmail, type SendEmailResult } from '~/lib/resend';
 
-import { Redis } from '@upstash/redis';
-import { Ratelimit } from '@upstash/ratelimit';
-
-import { Toaster, toast } from 'sonner';
-
 export const CARD_IMAGE =
     'https://utfs.io/f/wkZXy01VKbheFXbc93z41N5WxYy3ZcJLnlmviMaVBw0tHXTU';
 
@@ -122,18 +117,6 @@ export const useBookingTransferCardLogic = () => {
     }));
   };
 
-  // See security note below about moving this server-side
-  const redis = new Redis({
-    url: 'https://casual-skunk-46398.upstash.io',
-    token: 'YOUR_UPSTASH_TOKEN',
-  });
-
-  const ratelimit = new Ratelimit({
-    redis: redis,
-    limiter: Ratelimit.slidingWindow(5, '180 s'),
-    timeout: 300,
-  });
-
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     if (isSubmitting) return;
@@ -148,15 +131,7 @@ export const useBookingTransferCardLogic = () => {
     setSendStatus(null);
 
     try {
-      const userIp = e.target.ip ?? 'unknown-ip';
-      const { success } = await ratelimit.limit(userIp);
-
-      if (!success) {
-        toast.error('Rate limit exceeded. Please wait a few minutes and try again.');
-        return;
-      }
-
-      const isBooking = !!formData.pickupLocation;
+      const isBooking = formData.pickupLocation.trim().length > 0;
       const emailTitle = `Customer ${formData.customerEmail} Tel: ${formData.customerTel} ${
           isBooking ? `Booking Starting ${range?.start}` : `Transfer Starting ${range?.start}`
       }`;
@@ -204,11 +179,20 @@ export const useBookingTransferCardLogic = () => {
       `;
 
       const result = await sendEmail(emailTitle, emailBody);
+
+      if (!result) {
+        toast.error('Server returned no response (504 timeout)', {
+          description: 'Check Vercel Function Logs for details.',
+          duration: 10000,
+        });
+        return;
+      }
+
       setSendStatus(result);
 
       if (result.success) {
         toast.success('Booking request sent!', {
-          description: `Sent to: ${result.to} (${result.source}) | Resend ID: ${result.id ?? 'N/A'}`,
+          description: `To: ${result.to} (${result.source})${result.redisNote ? ` | Redis: ${result.redisNote}` : ''} | ID: ${result.id ?? 'N/A'}`,
           duration: 10000,
         });
         console.log('Email sent debug:', result);
