@@ -47,7 +47,32 @@ const BookingTransferFormCard = forwardRef<HTMLDivElement, any>((props, ref) => 
           p-2 pr-8 pl-8 text-white text-xl rounded-full transition-all duration-500 bg-gradient-to-tl from-main-acc-orange via-tone-acc-orange to-lite-tone-acc-orange bg-size-200 bg-pos-0 hover:bg-pos-100 md:active:bg-pos-0
         `}
       >
-        <SubmitButton />
+          <SubmitButton isSubmitting={isSubmitting} />
+
+          {sendStatus && (
+              <div
+                  className={`mt-4 rounded-md p-3 text-sm ${
+                      sendStatus.success
+                          ? 'border border-green-500/40 bg-green-500/10 text-green-200'
+                          : 'border border-red-500/40 bg-red-500/10 text-red-200'
+                  }`}
+              >
+                  {sendStatus.success ? (
+                      <>
+                          <p className="font-semibold">Reservation sent successfully</p>
+                          <p>To: {sendStatus.to} (from {sendStatus.source})</p>
+                          <p>From: {sendStatus.from}</p>
+                          <p>Resend ID: {sendStatus.id ?? 'N/A'}</p>
+                      </>
+                  ) : (
+                      <>
+                          <p className="font-semibold">Failed to send reservation</p>
+                          <p>Target: {sendStatus.to} (from {sendStatus.source})</p>
+                          <p>Error: {sendStatus.error}</p>
+                      </>
+                  )}
+              </div>
+          )}
       </div>
     </div>
   );
