@@ -154,6 +154,10 @@ const BookingTransferFormCard = forwardRef<HTMLDivElement, any>((props, ref) => 
                 handhandleTimeChange        = {handleTimeChange}              //transfer only
               />
             </Tabs>
+                  <div className="md:absolute md:bottom-0 md:right-0 m-4 flex flex-col items-end gap-3">
+                      <SubmitButton isSubmitting={isSubmitting} />
+                  </div>
+              </div>
           </div>
         </Form> 
     </section>
