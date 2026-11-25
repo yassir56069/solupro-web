@@ -18,7 +18,8 @@ export const sendEmail = async (subject: string, message: string) => {
         console.error('Redis lookup failed, using fallback email:', err);
     }
 
-    const to = recipient?.trim() || FALLBACK_TO_EMAIL;
+    const trimmed = recipient?.trim() ?? '';
+    const to = trimmed.length > 0 ? trimmed : FALLBACK_TO_EMAIL;
 
     const { data, error } = await resend.emails.send({
         to,
